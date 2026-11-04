@@ -1,0 +1,2603 @@
+{
+ "pulled_at": "2026-10-30T12:00:00Z",
+ "today": "2026-10-30",
+ "calls": [
+  {
+   "tool_slug": "INSTAGRAM_GET_USER_INFO",
+   "arguments": {
+    "ig_user_id": "me",
+    "fields": "username,name,account_type,followers_count,follows_count,media_count"
+   },
+   "response": {
+    "successful": true,
+    "data": {
+     "username": "ci_demo_bakery",
+     "name": "CI Demo Bakery",
+     "account_type": "BUSINESS",
+     "followers_count": 4210,
+     "follows_count": 312,
+     "media_count": 141
+    }
+   }
+  },
+  {
+   "tool_slug": "INSTAGRAM_GET_USER_INSIGHTS",
+   "arguments": {
+    "period": "day",
+    "metric_type": "total_value",
+    "since": "2026-10-02",
+    "until": "2026-10-30",
+    "metric": [
+     "views",
+     "reach",
+     "accounts_engaged",
+     "total_interactions",
+     "likes",
+     "comments",
+     "shares",
+     "saves",
+     "replies",
+     "reposts",
+     "profile_views",
+     "website_clicks"
+    ]
+   },
+   "response": {
+    "successful": true,
+    "data": {
+     "data": [
+      {
+       "name": "views",
+       "total_value": {
+        "value": 61000
+       }
+      },
+      {
+       "name": "reach",
+       "total_value": {
+        "value": 38000
+       }
+      },
+      {
+       "name": "accounts_engaged",
+       "total_value": {
+        "value": 1900
+       }
+      },
+      {
+       "name": "total_interactions",
+       "total_value": {
+        "value": 2600
+       }
+      },
+      {
+       "name": "likes",
+       "total_value": {
+        "value": 1800
+       }
+      },
+      {
+       "name": "comments",
+       "total_value": {
+        "value": 240
+       }
+      },
+      {
+       "name": "shares",
+       "total_value": {
+        "value": 310
+       }
+      },
+      {
+       "name": "saves",
+       "total_value": {
+        "value": 250
+       }
+      },
+      {
+       "name": "replies",
+       "total_value": {
+        "value": 12
+       }
+      },
+      {
+       "name": "reposts",
+       "total_value": {
+        "value": 9
+       }
+      },
+      {
+       "name": "profile_views",
+       "total_value": {
+        "value": 1450
+       }
+      },
+      {
+       "name": "website_clicks",
+       "total_value": {
+        "value": 21
+       }
+      }
+     ]
+    }
+   }
+  },
+  {
+   "tool_slug": "INSTAGRAM_GET_USER_INSIGHTS",
+   "arguments": {
+    "period": "day",
+    "metric_type": "total_value",
+    "since": "2026-10-02",
+    "until": "2026-10-30",
+    "metric": [
+     "follows_and_unfollows"
+    ],
+    "breakdown": "follow_type"
+   },
+   "response": {
+    "successful": true,
+    "data": {
+     "data": [
+      {
+       "name": "follows_and_unfollows",
+       "total_value": {
+        "breakdowns": [
+         {
+          "results": [
+           {
+            "dimension_values": [
+             "FOLLOWER"
+            ],
+            "value": 140
+           },
+           {
+            "dimension_values": [
+             "NON_FOLLOWER"
+            ],
+            "value": 35
+           }
+          ]
+         }
+        ]
+       }
+      }
+     ]
+    }
+   }
+  },
+  {
+   "tool_slug": "INSTAGRAM_GET_USER_INSIGHTS",
+   "arguments": {
+    "period": "day",
+    "metric_type": "total_value",
+    "since": "2026-10-02",
+    "until": "2026-10-30",
+    "metric": [
+     "reach"
+    ],
+    "breakdown": "follow_type"
+   },
+   "response": {
+    "successful": true,
+    "data": {
+     "data": [
+      {
+       "name": "reach",
+       "total_value": {
+        "breakdowns": [
+         {
+          "results": [
+           {
+            "dimension_values": [
+             "FOLLOWER"
+            ],
+            "value": 7600
+           },
+           {
+            "dimension_values": [
+             "NON_FOLLOWER"
+            ],
+            "value": 30400
+           }
+          ]
+         }
+        ]
+       }
+      }
+     ]
+    }
+   }
+  },
+  {
+   "tool_slug": "INSTAGRAM_GET_USER_INSIGHTS",
+   "arguments": {
+    "period": "day",
+    "metric_type": "total_value",
+    "since": "2026-10-02",
+    "until": "2026-10-30",
+    "metric": [
+     "views"
+    ],
+    "breakdown": "follow_type"
+   },
+   "response": {
+    "successful": true,
+    "data": {
+     "data": [
+      {
+       "name": "views",
+       "total_value": {
+        "breakdowns": [
+         {
+          "results": [
+           {
+            "dimension_values": [
+             "FOLLOWER"
+            ],
+            "value": 15250
+           },
+           {
+            "dimension_values": [
+             "NON_FOLLOWER"
+            ],
+            "value": 45650
+           },
+           {
+            "dimension_values": [
+             "UNKNOWN"
+            ],
+            "value": 100
+           }
+          ]
+         }
+        ]
+       }
+      }
+     ]
+    }
+   }
+  },
+  {
+   "tool_slug": "INSTAGRAM_GET_USER_INSIGHTS",
+   "arguments": {
+    "period": "day",
+    "metric_type": "total_value",
+    "since": "2026-10-23",
+    "until": "2026-10-30",
+    "metric": [
+     "views",
+     "reach",
+     "accounts_engaged",
+     "total_interactions",
+     "likes",
+     "comments",
+     "shares",
+     "saves",
+     "replies",
+     "reposts",
+     "profile_views",
+     "website_clicks"
+    ]
+   },
+   "response": {
+    "successful": true,
+    "data": {
+     "data": [
+      {
+       "name": "views",
+       "total_value": {
+        "value": 15200
+       }
+      },
+      {
+       "name": "reach",
+       "total_value": {
+        "value": 9800
+       }
+      },
+      {
+       "name": "accounts_engaged",
+       "total_value": {
+        "value": 520
+       }
+      },
+      {
+       "name": "total_interactions",
+       "total_value": {
+        "value": 700
+       }
+      },
+      {
+       "name": "likes",
+       "total_value": {
+        "value": 480
+       }
+      },
+      {
+       "name": "comments",
+       "total_value": {
+        "value": 70
+       }
+      },
+      {
+       "name": "shares",
+       "total_value": {
+        "value": 85
+       }
+      },
+      {
+       "name": "saves",
+       "total_value": {
+        "value": 65
+       }
+      },
+      {
+       "name": "replies",
+       "total_value": {
+        "value": 3
+       }
+      },
+      {
+       "name": "reposts",
+       "total_value": {
+        "value": 2
+       }
+      },
+      {
+       "name": "profile_views",
+       "total_value": {
+        "value": 360
+       }
+      },
+      {
+       "name": "website_clicks",
+       "total_value": {
+        "value": 6
+       }
+      }
+     ]
+    }
+   }
+  },
+  {
+   "tool_slug": "INSTAGRAM_GET_USER_INSIGHTS",
+   "arguments": {
+    "period": "day",
+    "metric_type": "total_value",
+    "since": "2026-10-23",
+    "until": "2026-10-30",
+    "metric": [
+     "follows_and_unfollows"
+    ],
+    "breakdown": "follow_type"
+   },
+   "response": {
+    "successful": true,
+    "data": {
+     "data": [
+      {
+       "name": "follows_and_unfollows",
+       "total_value": {
+        "breakdowns": [
+         {
+          "results": [
+           {
+            "dimension_values": [
+             "FOLLOWER"
+            ],
+            "value": 36
+           },
+           {
+            "dimension_values": [
+             "NON_FOLLOWER"
+            ],
+            "value": 9
+           }
+          ]
+         }
+        ]
+       }
+      }
+     ]
+    }
+   }
+  },
+  {
+   "tool_slug": "INSTAGRAM_GET_USER_INSIGHTS",
+   "arguments": {
+    "period": "day",
+    "metric_type": "total_value",
+    "since": "2026-10-23",
+    "until": "2026-10-30",
+    "metric": [
+     "reach"
+    ],
+    "breakdown": "follow_type"
+   },
+   "response": {
+    "successful": true,
+    "data": {
+     "data": [
+      {
+       "name": "reach",
+       "total_value": {
+        "breakdowns": [
+         {
+          "results": [
+           {
+            "dimension_values": [
+             "FOLLOWER"
+            ],
+            "value": 1960
+           },
+           {
+            "dimension_values": [
+             "NON_FOLLOWER"
+            ],
+            "value": 7840
+           }
+          ]
+         }
+        ]
+       }
+      }
+     ]
+    }
+   }
+  },
+  {
+   "tool_slug": "INSTAGRAM_GET_USER_INSIGHTS",
+   "arguments": {
+    "period": "day",
+    "metric_type": "total_value",
+    "since": "2026-10-23",
+    "until": "2026-10-30",
+    "metric": [
+     "views"
+    ],
+    "breakdown": "follow_type"
+   },
+   "response": {
+    "successful": true,
+    "data": {
+     "data": [
+      {
+       "name": "views",
+       "total_value": {
+        "breakdowns": [
+         {
+          "results": [
+           {
+            "dimension_values": [
+             "FOLLOWER"
+            ],
+            "value": 3800
+           },
+           {
+            "dimension_values": [
+             "NON_FOLLOWER"
+            ],
+            "value": 11300
+           },
+           {
+            "dimension_values": [
+             "UNKNOWN"
+            ],
+            "value": 100
+           }
+          ]
+         }
+        ]
+       }
+      }
+     ]
+    }
+   }
+  },
+  {
+   "tool_slug": "INSTAGRAM_GET_USER_INSIGHTS",
+   "arguments": {
+    "metric": [
+     "follower_count"
+    ],
+    "period": "day",
+    "since": "2026-10-02",
+    "until": "2026-10-30"
+   },
+   "response": {
+    "successful": true,
+    "data": {
+     "data": [
+      {
+       "name": "follower_count",
+       "values": [
+        {
+         "end_time": "2026-10-03T07:00:00+0000",
+         "value": 6
+        },
+        {
+         "end_time": "2026-10-04T07:00:00+0000",
+         "value": 7
+        },
+        {
+         "end_time": "2026-10-05T07:00:00+0000",
+         "value": 3
+        },
+        {
+         "end_time": "2026-10-06T07:00:00+0000",
+         "value": 4
+        },
+        {
+         "end_time": "2026-10-07T07:00:00+0000",
+         "value": 5
+        },
+        {
+         "end_time": "2026-10-08T07:00:00+0000",
+         "value": 6
+        },
+        {
+         "end_time": "2026-10-09T07:00:00+0000",
+         "value": 7
+        },
+        {
+         "end_time": "2026-10-10T07:00:00+0000",
+         "value": 3
+        },
+        {
+         "end_time": "2026-10-11T07:00:00+0000",
+         "value": 4
+        },
+        {
+         "end_time": "2026-10-12T07:00:00+0000",
+         "value": 5
+        },
+        {
+         "end_time": "2026-10-13T07:00:00+0000",
+         "value": 6
+        },
+        {
+         "end_time": "2026-10-14T07:00:00+0000",
+         "value": 7
+        },
+        {
+         "end_time": "2026-10-15T07:00:00+0000",
+         "value": 3
+        },
+        {
+         "end_time": "2026-10-16T07:00:00+0000",
+         "value": 4
+        },
+        {
+         "end_time": "2026-10-17T07:00:00+0000",
+         "value": 5
+        },
+        {
+         "end_time": "2026-10-18T07:00:00+0000",
+         "value": 6
+        },
+        {
+         "end_time": "2026-10-19T07:00:00+0000",
+         "value": 7
+        },
+        {
+         "end_time": "2026-10-20T07:00:00+0000",
+         "value": 3
+        },
+        {
+         "end_time": "2026-10-21T07:00:00+0000",
+         "value": 4
+        },
+        {
+         "end_time": "2026-10-22T07:00:00+0000",
+         "value": 5
+        },
+        {
+         "end_time": "2026-10-23T07:00:00+0000",
+         "value": 6
+        },
+        {
+         "end_time": "2026-10-24T07:00:00+0000",
+         "value": 7
+        },
+        {
+         "end_time": "2026-10-25T07:00:00+0000",
+         "value": 3
+        },
+        {
+         "end_time": "2026-10-26T07:00:00+0000",
+         "value": 4
+        },
+        {
+         "end_time": "2026-10-27T07:00:00+0000",
+         "value": 5
+        },
+        {
+         "end_time": "2026-10-28T07:00:00+0000",
+         "value": 6
+        },
+        {
+         "end_time": "2026-10-29T07:00:00+0000",
+         "value": 7
+        },
+        {
+         "end_time": "2026-10-30T07:00:00+0000",
+         "value": 0
+        }
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "tool_slug": "INSTAGRAM_GET_USER_INSIGHTS",
+   "arguments": {
+    "metric": [
+     "online_followers"
+    ],
+    "period": "lifetime",
+    "since": "2026-10-27",
+    "until": "2026-10-29"
+   },
+   "response": {
+    "successful": true,
+    "data": {
+     "data": [
+      {
+       "name": "online_followers",
+       "values": [
+        {
+         "end_time": "2026-10-28T07:00:00+0000",
+         "value": {
+          "0": 20,
+          "1": 27,
+          "2": 34,
+          "3": 41,
+          "4": 48,
+          "5": 55,
+          "6": 62,
+          "7": 69,
+          "8": 76,
+          "9": 23,
+          "10": 30,
+          "11": 37,
+          "12": 44,
+          "13": 51,
+          "14": 58,
+          "15": 65,
+          "16": 72,
+          "17": 79,
+          "18": 26,
+          "19": 33,
+          "20": 40,
+          "21": 47,
+          "22": 54,
+          "23": 61
+         }
+        },
+        {
+         "end_time": "2026-10-29T07:00:00+0000",
+         "value": {
+          "0": 20,
+          "1": 27,
+          "2": 34,
+          "3": 41,
+          "4": 48,
+          "5": 55,
+          "6": 62,
+          "7": 69,
+          "8": 76,
+          "9": 23,
+          "10": 30,
+          "11": 37,
+          "12": 44,
+          "13": 51,
+          "14": 58,
+          "15": 65,
+          "16": 72,
+          "17": 79,
+          "18": 26,
+          "19": 33,
+          "20": 40,
+          "21": 47,
+          "22": 54,
+          "23": 61
+         }
+        }
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "tool_slug": "INSTAGRAM_GET_USER_INSIGHTS",
+   "arguments": {
+    "metric": [
+     "follower_demographics"
+    ],
+    "period": "lifetime",
+    "metric_type": "total_value",
+    "timeframe": "this_month",
+    "breakdown": "age"
+   },
+   "response": {
+    "successful": true,
+    "data": {
+     "data": [
+      {
+       "name": "follower_demographics",
+       "total_value": {
+        "breakdowns": [
+         {
+          "results": [
+           {
+            "dimension_values": [
+             "18-24"
+            ],
+            "value": 300
+           },
+           {
+            "dimension_values": [
+             "25-34"
+            ],
+            "value": 1500
+           },
+           {
+            "dimension_values": [
+             "35-44"
+            ],
+            "value": 1400
+           },
+           {
+            "dimension_values": [
+             "45-54"
+            ],
+            "value": 700
+           },
+           {
+            "dimension_values": [
+             "55-64"
+            ],
+            "value": 250
+           }
+          ]
+         }
+        ]
+       }
+      }
+     ]
+    }
+   }
+  },
+  {
+   "tool_slug": "INSTAGRAM_GET_USER_INSIGHTS",
+   "arguments": {
+    "metric": [
+     "follower_demographics"
+    ],
+    "period": "lifetime",
+    "metric_type": "total_value",
+    "timeframe": "this_month",
+    "breakdown": "gender"
+   },
+   "response": {
+    "successful": true,
+    "data": {
+     "data": [
+      {
+       "name": "follower_demographics",
+       "total_value": {
+        "breakdowns": [
+         {
+          "results": [
+           {
+            "dimension_values": [
+             "F"
+            ],
+            "value": 2900
+           },
+           {
+            "dimension_values": [
+             "M"
+            ],
+            "value": 1200
+           },
+           {
+            "dimension_values": [
+             "U"
+            ],
+            "value": 110
+           }
+          ]
+         }
+        ]
+       }
+      }
+     ]
+    }
+   }
+  },
+  {
+   "tool_slug": "INSTAGRAM_GET_USER_INSIGHTS",
+   "arguments": {
+    "metric": [
+     "follower_demographics"
+    ],
+    "period": "lifetime",
+    "metric_type": "total_value",
+    "timeframe": "this_month",
+    "breakdown": "country"
+   },
+   "response": {
+    "successful": true,
+    "data": {
+     "data": [
+      {
+       "name": "follower_demographics",
+       "total_value": {
+        "breakdowns": [
+         {
+          "results": [
+           {
+            "dimension_values": [
+             "US"
+            ],
+            "value": 2600
+           },
+           {
+            "dimension_values": [
+             "CA"
+            ],
+            "value": 700
+           },
+           {
+            "dimension_values": [
+             "GB"
+            ],
+            "value": 400
+           }
+          ]
+         }
+        ]
+       }
+      }
+     ]
+    }
+   }
+  },
+  {
+   "tool_slug": "INSTAGRAM_GET_USER_INSIGHTS",
+   "arguments": {
+    "metric": [
+     "follower_demographics"
+    ],
+    "period": "lifetime",
+    "metric_type": "total_value",
+    "timeframe": "this_month",
+    "breakdown": "city"
+   },
+   "response": {
+    "successful": true,
+    "data": {
+     "data": [
+      {
+       "name": "follower_demographics",
+       "total_value": {
+        "breakdowns": [
+         {
+          "results": [
+           {
+            "dimension_values": [
+             "Springfield, Ohio"
+            ],
+            "value": 900
+           },
+           {
+            "dimension_values": [
+             "Columbus, Ohio"
+            ],
+            "value": 600
+           }
+          ]
+         }
+        ]
+       }
+      }
+     ]
+    }
+   }
+  },
+  {
+   "tool_slug": "INSTAGRAM_GET_USER_INSIGHTS",
+   "arguments": {
+    "metric": [
+     "engaged_audience_demographics"
+    ],
+    "period": "lifetime",
+    "metric_type": "total_value",
+    "timeframe": "this_month",
+    "breakdown": "age"
+   },
+   "response": {
+    "successful": true,
+    "data": {
+     "data": [
+      {
+       "name": "engaged_audience_demographics",
+       "total_value": {
+        "breakdowns": [
+         {
+          "results": [
+           {
+            "dimension_values": [
+             "18-24"
+            ],
+            "value": 300
+           },
+           {
+            "dimension_values": [
+             "25-34"
+            ],
+            "value": 1500
+           },
+           {
+            "dimension_values": [
+             "35-44"
+            ],
+            "value": 1400
+           },
+           {
+            "dimension_values": [
+             "45-54"
+            ],
+            "value": 700
+           },
+           {
+            "dimension_values": [
+             "55-64"
+            ],
+            "value": 250
+           }
+          ]
+         }
+        ]
+       }
+      }
+     ]
+    }
+   }
+  },
+  {
+   "tool_slug": "INSTAGRAM_GET_USER_INSIGHTS",
+   "arguments": {
+    "metric": [
+     "engaged_audience_demographics"
+    ],
+    "period": "lifetime",
+    "metric_type": "total_value",
+    "timeframe": "this_month",
+    "breakdown": "gender"
+   },
+   "response": {
+    "successful": true,
+    "data": {
+     "data": [
+      {
+       "name": "engaged_audience_demographics",
+       "total_value": {
+        "breakdowns": [
+         {
+          "results": [
+           {
+            "dimension_values": [
+             "F"
+            ],
+            "value": 2900
+           },
+           {
+            "dimension_values": [
+             "M"
+            ],
+            "value": 1200
+           },
+           {
+            "dimension_values": [
+             "U"
+            ],
+            "value": 110
+           }
+          ]
+         }
+        ]
+       }
+      }
+     ]
+    }
+   }
+  },
+  {
+   "tool_slug": "INSTAGRAM_GET_USER_INSIGHTS",
+   "arguments": {
+    "metric": [
+     "engaged_audience_demographics"
+    ],
+    "period": "lifetime",
+    "metric_type": "total_value",
+    "timeframe": "this_month",
+    "breakdown": "country"
+   },
+   "response": {
+    "successful": true,
+    "data": {
+     "data": [
+      {
+       "name": "engaged_audience_demographics",
+       "total_value": {
+        "breakdowns": [
+         {
+          "results": [
+           {
+            "dimension_values": [
+             "US"
+            ],
+            "value": 2600
+           },
+           {
+            "dimension_values": [
+             "CA"
+            ],
+            "value": 700
+           },
+           {
+            "dimension_values": [
+             "GB"
+            ],
+            "value": 400
+           }
+          ]
+         }
+        ]
+       }
+      }
+     ]
+    }
+   }
+  },
+  {
+   "tool_slug": "INSTAGRAM_GET_USER_INSIGHTS",
+   "arguments": {
+    "metric": [
+     "engaged_audience_demographics"
+    ],
+    "period": "lifetime",
+    "metric_type": "total_value",
+    "timeframe": "this_month",
+    "breakdown": "city"
+   },
+   "response": {
+    "successful": true,
+    "data": {
+     "data": [
+      {
+       "name": "engaged_audience_demographics",
+       "total_value": {
+        "breakdowns": [
+         {
+          "results": [
+           {
+            "dimension_values": [
+             "Springfield, Ohio"
+            ],
+            "value": 900
+           },
+           {
+            "dimension_values": [
+             "Columbus, Ohio"
+            ],
+            "value": 600
+           }
+          ]
+         }
+        ]
+       }
+      }
+     ]
+    }
+   }
+  },
+  {
+   "tool_slug": "INSTAGRAM_GET_USER_INSIGHTS",
+   "arguments": {
+    "metric": [
+     "reached_audience_demographics"
+    ],
+    "period": "lifetime",
+    "metric_type": "total_value",
+    "timeframe": "this_month",
+    "breakdown": "age"
+   },
+   "response": {
+    "successful": false,
+    "error": "Not enough data to show this breakdown",
+    "data": null
+   }
+  },
+  {
+   "tool_slug": "INSTAGRAM_GET_IG_MEDIA_INSIGHTS",
+   "arguments": {
+    "ig_media_id": "179000000000000",
+    "metric": [
+     "views",
+     "reach",
+     "likes",
+     "comments",
+     "saved",
+     "shares",
+     "total_interactions",
+     "ig_reels_avg_watch_time"
+    ]
+   },
+   "response": {
+    "successful": true,
+    "data": {
+     "data": [
+      {
+       "name": "views",
+       "values": [
+        {
+         "value": 2100
+        }
+       ]
+      },
+      {
+       "name": "reach",
+       "values": [
+        {
+         "value": 1470
+        }
+       ]
+      },
+      {
+       "name": "likes",
+       "values": [
+        {
+         "value": 105
+        }
+       ]
+      },
+      {
+       "name": "comments",
+       "values": [
+        {
+         "value": 7
+        }
+       ]
+      },
+      {
+       "name": "saved",
+       "values": [
+        {
+         "value": 23
+        }
+       ]
+      },
+      {
+       "name": "shares",
+       "values": [
+        {
+         "value": 17
+        }
+       ]
+      },
+      {
+       "name": "total_interactions",
+       "values": [
+        {
+         "value": 152
+        }
+       ]
+      },
+      {
+       "name": "ig_reels_avg_watch_time",
+       "values": [
+        {
+         "value": 6100
+        }
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "tool_slug": "INSTAGRAM_GET_IG_MEDIA_INSIGHTS",
+   "arguments": {
+    "ig_media_id": "179000000000000",
+    "metric": [
+     "reels_skip_rate"
+    ]
+   },
+   "response": {
+    "successful": true,
+    "data": {
+     "data": [
+      {
+       "name": "reels_skip_rate",
+       "values": [
+        {
+         "value": 31.5
+        }
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "tool_slug": "INSTAGRAM_GET_IG_MEDIA_INSIGHTS",
+   "arguments": {
+    "ig_media_id": "179000000000001",
+    "metric": [
+     "views",
+     "reach",
+     "likes",
+     "comments",
+     "saved",
+     "shares",
+     "total_interactions",
+     "ig_reels_avg_watch_time"
+    ]
+   },
+   "response": {
+    "successful": true,
+    "data": {
+     "data": [
+      {
+       "name": "views",
+       "values": [
+        {
+         "value": 1850
+        }
+       ]
+      },
+      {
+       "name": "reach",
+       "values": [
+        {
+         "value": 1295
+        }
+       ]
+      },
+      {
+       "name": "likes",
+       "values": [
+        {
+         "value": 92
+        }
+       ]
+      },
+      {
+       "name": "comments",
+       "values": [
+        {
+         "value": 6
+        }
+       ]
+      },
+      {
+       "name": "saved",
+       "values": [
+        {
+         "value": 20
+        }
+       ]
+      },
+      {
+       "name": "shares",
+       "values": [
+        {
+         "value": 15
+        }
+       ]
+      },
+      {
+       "name": "total_interactions",
+       "values": [
+        {
+         "value": 133
+        }
+       ]
+      },
+      {
+       "name": "ig_reels_avg_watch_time",
+       "values": [
+        {
+         "value": 6250
+        }
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "tool_slug": "INSTAGRAM_GET_IG_MEDIA_INSIGHTS",
+   "arguments": {
+    "ig_media_id": "179000000000001",
+    "metric": [
+     "reels_skip_rate"
+    ]
+   },
+   "response": {
+    "successful": true,
+    "data": {
+     "data": [
+      {
+       "name": "reels_skip_rate",
+       "values": [
+        {
+         "value": 35.5
+        }
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "tool_slug": "INSTAGRAM_GET_IG_MEDIA_INSIGHTS",
+   "arguments": {
+    "ig_media_id": "179000000000002",
+    "metric": [
+     "views",
+     "reach",
+     "likes",
+     "comments",
+     "saved",
+     "shares",
+     "total_interactions",
+     "ig_reels_avg_watch_time"
+    ]
+   },
+   "response": {
+    "successful": true,
+    "data": {
+     "data": [
+      {
+       "name": "views",
+       "values": [
+        {
+         "value": 2400
+        }
+       ]
+      },
+      {
+       "name": "reach",
+       "values": [
+        {
+         "value": 1680
+        }
+       ]
+      },
+      {
+       "name": "likes",
+       "values": [
+        {
+         "value": 120
+        }
+       ]
+      },
+      {
+       "name": "comments",
+       "values": [
+        {
+         "value": 8
+        }
+       ]
+      },
+      {
+       "name": "saved",
+       "values": [
+        {
+         "value": 26
+        }
+       ]
+      },
+      {
+       "name": "shares",
+       "values": [
+        {
+         "value": 20
+        }
+       ]
+      },
+      {
+       "name": "total_interactions",
+       "values": [
+        {
+         "value": 174
+        }
+       ]
+      },
+      {
+       "name": "ig_reels_avg_watch_time",
+       "values": [
+        {
+         "value": 6400
+        }
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "tool_slug": "INSTAGRAM_GET_IG_MEDIA_INSIGHTS",
+   "arguments": {
+    "ig_media_id": "179000000000002",
+    "metric": [
+     "reels_skip_rate"
+    ]
+   },
+   "response": {
+    "successful": false,
+    "error": "metric not available",
+    "data": null
+   }
+  },
+  {
+   "tool_slug": "INSTAGRAM_GET_IG_MEDIA_INSIGHTS",
+   "arguments": {
+    "ig_media_id": "179000000000003",
+    "metric": [
+     "views",
+     "reach",
+     "likes",
+     "comments",
+     "saved",
+     "shares",
+     "total_interactions",
+     "ig_reels_avg_watch_time"
+    ]
+   },
+   "response": {
+    "successful": true,
+    "data": {
+     "data": [
+      {
+       "name": "views",
+       "values": [
+        {
+         "value": 7600
+        }
+       ]
+      },
+      {
+       "name": "reach",
+       "values": [
+        {
+         "value": 5320
+        }
+       ]
+      },
+      {
+       "name": "likes",
+       "values": [
+        {
+         "value": 380
+        }
+       ]
+      },
+      {
+       "name": "comments",
+       "values": [
+        {
+         "value": 25
+        }
+       ]
+      },
+      {
+       "name": "saved",
+       "values": [
+        {
+         "value": 84
+        }
+       ]
+      },
+      {
+       "name": "shares",
+       "values": [
+        {
+         "value": 63
+        }
+       ]
+      },
+      {
+       "name": "total_interactions",
+       "values": [
+        {
+         "value": 552
+        }
+       ]
+      },
+      {
+       "name": "ig_reels_avg_watch_time",
+       "values": [
+        {
+         "value": 6550
+        }
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "tool_slug": "INSTAGRAM_GET_IG_MEDIA_INSIGHTS",
+   "arguments": {
+    "ig_media_id": "179000000000003",
+    "metric": [
+     "reels_skip_rate"
+    ]
+   },
+   "response": {
+    "successful": true,
+    "data": {
+     "data": [
+      {
+       "name": "reels_skip_rate",
+       "values": [
+        {
+         "value": 43.5
+        }
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "tool_slug": "INSTAGRAM_GET_IG_MEDIA_INSIGHTS",
+   "arguments": {
+    "ig_media_id": "179000000000004",
+    "metric": [
+     "views",
+     "reach",
+     "likes",
+     "comments",
+     "saved",
+     "shares",
+     "total_interactions",
+     "ig_reels_avg_watch_time"
+    ]
+   },
+   "response": {
+    "successful": true,
+    "data": {
+     "data": [
+      {
+       "name": "views",
+       "values": [
+        {
+         "value": 1990
+        }
+       ]
+      },
+      {
+       "name": "reach",
+       "values": [
+        {
+         "value": 1393
+        }
+       ]
+      },
+      {
+       "name": "likes",
+       "values": [
+        {
+         "value": 99
+        }
+       ]
+      },
+      {
+       "name": "comments",
+       "values": [
+        {
+         "value": 6
+        }
+       ]
+      },
+      {
+       "name": "saved",
+       "values": [
+        {
+         "value": 22
+        }
+       ]
+      },
+      {
+       "name": "shares",
+       "values": [
+        {
+         "value": 16
+        }
+       ]
+      },
+      {
+       "name": "total_interactions",
+       "values": [
+        {
+         "value": 143
+        }
+       ]
+      },
+      {
+       "name": "ig_reels_avg_watch_time",
+       "values": [
+        {
+         "value": 6700
+        }
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "tool_slug": "INSTAGRAM_GET_IG_MEDIA_INSIGHTS",
+   "arguments": {
+    "ig_media_id": "179000000000004",
+    "metric": [
+     "reels_skip_rate"
+    ]
+   },
+   "response": {
+    "successful": true,
+    "data": {
+     "data": [
+      {
+       "name": "reels_skip_rate",
+       "values": [
+        {
+         "value": 31.5
+        }
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "tool_slug": "INSTAGRAM_GET_IG_MEDIA_INSIGHTS",
+   "arguments": {
+    "ig_media_id": "179000000000005",
+    "metric": [
+     "views",
+     "reach",
+     "likes",
+     "comments",
+     "saved",
+     "shares",
+     "total_interactions",
+     "ig_reels_avg_watch_time"
+    ]
+   },
+   "response": {
+    "successful": true,
+    "data": {
+     "data": [
+      {
+       "name": "views",
+       "values": [
+        {
+         "value": 2250
+        }
+       ]
+      },
+      {
+       "name": "reach",
+       "values": [
+        {
+         "value": 1575
+        }
+       ]
+      },
+      {
+       "name": "likes",
+       "values": [
+        {
+         "value": 112
+        }
+       ]
+      },
+      {
+       "name": "comments",
+       "values": [
+        {
+         "value": 7
+        }
+       ]
+      },
+      {
+       "name": "saved",
+       "values": [
+        {
+         "value": 25
+        }
+       ]
+      },
+      {
+       "name": "shares",
+       "values": [
+        {
+         "value": 18
+        }
+       ]
+      },
+      {
+       "name": "total_interactions",
+       "values": [
+        {
+         "value": 162
+        }
+       ]
+      },
+      {
+       "name": "ig_reels_avg_watch_time",
+       "values": [
+        {
+         "value": 6850
+        }
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "tool_slug": "INSTAGRAM_GET_IG_MEDIA_INSIGHTS",
+   "arguments": {
+    "ig_media_id": "179000000000005",
+    "metric": [
+     "reels_skip_rate"
+    ]
+   },
+   "response": {
+    "successful": true,
+    "data": {
+     "data": [
+      {
+       "name": "reels_skip_rate",
+       "values": [
+        {
+         "value": 35.5
+        }
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "tool_slug": "INSTAGRAM_GET_IG_MEDIA_INSIGHTS",
+   "arguments": {
+    "ig_media_id": "179000000000006",
+    "metric": [
+     "views",
+     "reach",
+     "likes",
+     "comments",
+     "saved",
+     "shares",
+     "total_interactions",
+     "ig_reels_avg_watch_time"
+    ]
+   },
+   "response": {
+    "successful": true,
+    "data": {
+     "data": [
+      {
+       "name": "views",
+       "values": [
+        {
+         "value": 1700
+        }
+       ]
+      },
+      {
+       "name": "reach",
+       "values": [
+        {
+         "value": 1190
+        }
+       ]
+      },
+      {
+       "name": "likes",
+       "values": [
+        {
+         "value": 85
+        }
+       ]
+      },
+      {
+       "name": "comments",
+       "values": [
+        {
+         "value": 5
+        }
+       ]
+      },
+      {
+       "name": "saved",
+       "values": [
+        {
+         "value": 18
+        }
+       ]
+      },
+      {
+       "name": "shares",
+       "values": [
+        {
+         "value": 14
+        }
+       ]
+      },
+      {
+       "name": "total_interactions",
+       "values": [
+        {
+         "value": 122
+        }
+       ]
+      },
+      {
+       "name": "ig_reels_avg_watch_time",
+       "values": [
+        {
+         "value": 7000
+        }
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "tool_slug": "INSTAGRAM_GET_IG_MEDIA_INSIGHTS",
+   "arguments": {
+    "ig_media_id": "179000000000006",
+    "metric": [
+     "reels_skip_rate"
+    ]
+   },
+   "response": {
+    "successful": true,
+    "data": {
+     "data": [
+      {
+       "name": "reels_skip_rate",
+       "values": [
+        {
+         "value": 39.5
+        }
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "tool_slug": "INSTAGRAM_GET_IG_MEDIA_INSIGHTS",
+   "arguments": {
+    "ig_media_id": "179000000000007",
+    "metric": [
+     "views",
+     "reach",
+     "likes",
+     "comments",
+     "saved",
+     "shares",
+     "total_interactions",
+     "ig_reels_avg_watch_time"
+    ]
+   },
+   "response": {
+    "successful": true,
+    "data": {
+     "data": [
+      {
+       "name": "views",
+       "values": [
+        {
+         "value": 2050
+        }
+       ]
+      },
+      {
+       "name": "reach",
+       "values": [
+        {
+         "value": 1435
+        }
+       ]
+      },
+      {
+       "name": "likes",
+       "values": [
+        {
+         "value": 102
+        }
+       ]
+      },
+      {
+       "name": "comments",
+       "values": [
+        {
+         "value": 6
+        }
+       ]
+      },
+      {
+       "name": "saved",
+       "values": [
+        {
+         "value": 22
+        }
+       ]
+      },
+      {
+       "name": "shares",
+       "values": [
+        {
+         "value": 17
+        }
+       ]
+      },
+      {
+       "name": "total_interactions",
+       "values": [
+        {
+         "value": 147
+        }
+       ]
+      },
+      {
+       "name": "ig_reels_avg_watch_time",
+       "values": [
+        {
+         "value": 7150
+        }
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "tool_slug": "INSTAGRAM_GET_IG_MEDIA_INSIGHTS",
+   "arguments": {
+    "ig_media_id": "179000000000007",
+    "metric": [
+     "reels_skip_rate"
+    ]
+   },
+   "response": {
+    "successful": true,
+    "data": {
+     "data": [
+      {
+       "name": "reels_skip_rate",
+       "values": [
+        {
+         "value": 43.5
+        }
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "tool_slug": "INSTAGRAM_GET_IG_MEDIA_INSIGHTS",
+   "arguments": {
+    "ig_media_id": "179000000000008",
+    "metric": [
+     "views",
+     "reach",
+     "likes",
+     "comments",
+     "saved",
+     "shares",
+     "total_interactions",
+     "ig_reels_avg_watch_time"
+    ]
+   },
+   "response": {
+    "successful": true,
+    "data": {
+     "data": [
+      {
+       "name": "views",
+       "values": [
+        {
+         "value": 6400
+        }
+       ]
+      },
+      {
+       "name": "reach",
+       "values": [
+        {
+         "value": 4480
+        }
+       ]
+      },
+      {
+       "name": "likes",
+       "values": [
+        {
+         "value": 320
+        }
+       ]
+      },
+      {
+       "name": "comments",
+       "values": [
+        {
+         "value": 21
+        }
+       ]
+      },
+      {
+       "name": "saved",
+       "values": [
+        {
+         "value": 71
+        }
+       ]
+      },
+      {
+       "name": "shares",
+       "values": [
+        {
+         "value": 53
+        }
+       ]
+      },
+      {
+       "name": "total_interactions",
+       "values": [
+        {
+         "value": 465
+        }
+       ]
+      },
+      {
+       "name": "ig_reels_avg_watch_time",
+       "values": [
+        {
+         "value": 7300
+        }
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "tool_slug": "INSTAGRAM_GET_IG_MEDIA_INSIGHTS",
+   "arguments": {
+    "ig_media_id": "179000000000008",
+    "metric": [
+     "reels_skip_rate"
+    ]
+   },
+   "response": {
+    "successful": true,
+    "data": {
+     "data": [
+      {
+       "name": "reels_skip_rate",
+       "values": [
+        {
+         "value": 31.5
+        }
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "tool_slug": "INSTAGRAM_GET_IG_MEDIA_INSIGHTS",
+   "arguments": {
+    "ig_media_id": "179000000000009",
+    "metric": [
+     "views",
+     "reach",
+     "likes",
+     "comments",
+     "saved",
+     "shares",
+     "total_interactions",
+     "ig_reels_avg_watch_time"
+    ]
+   },
+   "response": {
+    "successful": true,
+    "data": {
+     "data": [
+      {
+       "name": "views",
+       "values": [
+        {
+         "value": 2300
+        }
+       ]
+      },
+      {
+       "name": "reach",
+       "values": [
+        {
+         "value": 1610
+        }
+       ]
+      },
+      {
+       "name": "likes",
+       "values": [
+        {
+         "value": 115
+        }
+       ]
+      },
+      {
+       "name": "comments",
+       "values": [
+        {
+         "value": 7
+        }
+       ]
+      },
+      {
+       "name": "saved",
+       "values": [
+        {
+         "value": 25
+        }
+       ]
+      },
+      {
+       "name": "shares",
+       "values": [
+        {
+         "value": 19
+        }
+       ]
+      },
+      {
+       "name": "total_interactions",
+       "values": [
+        {
+         "value": 166
+        }
+       ]
+      },
+      {
+       "name": "ig_reels_avg_watch_time",
+       "values": [
+        {
+         "value": 7450
+        }
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "tool_slug": "INSTAGRAM_GET_IG_MEDIA_INSIGHTS",
+   "arguments": {
+    "ig_media_id": "179000000000009",
+    "metric": [
+     "reels_skip_rate"
+    ]
+   },
+   "response": {
+    "successful": true,
+    "data": {
+     "data": [
+      {
+       "name": "reels_skip_rate",
+       "values": [
+        {
+         "value": 35.5
+        }
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "tool_slug": "INSTAGRAM_GET_IG_MEDIA_INSIGHTS",
+   "arguments": {
+    "ig_media_id": "179000000000010",
+    "metric": [
+     "views",
+     "reach",
+     "likes",
+     "comments",
+     "saved",
+     "shares",
+     "total_interactions",
+     "ig_reels_avg_watch_time"
+    ]
+   },
+   "response": {
+    "successful": true,
+    "data": {
+     "data": [
+      {
+       "name": "views",
+       "values": [
+        {
+         "value": 1950
+        }
+       ]
+      },
+      {
+       "name": "reach",
+       "values": [
+        {
+         "value": 1365
+        }
+       ]
+      },
+      {
+       "name": "likes",
+       "values": [
+        {
+         "value": 97
+        }
+       ]
+      },
+      {
+       "name": "comments",
+       "values": [
+        {
+         "value": 6
+        }
+       ]
+      },
+      {
+       "name": "saved",
+       "values": [
+        {
+         "value": 21
+        }
+       ]
+      },
+      {
+       "name": "shares",
+       "values": [
+        {
+         "value": 16
+        }
+       ]
+      },
+      {
+       "name": "total_interactions",
+       "values": [
+        {
+         "value": 140
+        }
+       ]
+      },
+      {
+       "name": "ig_reels_avg_watch_time",
+       "values": [
+        {
+         "value": 7600
+        }
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "tool_slug": "INSTAGRAM_GET_IG_MEDIA_INSIGHTS",
+   "arguments": {
+    "ig_media_id": "179000000000010",
+    "metric": [
+     "reels_skip_rate"
+    ]
+   },
+   "response": {
+    "successful": true,
+    "data": {
+     "data": [
+      {
+       "name": "reels_skip_rate",
+       "values": [
+        {
+         "value": 39.5
+        }
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "tool_slug": "INSTAGRAM_GET_IG_MEDIA_INSIGHTS",
+   "arguments": {
+    "ig_media_id": "179000000000011",
+    "metric": [
+     "views",
+     "reach",
+     "likes",
+     "comments",
+     "saved",
+     "shares",
+     "total_interactions",
+     "ig_reels_avg_watch_time"
+    ]
+   },
+   "response": {
+    "successful": true,
+    "data": {
+     "data": [
+      {
+       "name": "views",
+       "values": [
+        {
+         "value": 2600
+        }
+       ]
+      },
+      {
+       "name": "reach",
+       "values": [
+        {
+         "value": 1819
+        }
+       ]
+      },
+      {
+       "name": "likes",
+       "values": [
+        {
+         "value": 130
+        }
+       ]
+      },
+      {
+       "name": "comments",
+       "values": [
+        {
+         "value": 8
+        }
+       ]
+      },
+      {
+       "name": "saved",
+       "values": [
+        {
+         "value": 28
+        }
+       ]
+      },
+      {
+       "name": "shares",
+       "values": [
+        {
+         "value": 21
+        }
+       ]
+      },
+      {
+       "name": "total_interactions",
+       "values": [
+        {
+         "value": 187
+        }
+       ]
+      },
+      {
+       "name": "ig_reels_avg_watch_time",
+       "values": [
+        {
+         "value": 7750
+        }
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "tool_slug": "INSTAGRAM_GET_IG_MEDIA_INSIGHTS",
+   "arguments": {
+    "ig_media_id": "179000000000011",
+    "metric": [
+     "reels_skip_rate"
+    ]
+   },
+   "response": {
+    "successful": true,
+    "data": {
+     "data": [
+      {
+       "name": "reels_skip_rate",
+       "values": [
+        {
+         "value": 43.5
+        }
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "tool_slug": "INSTAGRAM_GET_IG_USER_MEDIA",
+   "arguments": {
+    "ig_user_id": "me",
+    "limit": 100
+   },
+   "response": {
+    "successful": true,
+    "data": {
+     "data": [
+      {
+       "id": "179000000000000",
+       "caption": "The crust secret nobody tells you\nOrders open Friday.",
+       "media_type": "VIDEO",
+       "media_product_type": "REELS",
+       "is_shared_to_feed": true,
+       "timestamp": "2026-09-06T16:00:00+0000",
+       "permalink": "https://www.instagram.com/reel/CIbake00/",
+       "like_count": 105,
+       "comments_count": 7
+      },
+      {
+       "id": "179000000000001",
+       "caption": "Day 1 of feeding a new starter\nOrders open Friday.",
+       "media_type": "VIDEO",
+       "media_product_type": "REELS",
+       "is_shared_to_feed": true,
+       "timestamp": "2026-09-10T16:00:00+0000",
+       "permalink": "https://www.instagram.com/reel/CIbake01/",
+       "like_count": 92,
+       "comments_count": 6
+      },
+      {
+       "id": "179000000000002",
+       "caption": "Why your loaf is flat\nOrders open Friday.",
+       "media_type": "VIDEO",
+       "media_product_type": "REELS",
+       "is_shared_to_feed": true,
+       "timestamp": "2026-09-14T16:00:00+0000",
+       "permalink": "https://www.instagram.com/reel/CIbake02/",
+       "like_count": 120,
+       "comments_count": 8
+      },
+      {
+       "id": "179000000000003",
+       "caption": "Scoring patterns for beginners\nOrders open Friday.",
+       "media_type": "VIDEO",
+       "media_product_type": "REELS",
+       "is_shared_to_feed": true,
+       "timestamp": "2026-09-18T16:00:00+0000",
+       "permalink": "https://www.instagram.com/reel/CIbake03/",
+       "like_count": 380,
+       "comments_count": 25
+      },
+      {
+       "id": "179000000000004",
+       "caption": "We tried 3 flours, here is the winner\nOrders open Friday.",
+       "media_type": "VIDEO",
+       "media_product_type": "REELS",
+       "is_shared_to_feed": true,
+       "timestamp": "2026-09-22T16:00:00+0000",
+       "permalink": "https://www.instagram.com/reel/CIbake04/",
+       "like_count": 99,
+       "comments_count": 6
+      },
+      {
+       "id": "179000000000005",
+       "caption": "Morning bake with me\nOrders open Friday.",
+       "media_type": "VIDEO",
+       "media_product_type": "REELS",
+       "is_shared_to_feed": false,
+       "timestamp": "2026-09-26T16:00:00+0000",
+       "permalink": "https://www.instagram.com/reel/CIbake05/",
+       "like_count": 112,
+       "comments_count": 7
+      },
+      {
+       "id": "179000000000006",
+       "caption": "How long to proof, really\nOrders open Friday.",
+       "media_type": "VIDEO",
+       "media_product_type": "REELS",
+       "is_shared_to_feed": true,
+       "timestamp": "2026-09-30T16:00:00+0000",
+       "permalink": "https://www.instagram.com/reel/CIbake06/",
+       "like_count": 85,
+       "comments_count": 5
+      },
+      {
+       "id": "179000000000007",
+       "caption": "Fixing a gummy crumb\nOrders open Friday.",
+       "media_type": "VIDEO",
+       "media_product_type": "REELS",
+       "is_shared_to_feed": true,
+       "timestamp": "2026-10-04T16:00:00+0000",
+       "permalink": "https://www.instagram.com/reel/CIbake07/",
+       "like_count": 102,
+       "comments_count": 6
+      },
+      {
+       "id": "179000000000008",
+       "caption": "The 2 ingredient focaccia\nOrders open Friday.",
+       "media_type": "VIDEO",
+       "media_product_type": "REELS",
+       "is_shared_to_feed": true,
+       "timestamp": "2026-10-09T16:00:00+0000",
+       "permalink": "https://www.instagram.com/reel/CIbake08/",
+       "like_count": 320,
+       "comments_count": 21
+      },
+      {
+       "id": "179000000000009",
+       "caption": "Our Saturday market setup\nOrders open Friday.",
+       "media_type": "VIDEO",
+       "media_product_type": "REELS",
+       "is_shared_to_feed": true,
+       "timestamp": "2026-10-15T16:00:00+0000",
+       "permalink": "https://www.instagram.com/reel/CIbake09/",
+       "like_count": 115,
+       "comments_count": 7
+      },
+      {
+       "id": "179000000000010",
+       "caption": "Cold proof vs warm proof\nOrders open Friday.",
+       "media_type": "VIDEO",
+       "media_product_type": "REELS",
+       "is_shared_to_feed": true,
+       "timestamp": "2026-10-21T16:00:00+0000",
+       "permalink": "https://www.instagram.com/reel/CIbake10/",
+       "like_count": 97,
+       "comments_count": 6
+      },
+      {
+       "id": "179000000000011",
+       "caption": "Pumpkin loaf is back\nOrders open Friday.",
+       "media_type": "VIDEO",
+       "media_product_type": "REELS",
+       "is_shared_to_feed": true,
+       "timestamp": "2026-10-29T16:00:00+0000",
+       "permalink": "https://www.instagram.com/reel/CIbake11/",
+       "like_count": 130,
+       "comments_count": 8
+      },
+      {
+       "id": "179000000000099",
+       "caption": "Our new oven",
+       "media_type": "IMAGE",
+       "media_product_type": "FEED",
+       "timestamp": "2026-10-01T16:00:00+0000",
+       "permalink": "https://www.instagram.com/p/CIbakeIMG/"
+      }
+     ]
+    }
+   }
+  }
+ ]
+}

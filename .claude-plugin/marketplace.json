@@ -1,0 +1,15 @@
+{
+  "name": "viral-skool",
+  "owner": {
+    "name": "Viral Skool",
+    "email": "hello@viralskool.ai"
+  },
+  "description": "Viral Skool plugins for Claude.",
+  "plugins": [
+    {
+      "name": "social-media-team",
+      "source": "./social-media-team",
+      "description": "Your AI social media team: 7 teammates and a front door that learn your voice, study what's working in your niche, plan your month, write your video scripts and captions, turn one long piece into ten, and read your results every week. Start with /content-team."
+    }
+  ]
+}

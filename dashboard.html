@@ -1,0 +1,1463 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>IG Profile Dashboard</title>
+<style>
+:root{
+  --ground:#f6f6f2;--panel:#ffffff;--line:#e4e4de;--line2:#cfcfc7;
+  --text:#131517;--text2:#2c2f33;--muted:#5d6268;--dim:#767b81;
+  --acid:#b8e600;--acid-text:#4d6300;--acid-ink:#0a0a0a;--moss:#5f7a00;--input:#fbfbf8;
+  --green:#2f9a2f;--yellow:#c98a00;--red:#c9483a;--grey:#7a8087;
+  --green-bg:rgba(47,154,47,.09);--yellow-bg:rgba(201,138,0,.10);--red-bg:rgba(201,72,58,.08);--grey-bg:rgba(122,128,135,.10);
+  --track:#f0eee9;--band:#dcd9d1;--tick:#131517;
+  --display:'Poppins','Helvetica Neue',Arial,sans-serif;--body:'Lora',Georgia,serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ground:#131517;--panel:#1a1d20;--line:#24272b;--line2:#34383d;
+  --text:#f5f6f7;--text2:#d3d6da;--muted:#9aa0a6;--dim:#7d8288;
+  --acid:#d1fe17;--acid-text:#d1fe17;--moss:#9db813;--input:#0f1113;
+  --green:#62b845;--yellow:#e8b03c;--red:#e0705f;--grey:#8d949b;
+  --green-bg:rgba(98,184,69,.13);--yellow-bg:rgba(232,176,60,.13);--red-bg:rgba(224,112,95,.13);--grey-bg:rgba(141,148,155,.12);
+  --track:#202428;--band:#3b4046;--tick:#f5f6f7;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --ground:#131517;--panel:#1a1d20;--line:#24272b;--line2:#34383d;
+  --text:#f5f6f7;--text2:#d3d6da;--muted:#9aa0a6;--dim:#7d8288;
+  --acid:#d1fe17;--acid-text:#d1fe17;--moss:#9db813;--input:#0f1113;
+  --green:#62b845;--yellow:#e8b03c;--red:#e0705f;--grey:#8d949b;
+  --green-bg:rgba(98,184,69,.13);--yellow-bg:rgba(232,176,60,.13);--red-bg:rgba(224,112,95,.13);--grey-bg:rgba(141,148,155,.12);
+  --track:#202428;--band:#3b4046;--tick:#f5f6f7;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--ground);color:var(--text);font-family:var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 24px 56px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 20px}
+.eyebrow{font-family:var(--display);font-weight:500;font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--moss);margin:0}
+.theme{font-family:var(--display);font-size:12px;letter-spacing:.1em;text-transform:uppercase;background:transparent;color:var(--muted);border:1px solid var(--line2);padding:7px 11px;cursor:pointer;min-height:36px}
+.theme:hover{color:var(--text);border-color:var(--muted)}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(30px,4.6vw,48px);line-height:1.02;letter-spacing:-.02em;margin:0 0 10px}
+h1 .h{color:var(--acid-text)}
+.intro{font-size:17px;line-height:1.5;color:var(--text2);max-width:760px;margin:0 0 18px}
+.src{background:var(--panel);border:1px solid var(--line);padding:14px 16px}
+.srcline{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 16px}
+.badge{font-family:var(--display);font-size:13px;letter-spacing:.04em;color:var(--text2);margin:0;line-height:1.45}
+.badge b{color:var(--acid-text);font-weight:600;text-transform:uppercase;letter-spacing:.12em;font-size:12px;margin-right:6px}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+.btn{font-family:var(--display);font-weight:600;font-size:14px;letter-spacing:.02em;padding:9px 14px;border:1px solid var(--line2);background:transparent;color:var(--text);cursor:pointer;min-height:44px}
+.btn:hover{border-color:var(--muted)}
+.btn.go{background:var(--acid);color:var(--acid-ink);border-color:var(--acid)}
+.btn[disabled]{opacity:.6;cursor:progress}
+.btn.small{font-size:13px;padding:7px 11px;min-height:40px}
+.btn[hidden]{display:none}
+.btn[aria-pressed="true"]{border-color:var(--acid);box-shadow:inset 0 -3px 0 var(--acid)}
+.btn:focus-visible,.theme:focus-visible,.wbtn:focus-visible,summary:focus-visible{outline:2px solid var(--acid);outline-offset:2px}
+.status{margin:10px 0 0;font-family:var(--display);font-size:13.5px;line-height:1.5;color:var(--muted)}
+.status[hidden]{display:none}
+.status.err{color:var(--text2);border-left:3px solid var(--yellow);padding-left:10px}
+.status.ok{color:var(--text2);border-left:3px solid var(--green);padding-left:10px}
+.acctbox{margin:12px 0 0;display:flex;flex-wrap:wrap;gap:8px;align-items:flex-end}
+.acctbox[hidden]{display:none}
+.acctbox label{display:flex;flex-direction:column;gap:4px;font-family:var(--display);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+input,select,textarea{font-family:var(--display);font-size:16px;background:var(--input);color:var(--text);border:1px solid var(--line2)}
+.acctbox input{padding:8px 10px;min-height:44px;width:240px;max-width:100%}
+.fallback{margin:14px 0 0;display:grid;grid-template-columns:1fr 1.2fr;gap:16px;border-top:1px solid var(--line);padding-top:14px}
+.fallback[hidden]{display:none}
+@media (max-width:820px){.fallback{grid-template-columns:1fr}}
+.fallback h3{margin:0 0 6px;font-family:var(--display);font-weight:600;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--text2)}
+.fallback p{margin:0 0 10px;font-size:15px;line-height:1.5;color:var(--text2)}
+.fallback pre{margin:10px 0 0;max-height:220px;overflow:auto;background:var(--input);border:1px solid var(--line);padding:12px;font-family:var(--mono);font-size:12px;line-height:1.5;color:var(--text2);white-space:pre-wrap;word-break:break-word}
+textarea{width:100%;min-height:130px;resize:vertical;padding:12px;font-family:var(--mono);font-size:13px;line-height:1.45}
+textarea:focus,input:focus,select:focus{outline:2px solid var(--acid);outline-offset:1px}
+.private{margin:8px 0 0;font-family:var(--display);font-size:12.5px;color:var(--muted);line-height:1.45}
+.msg{margin:10px 0 0;padding:10px 13px;border:1px solid var(--line2);font-size:15px;line-height:1.5;color:var(--text2)}
+.msg[hidden]{display:none}
+.msg.err{border-color:var(--red);background:var(--red-bg)}
+.msg.ok{border-color:var(--green);background:var(--green-bg)}
+.msg strong{font-family:var(--display);font-weight:600;color:var(--text);display:block;margin-bottom:2px}
+.msg ul{margin:4px 0 0;padding-left:18px}
+.acct{display:flex;justify-content:space-between;align-items:flex-end;gap:14px 24px;flex-wrap:wrap;margin:28px 0 0}
+.acct h2{font-family:var(--display);font-weight:700;font-size:clamp(26px,4vw,40px);line-height:1.05;margin:8px 0 0;word-break:break-word;letter-spacing:-.01em}
+.acct h2 .h{color:var(--acid-text)}
+.period{text-align:right;font-family:var(--display);font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);line-height:1.6;margin:0}
+.period b{display:block;color:var(--text2);font-weight:600}
+.wtog{display:inline-flex;margin-top:6px;border:1px solid var(--line2)}
+.wtog[hidden]{display:none}
+.wbtn{font-family:var(--display);font-weight:600;font-size:12.5px;letter-spacing:.06em;padding:7px 12px;background:transparent;color:var(--muted);border:0;cursor:pointer;min-height:36px}
+.wbtn[aria-pressed="true"]{background:var(--acid);color:var(--acid-ink)}
+@media (max-width:600px){.period{text-align:left}}
+.rule{border:0;border-top:2px solid var(--text);margin:14px 0 18px}
+.kstrip{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+@media (max-width:860px){.kstrip{grid-template-columns:repeat(2,1fr)}.kstrip .kcard:first-child{grid-column:1/-1}}
+.kcard{background:var(--panel);border:1px solid var(--line);padding:12px 14px;min-width:0}
+.kl{margin:0;font-family:var(--display);font-weight:600;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.kv{margin:4px 0 2px;font-family:var(--display);font-weight:700;font-size:27px;line-height:1.1;color:var(--text);font-variant-numeric:tabular-nums}
+.kv.na{font-size:14px;font-weight:600;color:var(--dim);padding:8px 0 5px}
+.ks{margin:0;font-family:var(--display);font-size:12.5px;color:var(--muted);min-height:1.3em}
+.callout{margin:18px 0 0;background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--red);padding:16px 18px}
+.callout.clear{border-left-color:var(--green)}
+.cl{margin:0 0 7px;font-family:var(--display);font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.ch{margin:0 0 7px;font-family:var(--display);font-weight:700;font-size:clamp(17.5px,2.1vw,21px);line-height:1.3;color:var(--text)}
+.cb{margin:0;font-size:16px;line-height:1.55;color:var(--text2)}
+.cb b{color:var(--text)}
+.cx{display:grid;grid-template-columns:1fr 1fr;gap:12px 20px;margin:13px 0 0;padding:12px 0 0;border-top:1px solid var(--line)}
+.cx p{margin:0;font-size:15.5px;line-height:1.5;color:var(--text2)}
+.cx b{display:block;font-family:var(--display);font-weight:600;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--moss);margin-bottom:2px}
+.cf{margin:12px 0 0;font-family:var(--display);font-weight:600;font-size:14px;color:var(--text)}
+@media (max-width:640px){.cx{grid-template-columns:1fr}}
+h2.sec{font-family:var(--display);font-weight:700;font-size:21px;letter-spacing:-.01em;margin:36px 0 0;padding-bottom:9px;border-bottom:2px solid var(--text)}
+.seclede{margin:10px 0 0;font-size:15.5px;line-height:1.5;color:var(--muted)}
+.srow{display:grid;grid-template-columns:minmax(160px,210px) 1fr 104px 118px;gap:6px 18px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.lab{position:relative;min-width:0}
+.lab b{display:block;font-family:var(--display);font-weight:700;font-size:15px;color:var(--text)}
+.tipb{display:inline-flex;align-items:center;gap:7px;background:none;border:0;padding:0;margin:0;cursor:help;text-align:left;color:inherit;font:inherit}
+.tipb b{display:inline;text-decoration:underline dotted var(--muted);text-underline-offset:4px;text-decoration-thickness:1.5px}
+.qi{display:inline-grid;place-items:center;width:17px;height:17px;border-radius:50%;border:1.5px solid var(--muted);font-family:var(--display);font-style:normal;font-weight:700;font-size:10.5px;line-height:1;color:var(--muted);flex:none}
+.tipb:hover .qi,.tipb[aria-expanded="true"] .qi{background:var(--acid);border-color:var(--acid);color:var(--acid-ink)}
+.tipb:focus-visible{outline:2px solid var(--acid);outline-offset:3px}
+.tip{display:none;position:absolute;left:0;top:calc(100% + 6px);z-index:20;width:min(360px,calc(100vw - 32px));background:var(--panel);border:1px solid var(--line2);box-shadow:0 10px 30px rgba(0,0,0,.18);padding:13px 15px}
+.tip p{margin:0 0 8px;font-family:var(--body);font-size:14.5px;line-height:1.5;color:var(--text2)}
+.tip p:last-child{margin:0}
+.tip p b{display:block;font-family:var(--display);font-weight:600;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--moss);margin-bottom:1px}
+@media (hover:hover){.lab:hover .tip{display:block}}
+.lab:has(.tipb:focus-visible) .tip,.lab.open .tip{display:block}
+.lab span{display:block;font-family:var(--display);font-size:12.5px;color:var(--muted);margin-top:2px}
+.strk{position:relative;height:26px;background:var(--track);border-radius:4px;overflow:hidden}
+.sband{position:absolute;top:0;bottom:0;background:var(--band)}
+.sbar{position:absolute;left:0;top:7px;height:12px;border-radius:0 4px 4px 0;min-width:4px}
+.sbar.green{background:var(--green)}.sbar.yellow{background:var(--yellow)}.sbar.red{background:var(--red)}.sbar.grey{background:var(--grey)}
+.stick{position:absolute;top:2px;bottom:2px;width:2px;background:var(--tick);opacity:.75}
+.act b,.bch b{display:block;font-family:var(--display);font-weight:700;font-size:17px;color:var(--text);font-variant-numeric:tabular-nums}
+.bch b{font-weight:500;color:var(--text2)}
+.act span,.bch span{display:block;font-family:var(--display);font-size:12.5px;color:var(--muted)}
+.act b.na{font-size:13px;font-weight:600;color:var(--dim)}
+@media (max-width:700px){.srow{grid-template-columns:1fr 1fr;grid-template-areas:"lab lab" "trk trk" "act bch"}.lab{grid-area:lab}.strk{grid-area:trk}.act{grid-area:act}.bch{grid-area:bch}}
+.slegend{display:flex;flex-wrap:wrap;gap:8px 22px;margin:11px 0 0;font-family:var(--display);font-size:12.5px;color:var(--muted);line-height:1.45}
+.slegend i{display:inline-block;vertical-align:-1px}
+.slegend .lb{width:24px;height:11px;background:var(--band);margin-right:6px}
+.slegend .tk{width:2px;height:13px;background:var(--tick);margin-right:6px;vertical-align:-2px}
+.slegend .dot{width:9px;height:9px;border-radius:50%;margin-right:3px}
+.d1{background:var(--green)}.d2{background:var(--yellow)}.d3{background:var(--red)}
+.manual{margin:16px 0 0;border:1px dashed var(--line2);padding:12px 14px;background:var(--panel)}
+.manual p{margin:0 0 10px;font-family:var(--display);font-size:13px;color:var(--muted);line-height:1.45}
+.manual p b{color:var(--text2);font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-size:12px}
+.mform{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end}
+.mform label{display:flex;flex-direction:column;gap:4px;font-family:var(--display);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.mform input,.mform select{padding:8px 10px;min-height:44px;width:120px}
+.mform select{width:72px}
+.tw{overflow-x:auto;max-width:100%}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th{font-family:var(--display);font-weight:600;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);text-align:left;padding:10px;border-bottom:1px solid var(--text2);white-space:nowrap}
+td{padding:10px;border-bottom:1px solid var(--line);color:var(--text2);vertical-align:middle}
+.nm{text-align:right;font-family:var(--display);font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.bold td{font-weight:700;color:var(--text)}
+td.muted{color:var(--dim)}
+.chip{display:inline-block;font-family:var(--display);font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:4px 8px;border:1.5px solid;white-space:nowrap}
+.c-green{color:var(--green);border-color:var(--green);background:var(--green-bg)}
+.c-yellow{color:var(--yellow);border-color:var(--yellow);background:var(--yellow-bg)}
+.c-red{color:var(--red);border-color:var(--red);background:var(--red-bg)}
+.c-grey{color:var(--grey);border-color:var(--grey);background:var(--grey-bg)}
+.fbox{margin:12px 0 0;padding:12px 14px;border:1px solid var(--line2);border-left:4px solid var(--grey);background:var(--panel);font-size:15px;line-height:1.55;color:var(--text2)}
+.fbox.data{border-left-color:var(--yellow)}
+.fbox b{color:var(--text);font-family:var(--display);font-weight:700;font-size:14px}
+.wcards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0 0}
+@media (max-width:820px){.wcards{grid-template-columns:1fr}}
+.wcard{background:var(--panel);border:1px solid var(--line);border-top:4px solid var(--green);padding:14px 16px}
+.wcard.bad{border-top-color:var(--red)}
+.wcard h3{margin:0 0 10px;font-family:var(--display);font-weight:700;font-size:15px;color:var(--text)}
+.wcard ul{margin:0;padding-left:19px;display:flex;flex-direction:column;gap:10px}
+.wcard li{font-size:15.5px;line-height:1.5;color:var(--text2)}
+.wcard li strong{font-family:var(--display);font-weight:700;color:var(--text)}
+.hint{margin:10px 0 0;font-size:15px;color:var(--muted);line-height:1.5}
+table.sc tr.bold td{border-top:2px solid var(--line2)}
+details.grp{margin:12px 0 0;background:var(--panel);border:1px solid var(--line)}
+details.grp>summary{cursor:pointer;list-style:none;padding:14px 16px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:6px 14px}
+details.grp>summary::-webkit-details-marker{display:none}
+.gt{font-family:var(--display);font-weight:700;font-size:16.5px;color:var(--text)}
+.gt::before{content:'+ ';color:var(--muted);font-weight:500}
+details.grp[open] .gt::before{content:'\2212 '}
+.gs{font-family:var(--display);font-size:12.5px;color:var(--muted);display:flex;gap:10px;flex-wrap:wrap}
+.gs i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px;vertical-align:0}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:10px;padding:0 12px 14px}
+@media (max-width:420px){.cards{grid-template-columns:1fr;padding:0 10px 12px}}
+.mcard{border:1px solid var(--line);background:var(--ground);padding:12px 13px;min-width:0;display:flex;flex-direction:column;gap:6px}
+.mh{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.mn{margin:0;font-family:var(--display);font-weight:600;font-size:13.5px;color:var(--text2);line-height:1.3}
+.mv{margin:0;font-family:var(--display);font-weight:700;font-size:24px;line-height:1.15;color:var(--text);font-variant-numeric:tabular-nums;word-break:break-word}
+.mv small{font-size:13px;font-weight:600;color:var(--muted)}
+.mv.na{font-size:13.5px;font-weight:600;color:var(--dim);line-height:1.4}
+.mb{margin:0;font-family:var(--display);font-size:12.5px;color:var(--muted);line-height:1.4}
+.mb b{color:var(--text2);font-weight:600}
+.md{margin:0;font-size:14.5px;line-height:1.5;color:var(--text2)}
+.bars{display:flex;flex-direction:column;gap:4px;margin:2px 0}
+.bar{display:grid;grid-template-columns:minmax(0,1fr) 44px;gap:8px;align-items:center;font-family:var(--display);font-size:12px;color:var(--text2)}
+.bar .bl{position:relative;height:18px;background:var(--track);overflow:hidden}
+.bar .bf{position:absolute;left:0;top:0;bottom:0;background:var(--band)}
+.bar .bt{position:relative;padding:0 6px;line-height:18px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+.bar .bp{text-align:right;font-variant-numeric:tabular-nums;color:var(--muted)}
+.mini{display:flex;align-items:flex-end;gap:2px;height:44px;margin:2px 0}
+.mini span{flex:1;background:var(--band);min-height:2px}
+.mini span.hi{background:var(--acid)}
+.mini span.nil{background:transparent;border-bottom:1px dashed var(--line2)}
+.demo4{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:420px){.demo4{grid-template-columns:1fr}}
+.demo4 h4{margin:0 0 3px;font-family:var(--display);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.rtools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0 0}
+table.rt{font-size:14px}
+table.rt td{padding:8px}
+table.rt th{padding:8px}
+.hk{max-width:300px;min-width:180px}
+.hk a{color:var(--text);text-decoration:none;border-bottom:1px solid var(--line2)}
+.hk a:hover{border-color:var(--acid)}
+.hk small{display:block;font-family:var(--display);font-size:11.5px;color:var(--muted);margin-top:2px}
+.mult{font-weight:700}
+.mult.up{color:var(--green)}.mult.dn{color:var(--red)}
+details.bench{margin:36px 0 0;border-top:2px solid var(--text)}
+details.bench>summary{cursor:pointer;padding:12px 0;font-family:var(--display);font-weight:700;font-size:19px;color:var(--text);list-style:none}
+details.bench>summary::-webkit-details-marker{display:none}
+details.bench>summary::after{content:'  +';color:var(--muted);font-weight:500}
+details.bench[open]>summary::after{content:'  \2212'}
+table.bt td{font-size:14px;vertical-align:top}
+table.bt td.cav{color:var(--muted)}
+.foot{margin:34px 0 0;font-family:var(--display);font-size:12px;letter-spacing:.04em;color:var(--dim);line-height:1.6}
+@media (max-width:520px){.wrap{padding:18px 16px 44px}.kv{font-size:24px}table{font-size:14px}td,th{padding:9px 7px}.src{padding:12px}}
+@media (prefers-reduced-motion:no-preference){.sbar,.bf{transition:width .3s ease}}
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Lora:wght@400;500&display=swap">
+
+<main class="wrap">
+  <div class="top">
+    <p class="eyebrow">// social media team · profile dashboard</p>
+    <button class="theme" id="theme" type="button" aria-label="switch light or dark">light / dark</button>
+  </div>
+  <h1>your IG profile, <span class="h">read.</span></h1>
+  <p class="intro">Every number Instagram gives you, each against its benchmark in green, yellow or red, with what it means. Worked out on this page: your numbers stay in your browser.</p>
+
+  <section class="src" id="src" aria-label="where the numbers come from">
+    <div class="srcline">
+      <p class="badge" id="badge"><b>demo numbers</b>@maple.and.moss.demo</p>
+      <div class="btns">
+        <button class="btn go" id="refresh" type="button">Refresh with my numbers</button>
+        <button class="btn" id="openpaste" type="button">paste instead</button>
+        <button class="btn" id="mine" type="button" hidden>show my numbers</button>
+        <button class="btn" id="todemo" type="button" hidden>back to demo</button>
+        <button class="btn" id="clear" type="button" hidden>clear my data</button>
+      </div>
+    </div>
+    <p class="status" id="status" role="status" aria-live="polite" hidden></p>
+    <div class="acctbox" id="acctbox" hidden>
+      <label>Instagram account name in Composio<input id="acctname" type="text" autocomplete="off" spellcheck="false" placeholder="e.g. your Instagram handle"></label>
+      <button class="btn small" id="acctgo" type="button">pull this account</button>
+    </div>
+    <div class="fallback" id="fallback" hidden>
+      <div>
+        <h3>1 · copy this prompt</h3>
+        <p>Paste it into any Claude chat that has Composio connected. Claude fetches your numbers and answers with one block of code.</p>
+        <div class="btns"><button class="btn" id="copyprompt" type="button">copy the prompt</button></div>
+        <pre id="prompttext">THE ACCOUNT: [your Instagram handle, or leave this line as it is if you only connected one]
+
+Pull my Instagram numbers through Composio and give me ONE json code block for my dashboard. Nothing else: no analysis, no summary, no tips. Read only: never post, reply, delete, or change a connection.
+
+1. Use Composio's Instagram tools (if a name below does not exist, search Composio for the one that does the same job). If more than one Instagram account is connected, use THE ACCOUNT; if that line is unchanged, ask me which one first. Pass that account on every call. Run calls that do not depend on each other together with COMPOSIO_MULTI_EXECUTE_TOOL, up to 50 at once. If you have a code sandbox, use it for the reel calls.
+
+2. TODAY is today's date in UTC (YYYY-MM-DD). Make these calls:
+a) INSTAGRAM_GET_USER_INFO: ig_user_id "me", fields "username,name,account_type,followers_count,follows_count,media_count".
+b) Twice, once with since = TODAY minus 28 days and once with since = TODAY minus 7 days, until = TODAY, period "day", metric_type "total_value", INSTAGRAM_GET_USER_INSIGHTS with:
+   metric ["views","reach","accounts_engaged","total_interactions","likes","comments","shares","saves","replies","reposts","profile_views","website_clicks"];
+   metric ["follows_and_unfollows"] with breakdown "follow_type" (keep only the FOLLOWER value, as "follows");
+   metric ["reach"] with breakdown "follow_type";
+   metric ["views"] with breakdown "follow_type".
+c) INSTAGRAM_GET_USER_INSIGHTS, metric ["follower_count"], period "day", since TODAY minus 28 days, until TODAY. These are NEW followers per day. Each end_time belongs to the day before it. A 0 on the newest day is an unfinished day: write null.
+d) INSTAGRAM_GET_USER_INSIGHTS, metric ["online_followers"], period "lifetime", since TODAY minus 3 days, until TODAY minus 1 day. It comes back empty without since and until.
+e) INSTAGRAM_GET_USER_INSIGHTS, period "lifetime", metric_type "total_value", timeframe "this_month", once for each metric follower_demographics, engaged_audience_demographics, reached_audience_demographics, and each breakdown age, gender, country, city (12 calls).
+f) INSTAGRAM_GET_IG_USER_MEDIA: ig_user_id "me", limit 100, fields "id,caption,media_type,media_product_type,is_shared_to_feed,timestamp,permalink,like_count,comments_count". Keep the newest 60 where media_type is VIDEO and media_product_type is REELS.
+g) For each of those reels, INSTAGRAM_GET_IG_MEDIA_INSIGHTS with metric ["views","reach","likes","comments","saved","shares","total_interactions","ig_reels_avg_watch_time"], and a SEPARATE call with metric ["reels_skip_rate"], so a refusal cannot break the first call.
+If a call fails because of one metric, run it again without that metric and add {"metric": name, "reason": a few words} to "missing". An empty answer is not an error: write null and add it to "missing". On a server error, wait 2 seconds and try once more.
+
+3. Rules. A number Instagram did not return is null, never 0. Copy every number exactly; never estimate or round. hook = the first line of the caption, 80 characters at most. feed = is_shared_to_feed (false for trial reels). avg_watch_s = ig_reels_avg_watch_time divided by 1000. saves = saved. Under 1,000 followers reel insights may be refused: keep the reels anyway with likes and comments from the media list, views null, insights false, and set small_account to "under_1000". Under 100 followers Instagram hides audience numbers: set small_account to "under_100".
+
+4. Output exactly one json code block in this shape, with my numbers and every reel, and nothing before or after it:
+{"schema":"aicc-ig-v3","pulled_at":"2026-09-29T15:20:00Z","source":"composio","account":{"username":"handle","name":"Name","account_type":"MEDIA_CREATOR","followers":0,"following":0,"media_count":0},"windows":{"28":{"since":"2026-09-01","until":"2026-09-29","views":0,"reach":0,"accounts_engaged":0,"total_interactions":0,"likes":0,"comments":0,"shares":0,"saves":0,"replies":0,"reposts":0,"profile_views":0,"website_clicks":0,"follows":0,"reach_follower":0,"reach_non_follower":0,"views_follower":0,"views_non_follower":0,"views_unknown":0},"7":{"since":"2026-09-22","until":"2026-09-29","views":0}},"daily_follows":[{"date":"2026-08-31","value":0}],"online_followers":[{"date":"2026-09-25","hours":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}],"demographics":{"follower":{"age":{"35-44":0},"gender":{"F":0},"country":{"US":0},"city":{"New York, New York":0}},"engaged":{"age":null,"gender":null,"country":null,"city":null},"reached":{"age":null,"gender":null,"country":null,"city":null}},"reels":[{"id":"1","permalink":"https://www.instagram.com/reel/x/","posted":"2026-09-23T23:17:42Z","feed":true,"hook":"first caption line","views":0,"reach":0,"likes":0,"comments":0,"saves":0,"shares":0,"interactions":0,"avg_watch_s":0,"skip_rate":0,"insights":true}],"status":{"small_account":"no"},"missing":[]}</pre>
+      </div>
+      <div>
+        <h3>2 · paste the block here</h3>
+        <label for="paste" class="private" style="display:block;margin:0 0 6px">the block Claude gave you (the words around it are fine)</label>
+        <textarea id="paste" spellcheck="false" autocomplete="off" placeholder='{"schema":"aicc-ig-v3", ...}'></textarea>
+        <div class="btns" style="margin-top:10px"><button class="btn go" id="go" type="button">show my numbers</button></div>
+        <p class="private">Kept in this browser only, until you press clear my data.</p>
+        <div class="msg" id="msg" role="alert" hidden></div>
+      </div>
+    </div>
+  </section>
+
+  <div id="dash">
+    <section class="acct">
+      <div><p class="eyebrow">IG profile · against benchmark</p><h2 id="acct"></h2></div>
+      <div class="period" id="periodbox"><span id="period"></span>
+        <div class="wtog" id="wtog" role="group" aria-label="window" hidden></div>
+      </div>
+    </section>
+    <hr class="rule">
+    <div class="kstrip" id="kstrip"></div>
+    <div class="callout" id="callout"></div>
+
+    <h2 class="sec">Step-by-step against benchmark</h2>
+    <p class="seclede">Each row is one step people take, from watching your reel to buying. Hover or tap a name to see what it means, with an example.</p>
+    <div id="steprows"></div>
+    <div class="slegend"><span><i class="lb"></i>accepted benchmark range</span><span><i class="tk"></i>reference accounts (two working accounts, August 2026)</span><span><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i> <span id="legendwho">your numbers</span>, coloured by status</span><span>Each row has its own scale: read the numbers, not bar lengths across rows.</span></div>
+    <div class="manual">
+      <p><b>optional</b> · Instagram stops at the bio link tap. Add your page visits and sales for <span id="mwin">the same window</span> to unlock the last two steps and what the fix is worth.</p>
+      <div class="mform">
+        <label>page visits<input id="m-pv" type="number" inputmode="numeric" min="0" step="1" placeholder="e.g. 239"></label>
+        <label>sales<input id="m-sales" type="number" inputmode="numeric" min="0" step="1" placeholder="e.g. 1"></label>
+        <label>price<input id="m-price" type="number" inputmode="decimal" min="0" step="0.01" placeholder="e.g. 49"></label>
+        <label>currency<select id="m-cur"><option value="$">$</option><option value="€">€</option><option value="£">£</option></select></label>
+        <button class="btn" id="m-clear" type="button">clear these</button>
+      </div>
+    </div>
+
+    <h2 class="sec">The funnel in absolute terms</h2>
+    <div class="tw" id="ftable"></div>
+    <div id="fflags"></div>
+
+    <h2 class="sec">What is working, and what is not</h2>
+    <div class="wcards">
+      <div class="wcard"><h3>Working, protect these</h3><ul id="working"></ul></div>
+      <div class="wcard bad"><h3>Not working, in priority order</h3><ul id="notworking"></ul></div>
+    </div>
+
+    <section id="worth" hidden>
+      <h2 class="sec" id="worthtitle">What the fix is worth</h2>
+      <p class="hint" id="worthlede"></p>
+      <div class="tw" id="scen"></div>
+      <div class="fbox" id="worthnote"></div>
+    </section>
+
+    <h2 class="sec">All metrics</h2>
+    <p class="seclede">Every number the pull returned, grouped. Each card says what it is, why it matters and how to read it. A coloured chip means a benchmark exists; grey means reference only.</p>
+    <div id="groups"></div>
+
+    <h2 class="sec">Reels</h2>
+    <p class="seclede" id="reelslede"></p>
+    <div class="rtools" id="rtools"></div>
+    <div class="tw" id="reels"></div>
+    <div id="trialwrap"></div>
+
+    <details class="bench" id="bench">
+      <summary>Benchmarks, and how far to trust them</summary>
+      <p class="seclede">"Reference accounts" are two working accounts measured in August 2026, shown as a reference point next to the published figures.</p>
+      <div class="tw"><table class="bt">
+        <thead><tr><th>metric</th><th>benchmark</th><th>source</th><th>caveat</th></tr></thead>
+        <tbody>
+          <tr><td>Profile visit rate</td><td>3 to 10% of reach</td><td>Onimator, IG metric glossary</td><td class="cav">Single glossary source. Two working reference accounts sit near 1% (0.92% and 1.12% in August), drawn as the black tick. Many accounts will show red here; read it next to the tick.</td></tr>
+          <tr><td>Interaction rate</td><td>4 to 6% of views</td><td>Creatorflow, 2026</td><td class="cav">Creatorflow's tiers are by reach; the upper tiers are used. reference accounts run 6 to 8%.</td></tr>
+          <tr><td>Link tap rate</td><td>1 to 3% of profile visits</td><td>Hopp, link in bio guide</td><td class="cav">Widely cited industry figure. reference accounts run 9 to 19% with a working link.</td></tr>
+          <tr><td>Follows per 1,000 reached</td><td>5 to 10</td><td>reference accounts</td><td class="cav">Two working accounts, August 2026: 12.3 and 15.1. What working looks like, not a norm.</td></tr>
+          <tr><td>Page conversion</td><td>1.5 to 2.35%</td><td>LanderLab, 2026</td><td class="cav">Social is the lowest intent traffic, so 1.5% is the honest bar.</td></tr>
+          <tr><td>Views per follower, 3x and 5x shares, reels per week, comments per 1,000</td><td>see each card</td><td>17 large creator accounts, 2,565 reels, public numbers</td><td class="cav">Public numbers only, mostly large accounts (12K to 2.5M followers), one snapshot to July 2026. Nothing here covers a brand new account in its first 30 days.</td></tr>
+          <tr><td>Engagement by views and by reach, shares per 1,000, non follower reach</td><td>see each card</td><td>Creatorflow 2026, the 17 large creator accounts, reference accounts</td><td class="cav">Engagement by views and by reach use different denominators: never compare one with the other.</td></tr>
+        </tbody></table></div>
+      <div class="fbox"><b>Left out on purpose.</b> Unfollows and churn: Instagram under-reports unfollows, so any churn number would be wrong. Profile visit to follow: it goes over 100% because people follow straight from the reel. Profile link taps: always 0; bio taps arrive as website clicks. Per reel follows, profile visits and traffic source: Instagram does not give these for reels.</div>
+      <div class="fbox"><b>A word on benchmarks.</b> Published social benchmarks are vendor aggregates, not audited standards. They are good for spotting a 5x gap, not as precise targets. The comparison that matters more from next week on is <b>your account against its own last pull</b>: refresh on the same day each week.</div>
+    </details>
+    <p class="foot" id="foot"></p>
+  </div>
+</main>
+
+<script type="application/json" id="demodata">{"schema":"aicc-ig-v3","pulled_at":"2026-10-27T15:00:00Z","source":"composio","account":{"username":"maple.and.moss.demo","name":"Maple and Moss (demo)","account_type":"MEDIA_CREATOR","followers":18420,"following":312,"media_count":164},"windows":{"28":{"since":"2026-09-29","until":"2026-10-27","views":169737,"reach":120513,"accounts_engaged":8676,"total_interactions":11522,"likes":7977,"comments":356,"shares":1408,"saves":1595,"replies":6,"reposts":186,"profile_views":1542,"website_clicks":89,"follows":976,"reach_follower":7954,"reach_non_follower":112559,"views_follower":13748,"views_non_follower":155648,"views_unknown":341},"7":{"since":"2026-10-20","until":"2026-10-27","views":26028,"reach":18479,"accounts_engaged":1330,"total_interactions":1765,"likes":1223,"comments":54,"shares":216,"saves":244,"replies":1,"reposts":28,"profile_views":236,"website_clicks":13,"follows":149,"reach_follower":1220,"reach_non_follower":17259,"views_follower":2108,"views_non_follower":23867,"views_unknown":53}},"daily_follows":[{"date":"2026-09-28","value":38},{"date":"2026-09-29","value":61},{"date":"2026-09-30","value":64},{"date":"2026-10-01","value":57},{"date":"2026-10-02","value":43},{"date":"2026-10-03","value":33},{"date":"2026-10-04","value":53},{"date":"2026-10-05","value":57},{"date":"2026-10-06","value":44},{"date":"2026-10-07","value":50},{"date":"2026-10-08","value":47},{"date":"2026-10-09","value":68},{"date":"2026-10-10","value":70},{"date":"2026-10-11","value":43},{"date":"2026-10-12","value":47},{"date":"2026-10-13","value":55},{"date":"2026-10-14","value":17},{"date":"2026-10-15","value":46},{"date":"2026-10-16","value":61},{"date":"2026-10-17","value":78},{"date":"2026-10-18","value":40},{"date":"2026-10-19","value":73},{"date":"2026-10-20","value":75},{"date":"2026-10-21","value":60},{"date":"2026-10-22","value":31},{"date":"2026-10-23","value":53},{"date":"2026-10-24","value":60},{"date":"2026-10-25","value":null}],"online_followers":[{"date":"2026-10-23","hours":[1683,2162,2644,3216,3892,4480,5190,5867,6284,6359,6582,6327,6255,5723,4913,4525,4022,3447,2612,2147,1712,1479,1292,1360]},{"date":"2026-10-24","hours":[1569,1931,2606,2939,3890,4775,4970,5864,6183,6373,6602,6020,6071,5865,5094,4514,3668,3094,2686,1887,1436,1378,1368,1217]}],"demographics":{"follower":{"age":{"13-17":92,"18-24":2210,"25-34":6448,"35-44":4790,"45-54":2580,"55-64":1290,"65+":1010},"gender":{"F":13260,"M":4420,"U":740},"country":{"US":7920,"GB":2390,"CA":1470,"AU":1290,"DE":740,"NL":550,"IE":370,"NZ":330,"SE":290,"FR":260},"city":{"London, England":880,"New York, New York":610,"Toronto, Ontario":420,"Melbourne, Victoria":390,"Los Angeles, California":370,"Sydney, New South Wales":350,"Chicago, Illinois":290}},"engaged":{"age":null,"gender":null,"country":null,"city":null},"reached":{"age":null,"gender":null,"country":null,"city":null}},"reels":[{"id":"18100000000000000","permalink":null,"posted":"2026-10-26T12:00:00Z","feed":true,"hook":"Your monstera is not dying. It is asking for one thing.","views":5298,"reach":4423,"likes":183,"comments":5,"saves":49,"shares":41,"interactions":281,"avg_watch_s":18.9,"skip_rate":62.3,"insights":true},{"id":"18100000000007919","permalink":null,"posted":"2026-10-25T16:00:00Z","feed":true,"hook":"Stop watering on a schedule. Do this finger test instead.","views":3655,"reach":3260,"likes":183,"comments":6,"saves":45,"shares":21,"interactions":257,"avg_watch_s":18.4,"skip_rate":58.3,"insights":true},{"id":"18100000000015838","permalink":null,"posted":"2026-10-24T09:00:00Z","feed":true,"hook":"Three signs your pothos needs a bigger pot right now.","views":7463,"reach":6172,"likes":401,"comments":10,"saves":51,"shares":93,"interactions":559,"avg_watch_s":20.0,"skip_rate":57.6,"insights":true},{"id":"18100000000023757","permalink":null,"posted":"2026-10-22T13:00:00Z","feed":true,"hook":"The yellow leaf is not the problem. The soil is.","views":3264,"reach":2756,"likes":148,"comments":7,"saves":33,"shares":33,"interactions":222,"avg_watch_s":20.2,"skip_rate":57.9,"insights":true},{"id":"18100000000031676","permalink":null,"posted":"2026-10-21T06:00:00Z","feed":true,"hook":"Why your snake plant is fine in the dark corner, and your fern is not.","views":2378,"reach":2138,"likes":122,"comments":7,"saves":19,"shares":22,"interactions":171,"avg_watch_s":16.2,"skip_rate":61.5,"insights":true},{"id":"18100000000039595","permalink":null,"posted":"2026-10-20T04:00:00Z","feed":true,"hook":"I repotted a root bound fiddle leaf. Watch what came out.","views":8742,"reach":7731,"likes":347,"comments":13,"saves":109,"shares":76,"interactions":550,"avg_watch_s":15.3,"skip_rate":55.0,"insights":true},{"id":"18100000000047514","permalink":null,"posted":"2026-10-19T08:00:00Z","feed":true,"hook":"The cheapest humidity fix for a dry apartment.","views":5821,"reach":5026,"likes":205,"comments":11,"saves":39,"shares":72,"interactions":330,"avg_watch_s":15.9,"skip_rate":60.6,"insights":true},{"id":"18100000000055433","permalink":null,"posted":"2026-10-18T06:00:00Z","feed":true,"hook":"Brown tips on your calathea? Tap water is most likely why.","views":2064,"reach":1834,"likes":94,"comments":7,"saves":16,"shares":26,"interactions":144,"avg_watch_s":17.5,"skip_rate":65.5,"insights":true},{"id":"18100000000063352","permalink":null,"posted":"2026-10-16T23:00:00Z","feed":true,"hook":"One cutting, six new plants. Here is the whole trick.","views":3845,"reach":3239,"likes":210,"comments":9,"saves":37,"shares":49,"interactions":307,"avg_watch_s":10.4,"skip_rate":56.1,"insights":true},{"id":"18100000000071271","permalink":null,"posted":"2026-10-15T21:00:00Z","feed":false,"hook":"Do not throw that leggy plant away. Cut it here.","views":2206,"reach":1942,"likes":78,"comments":2,"saves":15,"shares":12,"interactions":108,"avg_watch_s":15.3,"skip_rate":63.7,"insights":true},{"id":"18100000000079190","permalink":null,"posted":"2026-10-14T14:00:00Z","feed":true,"hook":"The light test every plant parent gets wrong.","views":6102,"reach":5491,"likes":281,"comments":24,"saves":50,"shares":65,"interactions":423,"avg_watch_s":11.3,"skip_rate":52.7,"insights":true},{"id":"18100000000087109","permalink":null,"posted":"2026-10-13T18:00:00Z","feed":true,"hook":"Fungus gnats gone in a week, no sprays.","views":5579,"reach":4868,"likes":254,"comments":12,"saves":39,"shares":65,"interactions":373,"avg_watch_s":11.5,"skip_rate":53.9,"insights":true},{"id":"18100000000095028","permalink":null,"posted":"2026-10-12T13:00:00Z","feed":true,"hook":"My rescue peace lily, day 1 to day 30.","views":4995,"reach":4285,"likes":278,"comments":5,"saves":53,"shares":47,"interactions":385,"avg_watch_s":17.1,"skip_rate":57.0,"insights":true},{"id":"18100000000102947","permalink":null,"posted":"2026-10-11T08:00:00Z","feed":true,"hook":"What a healthy root looks like, and what rot looks like.","views":4871,"reach":4315,"likes":189,"comments":8,"saves":53,"shares":26,"interactions":278,"avg_watch_s":18.6,"skip_rate":58.7,"insights":true},{"id":"18100000000110866","permalink":null,"posted":"2026-10-10T03:00:00Z","feed":true,"hook":"The one plant I tell every beginner to buy first.","views":4374,"reach":3648,"likes":183,"comments":6,"saves":27,"shares":24,"interactions":242,"avg_watch_s":18.5,"skip_rate":63.6,"insights":true},{"id":"18100000000118785","permalink":null,"posted":"2026-10-08T20:00:00Z","feed":true,"hook":"Overwatered or underwatered? The leaf tells you.","views":14721,"reach":12888,"likes":539,"comments":19,"saves":109,"shares":188,"interactions":863,"avg_watch_s":10.2,"skip_rate":45.9,"insights":true},{"id":"18100000000126704","permalink":null,"posted":"2026-10-07T13:00:00Z","feed":true,"hook":"Pebble trays do almost nothing. Try this.","views":5816,"reach":4860,"likes":230,"comments":19,"saves":52,"shares":56,"interactions":360,"avg_watch_s":10.9,"skip_rate":55.3,"insights":true},{"id":"18100000000134623","permalink":null,"posted":"2026-10-06T06:00:00Z","feed":false,"hook":"Your plant is leaning toward the window for a reason.","views":10134,"reach":8710,"likes":382,"comments":11,"saves":66,"shares":56,"interactions":521,"avg_watch_s":13.2,"skip_rate":50.3,"insights":true},{"id":"18100000000142542","permalink":null,"posted":"2026-10-04T10:00:00Z","feed":true,"hook":"How I keep a fern alive in a radiator flat.","views":9290,"reach":7652,"likes":447,"comments":23,"saves":101,"shares":114,"interactions":690,"avg_watch_s":9.2,"skip_rate":50.1,"insights":true},{"id":"18100000000150461","permalink":null,"posted":"2026-10-03T14:00:00Z","feed":true,"hook":"Bottom watering in two minutes.","views":3173,"reach":2848,"likes":144,"comments":12,"saves":40,"shares":38,"interactions":235,"avg_watch_s":17.1,"skip_rate":63.5,"insights":true},{"id":"18100000000158380","permalink":null,"posted":"2026-10-01T18:00:00Z","feed":true,"hook":"The repotting mistake that kills more plants than drought.","views":2747,"reach":2413,"likes":130,"comments":8,"saves":18,"shares":11,"interactions":168,"avg_watch_s":11.0,"skip_rate":59.0,"insights":true},{"id":"18100000000166299","permalink":null,"posted":"2026-09-30T16:00:00Z","feed":true,"hook":"Winter is coming. Move these three plants now.","views":9435,"reach":7888,"likes":306,"comments":36,"saves":77,"shares":94,"interactions":518,"avg_watch_s":14.5,"skip_rate":54.2,"insights":true},{"id":"18100000000174218","permalink":null,"posted":"2026-09-29T20:00:00Z","feed":true,"hook":"Spider plant babies: when to cut them off.","views":17872,"reach":15998,"likes":608,"comments":38,"saves":140,"shares":112,"interactions":908,"avg_watch_s":17.5,"skip_rate":48.7,"insights":true},{"id":"18100000000182137","permalink":null,"posted":"2026-09-28T00:00:00Z","feed":true,"hook":"Is your cactus etiolated? Here is the fix.","views":3479,"reach":3118,"likes":177,"comments":5,"saves":45,"shares":26,"interactions":255,"avg_watch_s":17.4,"skip_rate":62.6,"insights":true},{"id":"18100000000190056","permalink":null,"posted":"2026-09-26T17:00:00Z","feed":true,"hook":"The soil mix I use for almost everything.","views":4734,"reach":4082,"likes":265,"comments":15,"saves":64,"shares":59,"interactions":405,"avg_watch_s":18.3,"skip_rate":60.8,"insights":true},{"id":"18100000000197975","permalink":null,"posted":"2026-09-24T21:00:00Z","feed":true,"hook":"Why new leaves come out smaller and smaller.","views":4640,"reach":4163,"likes":164,"comments":11,"saves":37,"shares":34,"interactions":248,"avg_watch_s":13.8,"skip_rate":67.2,"insights":true},{"id":"18100000000205894","permalink":null,"posted":"2026-09-23T01:00:00Z","feed":false,"hook":"Propagation station tour, every jar explained.","views":3045,"reach":2713,"likes":166,"comments":6,"saves":21,"shares":16,"interactions":210,"avg_watch_s":18.5,"skip_rate":61.7,"insights":true},{"id":"18100000000213813","permalink":null,"posted":"2026-09-22T05:00:00Z","feed":true,"hook":"A dead looking plant I brought back in 3 weeks.","views":4628,"reach":4017,"likes":230,"comments":7,"saves":48,"shares":49,"interactions":336,"avg_watch_s":13.3,"skip_rate":55.8,"insights":true},{"id":"18100000000221732","permalink":null,"posted":"2026-09-20T09:00:00Z","feed":true,"hook":"Five plants that are safe around cats.","views":6035,"reach":5056,"likes":335,"comments":15,"saves":71,"shares":75,"interactions":499,"avg_watch_s":9.6,"skip_rate":61.0,"insights":true},{"id":"18100000000229651","permalink":null,"posted":"2026-09-19T02:00:00Z","feed":true,"hook":"Stop misting. Do this instead.","views":6451,"reach":5556,"likes":301,"comments":17,"saves":58,"shares":36,"interactions":415,"avg_watch_s":19.5,"skip_rate":57.3,"insights":true},{"id":"18100000000237570","permalink":null,"posted":"2026-09-18T00:00:00Z","feed":true,"hook":"Why your orchid will not bloom again.","views":21684,"reach":18730,"likes":1023,"comments":51,"saves":256,"shares":203,"interactions":1546,"avg_watch_s":12.3,"skip_rate":43.1,"insights":true},{"id":"18100000000245489","permalink":null,"posted":"2026-09-16T17:00:00Z","feed":false,"hook":"Clean your leaves. It matters more than you think.","views":4683,"reach":3867,"likes":214,"comments":17,"saves":26,"shares":35,"interactions":294,"avg_watch_s":18.3,"skip_rate":57.2,"insights":true},{"id":"18100000000253408","permalink":null,"posted":"2026-09-14T21:00:00Z","feed":true,"hook":"My grow light setup for a north facing room.","views":3607,"reach":3228,"likes":125,"comments":6,"saves":41,"shares":40,"interactions":214,"avg_watch_s":19.5,"skip_rate":56.4,"insights":true},{"id":"18100000000261327","permalink":null,"posted":"2026-09-13T16:00:00Z","feed":true,"hook":"The aloe test: is it thirsty or happy?","views":6931,"reach":6070,"likes":322,"comments":12,"saves":58,"shares":34,"interactions":430,"avg_watch_s":14.2,"skip_rate":52.7,"insights":true},{"id":"18100000000269246","permalink":null,"posted":"2026-09-11T20:00:00Z","feed":true,"hook":"Root rot rescue, start to finish.","views":2283,"reach":2001,"likes":102,"comments":3,"saves":26,"shares":15,"interactions":147,"avg_watch_s":11.1,"skip_rate":65.3,"insights":true},{"id":"18100000000277165","permalink":null,"posted":"2026-09-11T00:00:00Z","feed":true,"hook":"When to fertilise, and when it hurts.","views":1968,"reach":1746,"likes":91,"comments":7,"saves":9,"shares":13,"interactions":121,"avg_watch_s":11.4,"skip_rate":66.5,"insights":true},{"id":"18100000000285084","permalink":null,"posted":"2026-09-09T22:00:00Z","feed":true,"hook":"Pothos vs philodendron in ten seconds.","views":13172,"reach":11069,"likes":577,"comments":19,"saves":117,"shares":140,"interactions":860,"avg_watch_s":19.4,"skip_rate":54.1,"insights":true},{"id":"18100000000293003","permalink":null,"posted":"2026-09-08T15:00:00Z","feed":true,"hook":"How much light is bright indirect light, really?","views":11858,"reach":9931,"likes":630,"comments":15,"saves":63,"shares":63,"interactions":778,"avg_watch_s":13.9,"skip_rate":47.2,"insights":true},{"id":"18100000000300922","permalink":null,"posted":"2026-09-07T19:00:00Z","feed":false,"hook":"Repot or not? Ask these two questions.","views":3919,"reach":3351,"likes":147,"comments":8,"saves":34,"shares":18,"interactions":209,"avg_watch_s":10.3,"skip_rate":64.8,"insights":true},{"id":"18100000000308841","permalink":null,"posted":"2026-09-05T15:00:00Z","feed":true,"hook":"The plant that told me my flat was too dry.","views":3245,"reach":2788,"likes":117,"comments":12,"saves":33,"shares":13,"interactions":176,"avg_watch_s":20.6,"skip_rate":60.1,"insights":true},{"id":"18100000000316760","permalink":null,"posted":"2026-09-04T08:00:00Z","feed":true,"hook":"Leggy succulents: the gentle fix.","views":3013,"reach":2667,"likes":98,"comments":4,"saves":25,"shares":26,"interactions":154,"avg_watch_s":13.3,"skip_rate":56.0,"insights":true},{"id":"18100000000324679","permalink":null,"posted":"2026-09-03T12:00:00Z","feed":true,"hook":"Three watering myths I believed for years.","views":1317,"reach":1160,"likes":45,"comments":3,"saves":17,"shares":7,"interactions":72,"avg_watch_s":15.9,"skip_rate":63.3,"insights":true},{"id":"18100000000332598","permalink":null,"posted":"2026-09-01T16:00:00Z","feed":true,"hook":"How to pick a healthy plant at the shop.","views":18491,"reach":16526,"likes":827,"comments":63,"saves":230,"shares":213,"interactions":1344,"avg_watch_s":9.1,"skip_rate":51.9,"insights":true},{"id":"18100000000340517","permalink":null,"posted":"2026-08-31T11:00:00Z","feed":true,"hook":"Rehoming a plant that outgrew my shelf.","views":3035,"reach":2491,"likes":139,"comments":12,"saves":30,"shares":34,"interactions":216,"avg_watch_s":17.0,"skip_rate":59.8,"insights":true},{"id":"18100000000348436","permalink":null,"posted":"2026-08-30T04:00:00Z","feed":false,"hook":"Air layering a rubber plant, easy version.","views":1631,"reach":1337,"likes":53,"comments":3,"saves":15,"shares":15,"interactions":86,"avg_watch_s":17.6,"skip_rate":66.4,"insights":true},{"id":"18100000000356355","permalink":null,"posted":"2026-08-29T02:00:00Z","feed":true,"hook":"The drainage hole debate, settled.","views":8904,"reach":7804,"likes":341,"comments":32,"saves":94,"shares":90,"interactions":562,"avg_watch_s":19.7,"skip_rate":58.4,"insights":true},{"id":"18100000000364274","permalink":null,"posted":"2026-08-26T22:00:00Z","feed":true,"hook":"Why your monstera has no holes yet.","views":2316,"reach":2033,"likes":92,"comments":7,"saves":19,"shares":9,"interactions":128,"avg_watch_s":16.7,"skip_rate":63.4,"insights":true},{"id":"18100000000372193","permalink":null,"posted":"2026-08-25T15:00:00Z","feed":true,"hook":"My most asked question this month, answered.","views":3432,"reach":2875,"likes":193,"comments":10,"saves":18,"shares":42,"interactions":265,"avg_watch_s":13.9,"skip_rate":64.2,"insights":true}],"status":{"small_account":"no"},"missing":[{"metric":"engaged_audience_demographics","reason":"Instagram returned no breakdown"},{"metric":"reached_audience_demographics","reason":"Instagram returned no breakdown"}]}</script>
+<script type="application/json" id="ownerdata"></script>
+
+<script id="engine">
+/* The maths. Pure functions, no page access, so node runs the same code (test-artifact.mjs, build-artifact.mjs). */
+var AICC = (function () {
+  var SCHEMA = 'aicc-numbers-v2', SCHEMA_V1 = 'aicc-numbers-v1', V3 = 'aicc-ig-v3';
+  var DAY = 86400000;
+  var TOTALS = ['views', 'reach', 'total_interactions', 'likes', 'comments', 'shares', 'saves', 'profile_views', 'website_clicks', 'follows'];
+  var WIN_KEYS = ['views', 'reach', 'accounts_engaged', 'total_interactions', 'likes', 'comments', 'shares', 'saves', 'replies', 'reposts', 'profile_views', 'website_clicks', 'follows', 'reach_follower', 'reach_non_follower', 'views_follower', 'views_non_follower', 'views_unknown'];
+  var TOT_METRICS = ['views', 'reach', 'accounts_engaged', 'total_interactions', 'likes', 'comments', 'shares', 'saves', 'replies', 'reposts', 'profile_views', 'website_clicks'];
+  var REEL_METRICS = ['views', 'reach', 'likes', 'comments', 'saved', 'shares', 'total_interactions', 'ig_reels_avg_watch_time', 'ig_reels_video_view_total_time'];
+  var AUD = ['follower', 'engaged', 'reached'], DIMS = ['age', 'gender', 'country', 'city'];
+  var AUD_METRIC = { follower: 'follower_demographics', engaged: 'engaged_audience_demographics', reached: 'reached_audience_demographics' };
+  var REEL_CAP = 60;
+
+  function parseTs(s) {
+    if (s == null || s === '') return NaN;
+    s = String(s).trim().replace(/([+-]\d{2})(\d{2})$/, '$1:$2');
+    if (/T\d{2}:\d{2}Z$/.test(s)) s = s.replace(/Z$/, ':00Z');
+    return Date.parse(s);
+  }
+  function num(v) {
+    if (v == null || v === '') return null;
+    if (typeof v === 'number') return isFinite(v) ? v : null;
+    if (typeof v === 'string') { var x = Number(v.replace(/[,\s%$€£]/g, '')); return isFinite(x) && v.trim() !== '' ? x : null; }
+    return null;
+  }
+  function nn(v) { v = num(v); return v != null && v < 0 ? null : v; }
+  function iso(t) { return new Date(t).toISOString().slice(0, 10); }
+  function addDays(s, n) { return iso(Date.parse(s + 'T00:00:00Z') + n * DAY); }
+  function ext(a, b) { for (var k in b) a[k] = b[k]; return a; }
+  function median(a) { var s = a.filter(function (x) { return x != null && isFinite(x); }).sort(function (x, y) { return x - y; }), n = s.length; if (!n) return null; return n % 2 ? s[(n - 1) / 2] : (s[n / 2 - 1] + s[n / 2]) / 2; }
+
+  /* ---------- 1. get the JSON out of whatever was pasted */
+  function scan(t) {
+    var depth = 0, inStr = false, esc = false;
+    for (var i = 0; i < t.length; i++) {
+      var c = t[i];
+      if (inStr) { if (esc) esc = false; else if (c === '\\') esc = true; else if (c === '"') inStr = false; continue; }
+      if (c === '"') inStr = true; else if (c === '{' || c === '[') depth++; else if (c === '}' || c === ']') depth--;
+    }
+    return { depth: depth, inStr: inStr };
+  }
+  function tryParse(s) { try { return { ok: true, value: JSON.parse(s) }; } catch (e) { return { ok: false, error: String(e.message || e) }; } }
+  function extract(text) {
+    var t = String(text == null ? '' : text).replace(/^﻿/, '').trim(), fixes = [];
+    if (!t) return { error: 'empty' };
+    var fence = t.match(/```[a-zA-Z]*[ \t]*\r?\n?([\s\S]*?)```/);
+    if (fence) { if (t.replace(fence[0], '').trim()) fixes.push('removed the words around the code block'); t = fence[1].trim(); }
+    else if (t.indexOf('```') >= 0) { t = t.replace(/```[a-zA-Z]*/g, '').trim(); fixes.push('removed a code fence'); }
+    var a = t.indexOf('{');
+    if (a < 0) return { error: 'noobject' };
+    if (a > 0 && t.slice(0, a).trim()) fixes.push('removed the words before the block');
+    var b = t.lastIndexOf('}');
+    var cand = b > a ? t.slice(a, b + 1) : t.slice(a);
+    if (b > a && t.slice(b + 1).trim()) fixes.push('removed the words after the block');
+    var d = tryParse(cand);
+    if (d.ok) return { data: d.value, fixes: fixes };
+    d = tryParse(cand.replace(/[“”]/g, '"').replace(/,\s*([}\]])/g, '$1'));
+    if (d.ok) { fixes.push('fixed curly quotes or a trailing comma'); return { data: d.value, fixes: fixes }; }
+    var st = scan(t.slice(a));
+    if (st.depth > 0 || st.inStr) return { error: 'truncated' };
+    return { error: 'syntax', detail: d.error };
+  }
+
+  /* ---------- 2. the Composio pull: the plan, the call key, and raw answers into aicc-ig-v3 */
+  var UI = 'INSTAGRAM_GET_USER_INSIGHTS', MI = 'INSTAGRAM_GET_IG_MEDIA_INSIGHTS';
+  function planAccount(today) {
+    var P = [], until = today;
+    P.push({ key: 'profile', tool_slug: 'INSTAGRAM_GET_USER_INFO', arguments: { ig_user_id: 'me', fields: 'id,username,name,account_type,followers_count,follows_count,media_count' } });
+    [['28', 28], ['7', 7]].forEach(function (w) {
+      var base = { period: 'day', metric_type: 'total_value', since: addDays(today, -w[1]), until: until };
+      P.push({ key: 'totals' + w[0], tool_slug: UI, arguments: ext({ metric: TOT_METRICS.slice() }, base) });
+      P.push({ key: 'follows' + w[0], tool_slug: UI, arguments: ext({ metric: ['follows_and_unfollows'], breakdown: 'follow_type' }, base) });
+      P.push({ key: 'reachft' + w[0], tool_slug: UI, arguments: ext({ metric: ['reach'], breakdown: 'follow_type' }, base) });
+      P.push({ key: 'viewsft' + w[0], tool_slug: UI, arguments: ext({ metric: ['views'], breakdown: 'follow_type' }, base) });
+    });
+    P.push({ key: 'fc', tool_slug: UI, arguments: { metric: ['follower_count'], period: 'day', since: addDays(today, -28), until: until } });
+    P.push({ key: 'online', tool_slug: UI, arguments: { metric: ['online_followers'], period: 'lifetime', since: addDays(today, -3), until: addDays(today, -1) } });
+    AUD.forEach(function (who) { DIMS.forEach(function (b) {
+      P.push({ key: 'demo:' + who + ':' + b, tool_slug: UI, arguments: { metric: [AUD_METRIC[who]], period: 'lifetime', metric_type: 'total_value', timeframe: 'this_month', breakdown: b } });
+    }); });
+    P.push({ key: 'media', tool_slug: 'INSTAGRAM_GET_IG_USER_MEDIA', arguments: { ig_user_id: 'me', limit: 100, fields: 'id,caption,media_type,media_product_type,is_shared_to_feed,timestamp,permalink,like_count,comments_count' } });
+    return P;
+  }
+  function mediaList(r) {
+    if (!r || !r.ok || !r.data) return null;
+    var d = r.data;
+    if (Array.isArray(d)) return d;
+    if (Array.isArray(d.data)) return d.data;
+    if (d.data && Array.isArray(d.data.data)) return d.data.data;
+    return null;
+  }
+  function reelsOf(list) {
+    return (list || []).filter(function (m) { return m && m.id && m.media_type === 'VIDEO' && (m.media_product_type == null || m.media_product_type === 'REELS'); })
+      .sort(function (a, b) { return parseTs(b.timestamp) - parseTs(a.timestamp); }).slice(0, REEL_CAP);
+  }
+  function planReels(ids) {
+    var P = [];
+    ids.forEach(function (id) {
+      P.push({ key: 'reel:' + id, tool_slug: MI, arguments: { ig_media_id: id, metric: REEL_METRICS.slice() } });
+      P.push({ key: 'skip:' + id, tool_slug: MI, arguments: { ig_media_id: id, metric: ['reels_skip_rate'] } });
+    });
+    return P;
+  }
+  // identity of a call regardless of the date it ran on (used to replay a recorded pull)
+  function keyOf(slug, a) {
+    a = a || {};
+    if (slug === 'INSTAGRAM_GET_USER_INFO') return 'profile';
+    if (slug === 'INSTAGRAM_GET_IG_USER_MEDIA') return 'media';
+    var m = [].concat(a.metric || []);
+    if (slug === MI) return (m.indexOf('reels_skip_rate') >= 0 ? 'skip:' : 'reel:') + a.ig_media_id;
+    var span = a.since && a.until ? Math.round((Date.parse(a.until) - Date.parse(a.since)) / DAY) : '';
+    return slug + ':' + m.join(',') + '|' + (a.breakdown || '') + '|' + (a.timeframe || '') + '|' + (a.period || '') + '|' + span;
+  }
+  // COMPOSIO_MULTI_EXECUTE_TOOL answer -> [{ok, data, error}] in input order
+  function unwrapMulti(res, count) {
+    var p = res && res.payload !== undefined ? res.payload : res;
+    if (typeof p === 'string') { var t = tryParse(p); p = t.ok ? t.value : null; }
+    if ((!p || typeof p !== 'object') && res && Array.isArray(res.content)) {
+      for (var i = 0; i < res.content.length; i++) if (res.content[i].type === 'text') { var q = tryParse(res.content[i].text); if (q.ok) { p = q.value; break; } }
+    }
+    if (!p || typeof p !== 'object') return { error: 'The connector answered in a shape this page does not know.' };
+    var body = p.data && p.data.results ? p.data : p.results ? p : null;
+    if (!body) return { error: typeof p.error === 'string' && p.error ? p.error : (p.error && p.error.message) || 'The connector answered without results.' };
+    var out = [];
+    for (var j = 0; j < count; j++) out.push({ ok: false, error: 'no answer for this call' });
+    body.results.forEach(function (r, k) {
+      var idx = typeof r.index === 'number' ? r.index : k;
+      if (idx < 0 || idx >= count) return;
+      var resp = r.response || r;
+      if (resp && resp.successful !== false && resp.data !== undefined && !resp.error) out[idx] = { ok: true, data: resp.data };
+      else out[idx] = { ok: false, error: String((resp && (resp.error && (resp.error.message || resp.error))) || r.error || 'failed').slice(0, 300) };
+    });
+    return { results: out };
+  }
+  function insightsList(r) { return r && r.ok && r.data && Array.isArray(r.data.data) ? r.data.data : null; }
+  function findM(list, name) { if (!list) return null; for (var i = 0; i < list.length; i++) if (list[i] && list[i].name === name) return list[i]; return null; }
+  function tvOf(list, name) { var m = findM(list, name); return m && m.total_value && m.total_value.value != null ? nn(m.total_value.value) : null; }
+  function armsOf(list, name) {
+    var m = findM(list, name), o = null;
+    var b = m && m.total_value && m.total_value.breakdowns && m.total_value.breakdowns[0];
+    if (b && Array.isArray(b.results) && b.results.length) { o = {}; b.results.forEach(function (x) { if (x.dimension_values) o[String(x.dimension_values[0])] = nn(x.value); }); }
+    return o;
+  }
+  function firstLine(c) { var s = String(c || '').split('\n')[0].trim(); return s.length > 80 ? s.slice(0, 79).replace(/\s+\S*$/, '') + '…' : s; }
+
+  function fromComposio(byKey, meta) {
+    meta = meta || {};
+    var missing = [], miss = function (m, why) { missing.push({ metric: m, reason: why }); };
+    var failWhy = function (r) { return r && r.error ? 'Instagram or Composio refused it: ' + String(r.error).slice(0, 140) : 'not pulled'; };
+    var P = byKey.profile && byKey.profile.ok ? byKey.profile.data : null;
+    if (P && P.data && !P.username && P.data.username) P = P.data;
+    var followers = P ? nn(P.followers_count) : null;
+    var acct = { username: P && P.username ? String(P.username) : null, name: P && P.name ? String(P.name) : null, account_type: P && P.account_type ? String(P.account_type) : null,
+      followers: followers, following: P ? nn(P.follows_count) : null, media_count: P ? nn(P.media_count) : null };
+    if (!P) miss('profile', failWhy(byKey.profile));
+    var small = followers == null ? 'no' : followers < 100 ? 'under_100' : followers < 1000 ? 'under_1000' : 'no';
+    var today = meta.today || iso(parseTs(meta.pulled_at) || Date.now());
+    var windows = {};
+    [['28', 28], ['7', 7]].forEach(function (w) {
+      var k = w[0], o = { since: addDays(today, -w[1]), until: today }, any = false;
+      var T = insightsList(byKey['totals' + k]);
+      if (T) TOT_METRICS.forEach(function (m) { o[m] = tvOf(T, m); if (o[m] == null && !findM(T, m)) miss(m + ' (' + k + ' days)', 'not in the answer'); });
+      else { TOT_METRICS.forEach(function (m) { o[m] = null; }); if (byKey['totals' + k]) miss('account totals (' + k + ' days)', failWhy(byKey['totals' + k])); }
+      var f = armsOf(insightsList(byKey['follows' + k]), 'follows_and_unfollows');
+      o.follows = f && f.FOLLOWER != null ? f.FOLLOWER : null;
+      if (o.follows == null && byKey['follows' + k]) miss('follows (' + k + ' days)', byKey['follows' + k].ok ? 'Instagram returned no breakdown' : failWhy(byKey['follows' + k]));
+      var rf = armsOf(insightsList(byKey['reachft' + k]), 'reach');
+      o.reach_follower = rf ? (rf.FOLLOWER != null ? rf.FOLLOWER : null) : null; o.reach_non_follower = rf ? (rf.NON_FOLLOWER != null ? rf.NON_FOLLOWER : null) : null;
+      if (!rf && byKey['reachft' + k]) miss('reach by follower type (' + k + ' days)', byKey['reachft' + k].ok ? 'Instagram returned no breakdown' : failWhy(byKey['reachft' + k]));
+      var vf = armsOf(insightsList(byKey['viewsft' + k]), 'views');
+      o.views_follower = vf ? (vf.FOLLOWER != null ? vf.FOLLOWER : null) : null; o.views_non_follower = vf ? (vf.NON_FOLLOWER != null ? vf.NON_FOLLOWER : null) : null; o.views_unknown = vf ? (vf.UNKNOWN != null ? vf.UNKNOWN : null) : null;
+      if (!vf && byKey['viewsft' + k]) miss('views by follower type (' + k + ' days)', byKey['viewsft' + k].ok ? 'Instagram returned no breakdown' : failWhy(byKey['viewsft' + k]));
+      WIN_KEYS.forEach(function (m) { if (o[m] === undefined) o[m] = null; if (o[m] != null) any = true; });
+      if (any) windows[k] = o;
+    });
+    var daily = null, fcl = insightsList(byKey.fc), fm = findM(fcl, 'follower_count');
+    if (fm && Array.isArray(fm.values) && fm.values.length) {
+      daily = fm.values.map(function (v, i, a) {
+        var t = parseTs(v.end_time), val = nn(v.value);
+        if (i === a.length - 1 && val === 0) val = null; // unfinished day
+        return { date: isFinite(t) ? iso(t - DAY) : null, value: val };
+      }).filter(function (x) { return x.date; });
+    } else if (byKey.fc) miss('follower_count', byKey.fc.ok ? (small === 'under_100' ? 'Instagram hides it under 100 followers' : 'Instagram returned no values') : failWhy(byKey.fc));
+    var online = null, ol = findM(insightsList(byKey.online), 'online_followers');
+    if (ol && Array.isArray(ol.values)) {
+      online = ol.values.map(function (v) {
+        var t = parseTs(v.end_time), h = v.value && typeof v.value === 'object' ? v.value : {};
+        var hours = []; for (var i = 0; i < 24; i++) hours.push(nn(h[String(i)]));
+        return { date: isFinite(t) ? iso(t - DAY) : null, hours: hours };
+      }).filter(function (x) { return x.date && x.hours.some(function (y) { return y != null; }); });
+      if (!online.length) { online = null; miss('online_followers', 'Instagram returned no hours'); }
+    } else if (byKey.online) miss('online_followers', byKey.online.ok ? 'Instagram returned no hours' : failWhy(byKey.online));
+    var demo = {};
+    AUD.forEach(function (who) {
+      demo[who] = {}; var emptyAll = true, failed = null;
+      DIMS.forEach(function (b) {
+        var r = byKey['demo:' + who + ':' + b];
+        var arms = armsOf(insightsList(r), AUD_METRIC[who]);
+        demo[who][b] = arms; if (arms) emptyAll = false; if (r && !r.ok) failed = r;
+      });
+      if (emptyAll && (byKey['demo:' + who + ':age'])) miss(AUD_METRIC[who], failed ? failWhy(failed) : (small === 'under_100' ? 'Instagram hides it under 100 followers' : 'Instagram returned no breakdown'));
+    });
+    var reels = [], ml = mediaList(byKey.media);
+    if (ml) {
+      var noIns = 0;
+      reelsOf(ml).forEach(function (m) {
+        var ins = insightsList(byKey['reel:' + m.id]), sk = insightsList(byKey['skip:' + m.id]);
+        var v = function (n) { var x = findM(ins, n); return x && Array.isArray(x.values) && x.values[0] ? nn(x.values[0].value) : null; };
+        var sv = findM(sk, 'reels_skip_rate'), aw = v('ig_reels_avg_watch_time');
+        var t = parseTs(m.timestamp);
+        if (!ins) noIns++;
+        reels.push({ id: String(m.id), permalink: m.permalink || null, posted: isFinite(t) ? new Date(t).toISOString().replace('.000Z', 'Z') : null,
+          feed: m.is_shared_to_feed === false ? false : m.is_shared_to_feed === true ? true : null, hook: firstLine(m.caption),
+          views: v('views'), reach: v('reach'), likes: ins ? v('likes') : nn(m.like_count), comments: ins ? v('comments') : nn(m.comments_count),
+          saves: v('saved'), shares: v('shares'), interactions: v('total_interactions'), avg_watch_s: aw != null ? Math.round(aw / 100) / 10 : null,
+          skip_rate: sv && sv.values && sv.values[0] ? nn(sv.values[0].value) : null, insights: !!ins });
+      });
+      if (noIns) miss('reel insights', noIns + ' of ' + reels.length + ' reels had none' + (small !== 'no' ? ' (Instagram gives reel insights from about 1,000 followers)' : ''));
+      var noSkip = reels.filter(function (r) { return r.insights && r.skip_rate == null; }).length;
+      if (noSkip) miss('reels_skip_rate', noSkip + ' reels had none');
+    } else if (byKey.media) miss('media', failWhy(byKey.media));
+    return { schema: V3, pulled_at: meta.pulled_at || new Date().toISOString(), source: 'composio', account: acct, windows: windows,
+      daily_follows: daily, online_followers: online, demographics: demo, reels: reels, status: { small_account: small }, missing: missing };
+  }
+  // the recorded file format (data/*-full-*.json)
+  function fromCalls(raw) {
+    var by = {};
+    raw.calls.forEach(function (c) { var r = c.response || {}; by[c.key || keyOf(c.tool_slug, c.arguments)] = r.successful === false ? { ok: false, error: r.error || 'failed' } : { ok: true, data: r.data }; });
+    return fromComposio(by, { pulled_at: raw.pulled_at, today: raw.today });
+  }
+
+  /* ---------- 3. v3, v2, v1 and raw pulls all become one shape */
+  function fromRawPull(raw) {
+    var A = (raw.account_window && raw.account_window.data) || {};
+    var tv = function (k) { return A.totals && A.totals[k] && A.totals[k].value != null ? A.totals[k].value : null; };
+    var fol = null, b = A.follows && A.follows.follows_and_unfollows && A.follows.follows_and_unfollows.breakdowns ? A.follows.follows_and_unfollows.breakdowns[0].results || [] : [];
+    b.forEach(function (r) { if (r.dimension_values && r.dimension_values[0] === 'FOLLOWER') fol = r.value; });
+    var p = String(raw.pulled_at_utc || ''); if (/T\d{2}:\d{2}Z$/.test(p)) p = p.replace(/Z$/, ':00Z');
+    return { schema: SCHEMA, pulled_at: p, account: { username: raw.account || null, followers: raw.profile ? raw.profile.followers_count : null },
+      window: raw.account_window ? { since: raw.account_window.since, until: raw.account_window.until } : null,
+      totals: { views: tv('views'), reach: tv('reach'), total_interactions: tv('total_interactions'), likes: tv('likes'), comments: tv('comments'), shares: tv('shares'), saves: tv('saves'), profile_views: tv('profile_views'), website_clicks: tv('website_clicks'), follows: fol },
+      status: { small_account: 'no', account_insights: 'ok' }, missing: [], notes: [] };
+  }
+  function cleanMissing(m) {
+    return (Array.isArray(m) ? m : []).map(function (x) {
+      if (x && typeof x === 'object') return { metric: String(x.metric || x.name || 'unknown'), reason: String(x.reason || x.why || 'Instagram would not give it') };
+      return { metric: String(x), reason: 'Instagram would not give it' };
+    });
+  }
+  function cleanV3(d) {
+    var a = d.account || {};
+    var out = { schema: V3, pulled_at: isFinite(parseTs(d.pulled_at)) ? String(d.pulled_at) : null, source: d.source ? String(d.source) : null,
+      account: { username: a.username ? String(a.username).replace(/^@/, '') : null, name: a.name ? String(a.name) : null, account_type: a.account_type ? String(a.account_type) : null,
+        followers: nn(a.followers), following: nn(a.following), media_count: nn(a.media_count) }, windows: {} };
+    var W = d.windows && typeof d.windows === 'object' ? d.windows : {};
+    Object.keys(W).forEach(function (k) {
+      var w = W[k] || {}, o = { since: w.since ? String(w.since).slice(0, 10) : null, until: w.until ? String(w.until).slice(0, 10) : null }, any = false;
+      WIN_KEYS.forEach(function (m) { o[m] = nn(w[m]); if (o[m] != null) any = true; });
+      o.days = o.since && o.until ? Math.round((parseTs(o.until + 'T00:00:00Z') - parseTs(o.since + 'T00:00:00Z')) / DAY) : num(k);
+      if (!(o.days > 0)) o.days = num(k) || null;
+      if (any && o.days > 0) out.windows[String(o.days)] = o;
+    });
+    out.daily_follows = Array.isArray(d.daily_follows) ? d.daily_follows.filter(function (x) { return x && isFinite(parseTs(String(x.date).slice(0, 10) + 'T00:00:00Z')); }).map(function (x) { return { date: String(x.date).slice(0, 10), value: nn(x.value) }; }) : null;
+    if (out.daily_follows && !out.daily_follows.length) out.daily_follows = null;
+    out.online_followers = Array.isArray(d.online_followers) ? d.online_followers.filter(function (x) { return x && Array.isArray(x.hours); }).map(function (x) { var h = []; for (var i = 0; i < 24; i++) h.push(nn(x.hours[i])); return { date: x.date ? String(x.date).slice(0, 10) : null, hours: h }; }).filter(function (x) { return x.hours.some(function (y) { return y != null; }); }) : null;
+    if (out.online_followers && !out.online_followers.length) out.online_followers = null;
+    var dm = d.demographics || {}; out.demographics = {};
+    AUD.forEach(function (who) {
+      out.demographics[who] = {};
+      DIMS.forEach(function (b) {
+        var src = dm[who] && dm[who][b], o = null;
+        if (src && typeof src === 'object' && !Array.isArray(src)) { Object.keys(src).forEach(function (k) { var v = nn(src[k]); if (v != null) { o = o || {}; o[k] = v; } }); }
+        out.demographics[who][b] = o;
+      });
+    });
+    out.reels = (Array.isArray(d.reels) ? d.reels : []).filter(function (r) { return r && r.id != null && isFinite(parseTs(r.posted)); }).map(function (r) {
+      return { id: String(r.id), permalink: typeof r.permalink === 'string' && /^https:\/\/(www\.)?instagram\.com\//.test(r.permalink) ? r.permalink : null,
+        posted: new Date(parseTs(r.posted)).toISOString().replace('.000Z', 'Z'), feed: r.feed === false ? false : r.feed === true ? true : null,
+        hook: r.hook ? String(r.hook).slice(0, 120) : '', views: nn(r.views), reach: nn(r.reach), likes: nn(r.likes), comments: nn(r.comments), saves: nn(r.saves),
+        shares: nn(r.shares), interactions: nn(r.interactions), avg_watch_s: nn(r.avg_watch_s), skip_rate: nn(r.skip_rate), insights: r.insights === false ? false : nn(r.views) != null };
+    }).sort(function (a, b) { return parseTs(b.posted) - parseTs(a.posted); });
+    var f = out.account.followers, st = d.status && d.status.small_account;
+    out.status = { small_account: st === 'under_100' || st === 'under_1000' || st === 'no' ? st : f == null ? 'no' : f < 100 ? 'under_100' : f < 1000 ? 'under_1000' : 'no' };
+    out.missing = cleanMissing(d.missing);
+    return out;
+  }
+  function normalize(d) {
+    var warns = [];
+    if (!d || typeof d !== 'object' || Array.isArray(d)) return { errors: ['This is not a numbers block. It should start with {"schema":"aicc-ig-v3".'], warns: warns };
+    if (Array.isArray(d.calls) && !d.schema) { d = fromCalls(d); warns.push('read a raw Composio pull'); }
+    else if (d.account_window && d.profile && !d.totals) { d = fromRawPull(d); warns.push('read a raw Composio pull'); }
+    if (d.schema === V3) {
+      var v3 = cleanV3(d), keys = Object.keys(v3.windows).sort(function (a, b) { return b - a; });
+      if (!keys.length && !v3.reels.length && v3.account.followers == null) return { errors: ['The block has no numbers in it. Ask Claude to run the prompt again.'], warns: warns };
+      var out = { v3: v3, account: v3.account, windows: v3.windows, winKeys: keys, pulled_at: v3.pulled_at, status: v3.status, missing: [], missingWhy: {} };
+      v3.missing.forEach(function (m) { out.missing.push(m.metric); out.missingWhy[m.metric] = m.reason; });
+      return { errors: [], warns: warns, data: atWindow(out, keys.indexOf('28') >= 0 ? '28' : keys[0]) };
+    }
+    if (d.schema !== SCHEMA && d.schema !== SCHEMA_V1) {
+      if (d.schema) return { errors: ['This block says it is "' + String(d.schema).slice(0, 40) + '". This page reads the aicc-ig-v3 block from the prompt on this page (older aicc-numbers-v2 blocks work too).'], warns: warns };
+      if (!d.totals) return { errors: ['This is not a numbers block: there is no "schema" line and no "totals". Use the prompt on this page, then paste what Claude gives back.'], warns: warns };
+      warns.push('the block had no "schema" line, so it was read as aicc-numbers-v2');
+    }
+    if (d.schema === SCHEMA_V1) warns.push('read an older v1 block: only its account totals are used');
+    else if (d.schema === SCHEMA) warns.push('read an older v2 block: account totals only, so reels and audience cards stay empty');
+    var T = d.totals || {}, acct = d.account || {}, tot = {};
+    TOTALS.forEach(function (k) { tot[k] = nn(T[k]); });
+    if (tot.total_interactions == null) {
+      var parts = ['likes', 'comments', 'shares', 'saves'].map(function (k) { return tot[k]; });
+      if (parts.every(function (x) { return x != null; })) { tot.total_interactions = parts.reduce(function (a, b) { return a + b; }, 0); warns.push('interactions worked out as likes + comments + shares + saves'); }
+    }
+    if (!TOTALS.some(function (k) { return tot[k] != null; })) return { errors: ['The block has no account numbers in it. Ask Claude to run the prompt again.'], warns: warns };
+    var w = d.window || {}, win = w.since && w.until ? { since: String(w.since).slice(0, 10), until: String(w.until).slice(0, 10) } : { since: null, until: null };
+    var days = win.since ? Math.round((parseTs(win.until + 'T00:00:00Z') - parseTs(win.since + 'T00:00:00Z')) / DAY) : num(w.days);
+    if (!(days > 0)) { days = num(w.days) || 7; if (!win.since) warns.push('no window dates in the block, so ' + days + ' days was assumed'); }
+    var wo = ext(ext({}, win), tot); wo.days = days;
+    WIN_KEYS.forEach(function (m) { if (wo[m] === undefined) wo[m] = null; });
+    var o = { v3: null, legacy: d.schema || SCHEMA, account: { username: acct.username ? String(acct.username).replace(/^@/, '') : null, followers: nn(acct.followers), name: null, account_type: null, following: null, media_count: null },
+      windows: {}, winKeys: [String(days)], pulled_at: isFinite(parseTs(d.pulled_at)) ? d.pulled_at : null, status: d.status || {}, missing: Array.isArray(d.missing) ? d.missing.map(String) : [], missingWhy: {} };
+    o.windows[String(days)] = wo;
+    return { errors: [], warns: warns, data: atWindow(o, String(days)) };
+  }
+  function atWindow(D, key) {
+    var w = D.windows[key] || D.windows[D.winKeys[0]], o = ext({}, D);
+    o.winKey = key in D.windows ? key : D.winKeys[0];
+    o.totals = {}; TOTALS.forEach(function (k) { o.totals[k] = w ? w[k] : null; });
+    o.win = w || null; o.days = w && w.days ? w.days : 7;
+    o.window = w && w.since && w.until ? { since: w.since, until: w.until } : null;
+    return o;
+  }
+
+  /* ---------- 4. statistics: Jeffreys 95% interval */
+  function lgamma(x) {
+    var c = [76.18009172947146, -86.50532032941677, 24.01409824083091, -1.231739572450155, 0.1208650973866179e-2, -0.5395239384953e-5];
+    var y = x, t = x + 5.5; t -= (x + 0.5) * Math.log(t);
+    var s = 1.000000000190015; for (var j = 0; j < 6; j++) s += c[j] / ++y;
+    return -t + Math.log(2.5066282746310005 * s / x);
+  }
+  function betacf(a, b, x) {
+    var FP = 1e-300, qab = a + b, qap = a + 1, qam = a - 1, c = 1, d = 1 - qab * x / qap;
+    if (Math.abs(d) < FP) d = FP; d = 1 / d; var h = d;
+    for (var m = 1; m <= 5000; m++) {
+      var m2 = 2 * m, aa = m * (b - m) * x / ((qam + m2) * (a + m2));
+      d = 1 + aa * d; if (Math.abs(d) < FP) d = FP; c = 1 + aa / c; if (Math.abs(c) < FP) c = FP; d = 1 / d; h *= d * c;
+      aa = -(a + m) * (qab + m) * x / ((a + m2) * (qap + m2));
+      d = 1 + aa * d; if (Math.abs(d) < FP) d = FP; c = 1 + aa / c; if (Math.abs(c) < FP) c = FP; d = 1 / d;
+      var del = d * c; h *= del; if (Math.abs(del - 1) < 3e-14) break;
+    }
+    return h;
+  }
+  function ibeta(x, a, b) {
+    if (x <= 0) return 0; if (x >= 1) return 1;
+    var bt = Math.exp(lgamma(a + b) - lgamma(a) - lgamma(b) + a * Math.log(x) + b * Math.log(1 - x));
+    return x < (a + 1) / (a + b + 2) ? bt * betacf(a, b, x) / a : 1 - bt * betacf(b, a, 1 - x) / b;
+  }
+  function betaQ(p, a, b) { var lo = 0, hi = 1; for (var i = 0; i < 80; i++) { var m = (lo + hi) / 2; if (ibeta(m, a, b) < p) lo = m; else hi = m; } return (lo + hi) / 2; }
+  function jeffreys(x, n) {
+    if (!(n > 0) || x == null || x < 0 || x > n) return null;
+    return [x === 0 ? 0 : betaQ(0.025, x + 0.5, n - x + 0.5), x === n ? 1 : betaQ(0.975, x + 0.5, n - x + 0.5)];
+  }
+
+  /* ---------- 5. the funnel against published benchmarks */
+  var STEPS = [
+    { key: 'interaction', name: 'Interaction rate', short: 'views to interactions', lo: 4, hi: 6, bench: '4 to 6%', mult: 100, xn: 'interactions', one: 'interaction', nn: 'views', what: 'the reels' },
+    { key: 'profile', name: 'Profile visit rate', short: 'views to profile visits', lo: 3, hi: 10, bench: '3 to 10%', mult: 100, xn: 'profile visits', one: 'profile visit', nn: 'people reached', what: 'the reels', ref: 1, refLabel: "reference accounts about 1%" },
+    { key: 'linktap', name: 'Link tap rate', short: 'profile to bio link', lo: 1, hi: 3, bench: '1 to 3%', mult: 100, xn: 'taps', one: 'tap', nn: 'profile visits', what: 'the bio' },
+    { key: 'follows', name: 'Follows per 1,000 reach', short: 'reach to follows', lo: 5, hi: 10, bench: '5 to 10', mult: 1000, xn: 'follows', one: 'follow', nn: 'people reached', what: 'the profile' },
+    { key: 'carry', name: 'Tap → page carry', short: 'bio link to page', lo: 90, hi: 100, bench: '~100%', mult: 100, carry: true, xn: 'page visits', one: 'page visit', nn: 'taps', what: 'the bio link' },
+    { key: 'conversion', name: 'Page conversion', short: 'page to sale', lo: 1.5, hi: 2.35, bench: '1.5 to 2.35%', mult: 100, xn: 'sales', one: 'sale', nn: 'page visits', what: 'the sales page' }
+  ];
+  /* plain words for someone new to Instagram: what it is, an example, what normal looks like, why it matters */
+  var PLAIN = {
+    interaction: { what: 'Out of everyone who watched your reels, how many liked, commented, shared, saved or replied.', ex: '1,000 people watch your reel and 50 of them like, comment, share or save it. That is 5%.', normal: '4 to 6 in every 100 viewers', why: 'It shows whether people actually care about what they watched.',
+      count: function (x, n) { return n0(n) + ' views led to ' + n0(x) + ' likes, comments, shares, saves or replies.'; },
+      head: 'People watch your reels, but hardly anyone likes, comments, shares or saves them.', tip: 'Ask one simple question in each reel that people can answer in a comment.' },
+    profile: { what: 'Out of everyone who saw your reels, how many tapped your name to open your profile.', ex: '1,000 people see your reel and 30 of them tap your name to see who made it. That is 3%.', normal: '3 to 10 in every 100 people', note: "The thin line on the bar marks about 1 in 100, where the reference accounts sit.", why: 'Nobody can follow you, tap your link or buy from you without visiting your profile first.',
+      count: function (x, n, reach) { return reach ? n0(n) + ' people saw your reels and ' + n0(x) + ' opened your profile.' : 'Your reels were watched ' + n0(n) + ' times and ' + n0(x) + ' people opened your profile.'; },
+      head: 'People watch your reels, but very few tap your name to see who made them.', tip: 'End each reel with one clear reason to visit your profile, for example "part 2 is on my page".' },
+    linktap: { what: 'Out of everyone who opened your profile, how many tapped the link in your bio.', ex: '100 people open your profile and 2 of them tap your link. That is 2%.', normal: '1 to 3 in every 100 profile visitors', why: 'The link is the door to whatever you sell. No taps means no sales.',
+      count: function (x, n) { return n0(n) + ' people opened your profile and ' + n0(x) + ' tapped your bio link.'; },
+      head: 'People open your profile, but very few tap the link in your bio.', tip: 'Make the first line of your bio say, in plain words, what people get when they tap the link.' },
+    follows: { what: 'For every 1,000 people who saw your reels, how many pressed follow.', ex: 'Your reels reach 10,000 people and 80 of them follow you. That is 8 per 1,000.', normal: '5 to 10 in every 1,000 people', why: 'Followers see your next reels first, so every follow makes the next reel easier.',
+      count: function (x, n) { return n0(n) + ' people saw your reels and ' + n0(x) + ' followed you.'; },
+      head: 'People see your reels, but very few follow you.', tip: 'Tell people what they get by following, for example "follow for part 2".' },
+    carry: { what: 'Out of everyone who tapped your bio link, how many actually arrived on your page.', ex: '100 people tap your link and 95 land on your page. That is 95%. The other 5 gave up while it loaded.', normal: 'close to 100 in every 100', note: 'Instagram does not count this one, so you type your page visits in below.', why: 'If it is low, your link is broken or your page loads too slowly.',
+      count: function (x, n) { return n0(n) + ' people tapped your bio link and ' + n0(x) + ' reached your page.'; },
+      head: 'People tap your bio link, but many never reach your page.', tip: 'Open your own bio link on your phone and check it goes to the right page and loads fast.' },
+    conversion: { what: 'Out of everyone who landed on your sales page, how many bought.', ex: '200 people visit your page and 3 of them buy. That is 1.5%.', normal: 'about 2 in every 100 visitors (1.5 to 2.35%)', note: 'Instagram does not count this one, so you type your page visits and sales in below.', why: 'This is the step that turns attention into money.',
+      count: function (x, n) { return n0(n) + ' people visited your page and ' + n0(x) + ' bought.'; },
+      head: 'People reach your sales page, but very few buy.', tip: 'Read your page on your phone like a stranger would, and make the first screen say what they get and what it costs.' }
+  };
+  var COLOUR = { exceptional: 'green', strong: 'green', on: 'green', near: 'yellow', data: 'yellow', below: 'red', critical: 'red', noread: 'grey', baseline: 'grey', none: 'grey', ref: 'grey' };
+  function band(v, lo, hi) { return v >= 2 * hi ? 'exceptional' : v > hi ? 'strong' : v >= lo ? 'on' : v >= 0.8 * lo ? 'near' : v >= 0.5 * lo ? 'below' : 'critical'; }
+
+  function funnel(D, man) {
+    man = man || {};
+    var mv = { pageVisits: num(man.pageVisits), sales: num(man.sales), price: num(man.price), cur: typeof man.cur === 'string' && man.cur ? man.cur.slice(0, 3) : '$' };
+    var T = D.totals, days = D.days || 7, wk = 7 / days;
+    var reachUsed = T.reach != null && T.reach > 0;
+    var src = {
+      interaction: [T.total_interactions, T.views, 'interactions ÷ views'],
+      profile: [T.profile_views, reachUsed ? T.reach : T.views, reachUsed ? 'profile visits ÷ reach' : 'profile visits ÷ views'],
+      linktap: [T.website_clicks, T.profile_views, 'taps ÷ profile visits'],
+      follows: [T.follows, T.reach, 'follows ÷ reach × 1,000'],
+      carry: [mv.pageVisits, T.website_clicks, 'page visits ÷ taps'],
+      conversion: [mv.sales, mv.pageVisits, 'sales ÷ page visits']
+    };
+    var steps = STEPS.map(function (s) {
+      var a = src[s.key], x = a[0], n = a[1];
+      var o = { key: s.key, def: s, name: s.name, short: s.short, bench: s.bench, lo: s.lo, hi: s.hi, formula: a[2], num: x, den: n, manual: s.key === 'carry' || s.key === 'conversion', nn: s.key === 'profile' && !reachUsed ? 'views' : s.nn };
+      if (x == null || n == null || !(n > 0)) { o.value = null; o.status = o.chip = 'none'; o.colour = 'grey'; return o; }
+      var v = o.value = x / n * s.mult, st;
+      o.ratio = v / s.lo;
+      if (s.carry) st = v > 100 ? 'data' : v >= s.lo ? 'on' : v >= 0.8 * s.lo ? 'near' : v >= 0.5 * s.lo ? 'below' : 'critical';
+      else if (x > n) st = 'data';
+      else st = band(v, s.lo, s.hi);
+      o.status = o.chip = st;
+      if (!s.carry && st !== 'data') {
+        o.ci = jeffreys(x, n);
+        var floor = s.lo / s.mult, E = floor >= 0.01 ? 0.01 : floor / 2;
+        o.E = E; o.needPrecise = Math.ceil(1.959964 * 1.959964 * floor * (1 - floor) / (E * E));
+        o.needOne = Math.log(0.05) / Math.log(1 - floor);
+        if (o.ci && floor >= o.ci[0] && floor <= o.ci[1] && n < o.needPrecise) o.chip = 'noread';
+      }
+      o.colour = COLOUR[st];
+      return o;
+    });
+    var by = {}; steps.forEach(function (s) { by[s.key] = s; });
+    var cands = steps.filter(function (s) { return s.value != null && s.chip !== 'noread' && s.status !== 'data' && s.ratio < 1 && s.den >= 30; });
+    cands.sort(function (a, b) { return a.ratio - b.ratio; });
+    var V = T.views, rows = [];
+    var vpu = function (c) { return V && c ? V / c : null; };
+    if (V != null) rows.push({ stage: 'Views', count: V, chip: 'baseline' });
+    if (reachUsed) rows.push({ stage: 'People reached', count: T.reach, chip: 'baseline' });
+    var add = function (label, s, lost, bold) {
+      if (s.num == null) { if (s.manual) rows.push({ stage: label, count: null, chip: 'none', manual: true, bold: bold }); return; }
+      rows.push({ stage: label, count: s.num, rate: s.value, per1k: s.def.mult === 1000, lost: lost, vpu: vpu(s.num), chip: s.chip, bold: bold });
+    };
+    var lost = function (s) { return s.den != null && s.num != null ? s.den - s.num : null; };
+    add('Interactions', by.interaction, null);
+    add('Profile visits', by.profile, lost(by.profile));
+    if (by.follows.num != null) add('New follows', by.follows, null);
+    add('Bio link taps', by.linktap, lost(by.linktap));
+    add('Page visits', by.carry, lost(by.carry));
+    add('Sales', by.conversion, lost(by.conversion), true);
+    var scen = null, base = reachUsed ? T.reach : T.views;
+    if (mv.pageVisits > 0 && mv.sales != null && mv.price != null && T.website_clicks > 0 && T.profile_views > 0 && base > 0) {
+      var pvR = T.profile_views / base, tapR = T.website_clicks / T.profile_views, carryR = mv.pageVisits / T.website_clicks, convR = mv.sales / mv.pageVisits;
+      var row = function (label, pr, cr, bold) {
+        var pv = base * wk * pr, taps = pv * tapR, pages = taps * carryR, sales = pages * cr;
+        return { label: label, pv: pv, taps: taps, pages: pages, sales: sales, revenue: sales * mv.price, bold: !!bold };
+      };
+      var c15 = Math.max(convR, 0.015), p2 = Math.max(pvR, 0.02), p3 = Math.max(pvR, 0.03);
+      scen = { days: days, price: mv.price, cur: mv.cur, pvR: pvR, reachUsed: reachUsed, rows: [
+        row(days === 7 ? 'Current (actual)' : 'Current (average week)', pvR, convR),
+        row('Fix page conversion only → 1.5%' + (convR >= 0.015 ? ' (already there)' : ''), pvR, c15),
+        row('Profile visit rate ' + (pvR * 100).toFixed(2) + '% → 2.0%' + (pvR >= 0.02 ? ' (already there)' : ''), p2, convR),
+        row('Profile visit rate → 2.0% and page conv. → 1.5%', p2, c15),
+        row('Profile visit rate → 3.0% and page conv. → 1.5%', p3, c15, true)
+      ] };
+    }
+    var kpis = {
+      views: V, profile_views: T.profile_views, pv_of_views: T.profile_views != null && V ? T.profile_views / V * 100 : null,
+      pv_rate: T.profile_views != null && base ? T.profile_views / base * 100 : null,
+      taps: T.website_clicks, taps_of_pv: T.website_clicks != null && T.profile_views ? T.website_clicks / T.profile_views * 100 : null,
+      follows: T.follows, follows_1k: T.follows != null && T.reach ? T.follows / T.reach * 1000 : null,
+      pageVisits: mv.pageVisits, sales: mv.sales, price: mv.price, cur: mv.cur,
+      rpm: mv.sales != null && mv.price != null && V ? mv.sales * mv.price / V * 1000 : null
+    };
+    return { steps: steps, by: by, bottleneck: cands[0] || null, rows: rows, scen: scen, kpis: kpis, reachUsed: reachUsed, days: days, man: mv };
+  }
+
+  /* ---------- 6. the words. Every sentence carries its number */
+  var n0 = function (x) { return x == null ? 'no data' : Math.round(x).toLocaleString('en-US'); };
+  var f = function (x, d) { return x == null ? 'no data' : Number(x).toFixed(d == null ? 1 : d); };
+  var pct = function (x, d) { return x == null ? 'no data' : Number(x).toFixed(d == null ? 1 : d) + '%'; };
+  var MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  var dt = function (s) { var t = parseTs(String(s).slice(0, 10) + 'T12:00:00Z'); if (!isFinite(t)) return String(s); var x = new Date(t); return MON[x.getUTCMonth()] + ' ' + x.getUTCDate(); };
+  var xn = function (s) { return s.num === 1 ? s.def.one : s.def.xn; };
+  var sv = function (s) { return s.def.mult === 1000 ? f(s.value, 1) : pct(s.value, s.value >= 100 ? 1 : 2); };
+
+  /* "about 1 in every 100": how a beginner reads a rate */
+  function roundNice(x) { return x >= 1000 ? Math.round(x / 100) * 100 : x >= 50 ? Math.round(x / 10) * 10 : Math.round(x); }
+  function inEvery(s) {
+    var per = s.def.mult === 1000 ? 1000 : 100, v = s.value;
+    if (v == null) return null;
+    if (v <= 0) return 'none out of ' + n0(s.den);
+    if (v >= per) return 'all of them';
+    if (v < 2) return 'about 1 in every ' + n0(roundNice(per / v));
+    return 'about ' + n0(Math.round(v)) + ' in every ' + n0(per);
+  }
+  function gapText(s) {
+    if (!(s.value > 0)) return 'Nobody has done this yet, so this is the first thing to fix.';
+    var need = s.lo / s.value;
+    if (need >= 1.5) return 'To reach normal you would need about ' + (need < 3 ? f(need, 1) : n0(Math.round(need))) + ' times as many ' + s.def.xn + ' as you get now.';
+    return 'You are close: about ' + n0(Math.max(1, Math.round((need - 1) * 100))) + '% more ' + s.def.xn + ' would put you in the normal range.';
+  }
+  function bottleneckText(F) {
+    var b = F.bottleneck;
+    if (!b) {
+      var judged = F.steps.filter(function (s) { return s.value != null && s.chip !== 'noread' && s.status !== 'data'; });
+      if (!judged.length) return { head: 'Not enough numbers yet.', body: 'Instagram did not share enough numbers to find your weakest step. Refresh again once your account has at least 100 followers.' };
+      return { head: 'No step is below normal right now.', body: 'Every step with enough people to judge is at or above the normal range. Keep posting and check again next week.' };
+    }
+    var P = PLAIN[b.key];
+    var cnt = P.count(b.num, b.den, F.reachUsed);
+    var body = 'In the last ' + F.days + ' days, ' + cnt.charAt(0).toLowerCase() + cnt.slice(1) + ' That is ' + inEvery(b) + '. Healthy accounts get ' + P.normal + '. ' + gapText(b) +
+      (b.key === 'profile' && !F.reachUsed ? ' Instagram did not give reach, so this is counted on views, which makes the real gap even bigger.' : '');
+    var others = F.steps.filter(function (s) { return s !== b && s.value != null && s.chip !== 'noread' && s.status !== 'data' && s.ratio < 1; });
+    var focus = 'Fix this one first. ' + (others.length ? 'Also low, but less urgent: ' + others.map(function (s) { return s.name.toLowerCase(); }).join(' and ') + '.' : 'The other steps can wait.');
+    return { head: P.head, body: body, why: P.why, tip: P.tip, focus: focus };
+  }
+  function flags(F) {
+    var out = [];
+    F.steps.forEach(function (s) {
+      if (s.status === 'data') out.push({ kind: 'data', title: 'Data integrity flag.', text: n0(s.num) + ' ' + xn(s) + ' from ' + n0(s.den) + ' recorded ' + s.nn + ' is impossible as a pure funnel: the page is getting traffic Instagram does not count as a bio tap, Instagram is under-recording taps, or the page counts returning visitors as new. Until a tracked (UTM) link settles it, every rate after this step carries an unknown error bar.' });
+      if (s.chip === 'noread') {
+        var u = s.def.mult === 1000 ? ' per 1,000' : '%', fl = s.def.mult === 1000 ? f(s.lo, 1) + ' per 1,000' : pct(s.lo, s.lo < 10 ? 1 : 0);
+        var e = s.def.mult === 1000 ? f(s.E * 1000, 1) + ' per 1,000' : f(s.E * 100, s.E * 100 < 1 ? 2 : 0) + ' point';
+        out.push({ kind: 'noread', title: 'Read this before anyone changes ' + s.def.what + '.', text: 'With ' + n0(s.den) + ' ' + s.nn + ' and ' + n0(s.num) + ' ' + xn(s) + ', the 95% confidence interval is roughly ' + f(s.ci[0] * s.def.mult, 2) + u + ' to ' + f(s.ci[1] * s.def.mult, 2) + u + '. The ' + fl + ' benchmark sits inside it, so this step cannot be judged yet. Estimating ' + fl + ' to within ±' + e + ' needs about ' + n0(s.needPrecise) + ' ' + s.nn + '; seeing at least one ' + s.def.one + ' with 95% probability needs about ' + n0(Math.round(s.needOne / 10) * 10) + '.' });
+      }
+    });
+    return out;
+  }
+  function readings(F) {
+    var W = [], N = [], reached = F.reachUsed ? 'people reached' : 'views';
+    var WORDS = {
+      interaction: function (s) { return { good: ['Content watchability.', n0(s.num) + ' interactions on ' + n0(s.den) + ' views is ' + sv(s) + ', against 4 to 6%. People react to what they watch.'], bad: ['Few viewers react.', n0(s.num) + ' interactions on ' + n0(s.den) + ' views is ' + sv(s) + ', under the 4% floor.'] }; },
+      profile: function (s) { return { good: ['Reels send people to the profile.', n0(s.num) + ' profile visits from ' + n0(s.den) + ' ' + reached + ' is ' + sv(s) + ', against 3 to 10%.'], bad: ['Views do not become profile visits.', sv(s) + ' against a 3 to 10% benchmark. ' + n0(s.den - s.num) + ' ' + reached + ' never looked at who made the reel.'] }; },
+      linktap: function (s) { return { good: ['The bio and its link.', sv(s) + ' of profile visitors tapped the link, against 1 to 3%' + (s.value >= 6 ? ', about ' + f(s.value / 3, 0) + ' times the top of the range' : '') + '. Write down what the bio says before anyone changes it.'], bad: ['The bio link gets few taps.', n0(s.num) + ' taps from ' + n0(s.den) + ' profile visits is ' + sv(s) + ', under the 1% floor.'] }; },
+      follows: function (s) { return { good: ['Reach turns into followers.', n0(s.num) + ' follows from ' + n0(s.den) + ' people reached, ' + f(s.value, 1) + ' per 1,000 against 5 to 10.'], bad: ['Reach does not turn into followers.', f(s.value, 1) + ' follows per 1,000 people reached, under the floor of 5.'] }; },
+      carry: function (s) { return { good: ['Bio taps land on the page.', n0(s.num) + ' page visits from ' + n0(s.den) + ' taps, ' + sv(s) + '.'], bad: ['Bio taps get lost before the page.', n0(s.num) + ' page visits from ' + n0(s.den) + ' taps, ' + sv(s) + ' against about 100%.'] }; },
+      conversion: function (s) { return { good: ['The page converts.', n0(s.num) + ' ' + xn(s) + ' from ' + n0(s.den) + ' page visits is ' + sv(s) + ', against 1.5% for social traffic.'], bad: ['The page does not convert.', n0(s.num) + ' ' + xn(s) + ' from ' + n0(s.den) + ' page visits is ' + sv(s) + ', under the 1.5% floor.'] }; }
+    };
+    F.steps.forEach(function (s) {
+      if (s.value == null) return;
+      if (s.status === 'data') { N.push({ s: 1.5, h: 'Measurement hygiene.', d: n0(s.num) + ' ' + xn(s) + ' from ' + n0(s.den) + ' ' + s.nn + ' is ' + sv(s) + '. Until a tracked link settles it, every rate after it has an unknown error bar.' }); return; }
+      if (s.chip === 'noread') { N.push({ s: 1.4, h: s.key === 'conversion' ? 'The funnel is starved, not broken.' : 'Too little traffic to judge ' + s.name.toLowerCase() + '.', d: n0(s.den) + ' ' + s.nn + ' is below the about ' + n0(s.needPrecise) + ' needed to judge ' + s.def.what + ' at all, let alone improve it.' }); return; }
+      var w = WORDS[s.key](s);
+      if (s.status === 'exceptional' || s.status === 'strong') W.push({ s: 2 + Math.min(2, s.value / s.hi - 1), h: w.good[0], d: w.good[1] });
+      else if (s.status === 'on') W.push({ s: 1, h: w.good[0], d: w.good[1] });
+      else N.push({ s: s === F.bottleneck ? 10 : 1 + Math.min(2, 1 / s.ratio - 1), h: w.bad[0], d: w.bad[1] + (s === F.bottleneck ? ' This is the bottleneck.' : '') });
+    });
+    W.sort(function (a, b) { return b.s - a.s; }); N.sort(function (a, b) { return b.s - a.s; });
+    if (!W.length) W.push({ h: 'Nothing on target yet.', d: 'No step with enough traffic to judge is on or above its benchmark this window.' });
+    if (!N.length) N.push({ h: 'Nothing below its benchmark.', d: 'Every step with enough traffic is on or above its range. Compare next week against this one.' });
+    return { working: W.slice(0, 3), not: N.slice(0, 3) };
+  }
+
+  /* ---------- 7. reels: median baseline, multiples, rates, rhythm */
+  function hourLabel(h) { h = ((h % 24) + 24) % 24; return (h % 12 === 0 ? 12 : h % 12) + (h < 12 ? ' am' : ' pm'); }
+  function reelStats(D, opts) {
+    opts = opts || {};
+    var v3 = D.v3, out = { available: !!(v3 && v3.reels && v3.reels.length), reels: [], trial: [] };
+    if (!out.available) { out.reason = v3 ? 'the pull returned no reels' : 'not in this block (older block with account totals only)'; return out; }
+    var hourOf = opts.hourOf || function (t) { return new Date(t).getUTCHours(); };
+    var now = parseTs(v3.pulled_at); if (!isFinite(now)) now = parseTs(v3.reels[0].posted);
+    var all = v3.reels.map(function (r) {
+      var t = parseTs(r.posted), inter = [r.likes, r.comments, r.saves, r.shares];
+      var sum4 = inter.every(function (x) { return x != null; }) ? inter.reduce(function (a, b) { return a + b; }, 0) : null;
+      return ext(ext({}, r), { t: t, age: (now - t) / DAY, published: r.feed !== false,
+        sane: r.views != null && (r.likes == null || r.likes <= r.views),
+        eng: r.views && sum4 != null ? sum4 / r.views * 100 : null,
+        engReach: r.reach && r.interactions != null ? r.interactions / r.reach * 100 : null,
+        sh1k: r.views && r.shares != null ? r.shares / r.views * 1000 : null, sv1k: r.views && r.saves != null ? r.saves / r.views * 1000 : null,
+        cm1k: r.views && r.comments != null ? r.comments / r.views * 1000 : null, rewatch: r.views && r.reach ? r.views / r.reach : null });
+    });
+    var withViews = all.filter(function (r) { return r.views != null; }).length;
+    out.basis = withViews ? 'views' : 'likes';
+    var metric = function (r) { return out.basis === 'views' ? r.views : r.likes; };
+    var pub = all.filter(function (r) { return r.published; });
+    out.trial = all.filter(function (r) { return !r.published; });
+    var settled = pub.filter(function (r) { return r.age >= 3 && (out.basis === 'views' ? r.sane : r.likes != null); });
+    var base = settled.slice(0, 30), prev = settled.slice(30, 60);
+    out.nBase = base.length; out.nPrev = prev.length; out.nPub = pub.length; out.nTrial = out.trial.length; out.nYoung = pub.filter(function (r) { return r.age < 3; }).length;
+    out.med = median(base.map(metric)); out.medPrev = prev.length >= 10 ? median(prev.map(metric)) : null;
+    out.range = base.length ? { from: base[base.length - 1].posted.slice(0, 10), to: base[0].posted.slice(0, 10) } : null;
+    all.forEach(function (r) { var m = metric(r); r.vi = m != null && out.med ? m / out.med : null; });
+    var share = function (fn) { return base.length >= 10 ? base.filter(fn).length / base.length * 100 : null; };
+    out.hit3 = share(function (r) { return r.vi >= 3; }); out.hit5 = share(function (r) { return r.vi >= 5; });
+    out.n3 = base.filter(function (r) { return r.vi >= 3; }).length; out.n5 = base.filter(function (r) { return r.vi >= 5; }).length;
+    var md = function (k) { return median(base.map(function (r) { return r[k]; })); };
+    out.eng = md('eng'); out.engReach = md('engReach'); out.sh1k = md('sh1k'); out.sv1k = md('sv1k'); out.cm1k = md('cm1k');
+    out.watch = md('avg_watch_s'); out.skip = md('skip_rate'); out.rewatch = md('rewatch');
+    var win = base.filter(function (r) { return r.vi >= 3 && r.skip_rate != null; }), rest = base.filter(function (r) { return r.vi < 3 && r.skip_rate != null; });
+    out.skipWin = win.length >= 2 ? median(win.map(function (r) { return r.skip_rate; })) : null; out.skipRest = rest.length >= 5 ? median(rest.map(function (r) { return r.skip_rate; })) : null;
+    var days = D.days || 28;
+    out.inWindow = pub.filter(function (r) { return r.age <= days && r.age >= 0; }).length;
+    out.trialInWindow = out.trial.filter(function (r) { return r.age <= days && r.age >= 0; }).length;
+    out.perWeek = pub.filter(function (r) { return r.age <= 28 && r.age >= 0; }).length / 4;
+    out.oldestAge = all.length ? all[all.length - 1].age : null;
+    out.cadenceShort = out.oldestAge != null && out.oldestAge < 28 && all.length >= REEL_CAP;
+    out.daysSince = pub.length ? pub[0].age : null; out.lastPosted = pub.length ? pub[0].posted : null;
+    var buckets = {};
+    settled.forEach(function (r) { if (r.vi == null) return; var b = Math.floor(hourOf(r.t) / 3); (buckets[b] = buckets[b] || []).push(r.vi); });
+    var best = null;
+    Object.keys(buckets).forEach(function (b) { var a = buckets[b]; if (a.length < 3) return; var m = median(a); if (!best || m > best.m) best = { b: +b, m: m, n: a.length }; });
+    out.bestHour = best ? { label: hourLabel(best.b * 3) + ' to ' + hourLabel(best.b * 3 + 3), mult: best.m, n: best.n, buckets: Object.keys(buckets).length } : null;
+    out.reels = all.filter(function (r) { return r.published; }); out.trial = all.filter(function (r) { return !r.published; });
+    return out;
+  }
+
+  /* ---------- 8. every metric as a card: value or an explicit reason, never a silent 0 */
+  var COUNTRY = null;
+  function countryName(c) { try { COUNTRY = COUNTRY || new Intl.DisplayNames(['en'], { type: 'region' }); return COUNTRY.of(c) || c; } catch (e) { return c; } }
+  var GENDER = { F: 'Women', M: 'Men', U: 'Not stated' };
+  var WORD = { exceptional: 'exceptional', strong: 'strong', on: 'on target', near: 'near the floor', below: 'below', critical: 'critical', data: 'data issue', noread: 'no read', ok: 'ok' };
+  function metrics(D, FN, RS) {
+    var v3 = D.v3, W = D.win || {}, A = D.account || {}, small = (D.status && D.status.small_account) || 'no', legacy = !v3;
+    var why = function (m) {
+      if (D.missingWhy && D.missingWhy[m]) return D.missingWhy[m];
+      if (D.missing && D.missing.indexOf(m) >= 0) return 'Instagram would not give it';
+      if (legacy) return 'not in this block (older block with account totals only)';
+      if (small === 'under_100') return 'not enough followers yet (Instagram shows this from 100)';
+      return 'not in this pull';
+    };
+    var winWhy = function (m) { var k = m + ' (' + D.winKey + ' days)'; if (D.missingWhy && D.missingWhy[k]) return D.missingWhy[k]; return why(m); };
+    var chipOf = function (st) { return { colour: COLOUR[st], word: WORD[st] }; };
+    var C = function (id, name, v, fmt, reason, o) {
+      o = o || {};
+      var c = { id: id, name: name, desc: o.desc, bench: o.bench || null, source: o.source || null, viz: o.viz || null, sub: o.sub || null };
+      if (v == null || (typeof v === 'number' && !isFinite(v))) { c.value = null; c.reason = reason || 'not available'; c.chip = null; }
+      else { c.value = fmt ? fmt(v) : String(v); c.raw = v; c.chip = o.band ? chipOf(o.band(v)) : o.chip || null; }
+      return c;
+    };
+    var bandF = function (lo, hi) { return function (v) { return band(v, lo, hi); }; };
+    var cnt = function (x) { return n0(x); }, p1 = function (x) { return pct(x, 1); }, p2 = function (x) { return pct(x, 2); };
+    var G = [];
+    var wlabel = D.winKey ? 'last ' + D.days + ' days' : 'this window';
+    var reelWhy = RS.available ? null : RS.reason;
+    var viewsWhy = RS.available && RS.basis !== 'views' ? 'needs reel views, which Instagram shares from about 1,000 followers' : reelWhy;
+    var baseWhy = function (need) { return viewsWhy || (RS.nBase < need ? 'needs ' + need + ' settled reels (3 days or older), you have ' + RS.nBase : null); };
+
+    var at = A.account_type, atOk = at === 'MEDIA_CREATOR' || at === 'BUSINESS' || at === 'CREATOR';
+    G.push({ id: 'profile', name: 'Profile', cards: [
+      C('followers', 'Followers', A.followers, cnt, A.followers == null && !legacy ? why('profile') : 'not in this block', { desc: 'People following the account right now. On Reels most views come from people who do not follow you, so this shows reach potential, not how good the content is.' }),
+      C('following', 'Following', A.following, cnt, why('profile'), { desc: 'Accounts this account follows. It does not change reach; shown for completeness.' }),
+      C('posts', 'Posts', A.media_count, cnt, why('profile'), { desc: 'Everything the account has posted, as Instagram counts it. This count can differ from the reels list below, so nothing on this page is worked out from it.' }),
+      C('type', 'Account type', at ? (at === 'MEDIA_CREATOR' ? 'Creator' : at.charAt(0) + at.slice(1).toLowerCase()) : null, null, why('profile'), { desc: 'Must be Creator or Business, or Instagram hides every number on this page.', chip: atOk ? { colour: 'green', word: 'ok' } : { colour: 'red', word: 'switch it' }, bench: 'Creator or Business', source: 'Instagram' })
+    ] });
+
+    var nfr = W.reach_non_follower != null && W.reach ? W.reach_non_follower / W.reach * 100 : null;
+    var nfv = W.views_non_follower != null && W.views ? W.views_non_follower / W.views * 100 : null;
+    var daily = v3 && v3.daily_follows ? v3.daily_follows.filter(function (x) { return x.value != null; }) : [];
+    var dayBest = daily.reduce(function (b, x) { return !b || x.value > b.value ? x : b; }, null);
+    var dayAvg = daily.length ? daily.reduce(function (a, x) { return a + x.value; }, 0) / daily.length : null;
+    G.push({ id: 'activity', name: 'Account activity, ' + wlabel, cards: [
+      C('views', 'Views', W.views, cnt, winWhy('views'), { desc: 'Every time a post or reel was played or shown, replays included. The top of the funnel.' }),
+      C('reach', 'Reach', W.reach, cnt, winWhy('reach'), { desc: 'Different accounts that saw anything at least once. Views divided by reach shows how often the same people come back.' }),
+      C('nfreach', 'Reach from non-followers', nfr, p1, W.reach_non_follower == null ? winWhy('reach by follower type') : winWhy('reach'), { band: bandF(90, 100), bench: '90% or more', source: "reference accounts, 90.9% and 98.9%", desc: 'Share of the people reached who do not follow you. High is normal and healthy on Reels: it means Instagram is showing you to strangers. Low means you are mostly reaching people you already have.' }),
+      C('nfviews', 'Views from non-followers', nfv, p1, W.views_non_follower == null ? winWhy('views by follower type') : winWhy('views'), { desc: 'The same idea measured on views. A few views have no follower type; Instagram files them as unknown.' }),
+      C('engaged', 'Accounts engaged', W.accounts_engaged, cnt, winWhy('accounts_engaged'), { desc: 'Different accounts that liked, commented, saved, shared or replied. One person doing all five counts once.' }),
+      C('interactions', 'Total interactions', W.total_interactions, cnt, winWhy('total_interactions'), { desc: 'All likes, comments, saves, shares and replies added up. Their rate against views is the interaction rate in the funnel.' }),
+      C('likes', 'Likes', W.likes, cnt, winWhy('likes'), { desc: 'The easiest reaction to give, so the weakest signal. Useful as a count, not as proof a reel worked.' }),
+      C('comments', 'Comments', W.comments, cnt, winWhy('comments'), { desc: 'People who took the time to type. A keyword call to action in the caption raises this sharply.' }),
+      C('shares', 'Shares', W.shares, cnt, winWhy('shares'), { desc: 'Each share puts the reel in front of someone new. The strongest growth signal Instagram shows you.' }),
+      C('saves', 'Saves', W.saves, cnt, winWhy('saves'), { desc: 'Saves mean worth coming back to. They say the content is useful, not just watchable.' }),
+      C('replies', 'Replies', W.replies, cnt, winWhy('replies'), { desc: 'Answers to your stories. An account that only posts reels shows 0 here, and that is fine.' }),
+      C('reposts', 'Reposts', W.reposts, cnt, winWhy('reposts'), { desc: 'Times another account reposted your content to its own profile.' }),
+      C('pv', 'Profile visits', W.profile_views, cnt, winWhy('profile_views'), { desc: 'Times someone opened the profile. The step between watching and buying.' }),
+      C('taps', 'Bio link taps', W.website_clicks, cnt, winWhy('website_clicks'), { desc: 'Taps on the link in bio. A sudden run of zeros while profile visits hold steady usually means the link broke.' }),
+      C('follows', 'Follows gained', W.follows, cnt, W.follows == null ? winWhy('follows') : null, { desc: 'New followers in the window. Unfollows are not shown: Instagram under-reports them, so any churn number would be wrong.' }),
+      C('daily', 'New followers per day', dayAvg, function (x) { return f(x, 0) + ' a day'; }, v3 ? (v3.daily_follows ? 'no finished days yet' : why('follower_count')) : why('follower_count'),
+        { sub: dayBest ? 'Best day ' + dt(dayBest.date) + ': ' + n0(dayBest.value) + '. Last 28 days, newest on the right.' : null, viz: daily.length ? { type: 'mini', vals: v3.daily_follows.map(function (x) { return x.value; }), hi: dayBest ? dayBest.value : null } : null,
+          desc: 'The same new followers, day by day, to spot which days grew the account. The newest day is left out until Instagram finishes counting it.' })
+    ] });
+
+    var st = FN.by, S = function (k) { return st[k]; };
+    var stepCard = function (k, desc, source, reasonNull) {
+      var s = S(k), c = C('f_' + k, s.name, s.value, function () { return sv(s) + (s.def.mult === 1000 ? '' : ''); }, reasonNull, { desc: desc, bench: s.bench + (s.def.mult === 1000 ? ' per 1,000' : ''), source: source });
+      if (s.value != null) c.chip = { colour: COLOUR[s.chip], word: s.chip === 'noread' ? 'no read' : WORD[s.chip] || s.chip };
+      return c;
+    };
+    var needWhy = function (a, b) { return FN && (D.totals[a] == null ? winWhy(a) : winWhy(b)); };
+    G.push({ id: 'funnel', name: 'Funnel ratios', cards: [
+      stepCard('interaction', 'Of everyone who watched, how many reacted. Tells you if the content lands.', "Creatorflow 2026; reference accounts 6 to 8%", needWhy('total_interactions', 'views')),
+      stepCard('profile', 'Of everyone reached, how many wanted to know who made it. The step where most faceless accounts leak. Working reference accounts sit near 1%, so read red here next to that.', "Onimator glossary (single source); reference accounts about 1%", needWhy('profile_views', 'reach')),
+      stepCard('linktap', 'Of profile visitors, how many tapped the link. Tells you if the bio and the offer pull.', "Hopp link in bio guide; reference accounts 9 to 19%", needWhy('website_clicks', 'profile_views')),
+      stepCard('follows', 'How many strangers turned into followers per 1,000 reached. Better than profile visit to follow, which breaks because people follow straight from the reel.', "reference accounts, 12.3 and 15.1", needWhy('follows', 'reach')),
+      stepCard('carry', 'Of the bio link taps, how many arrived on your page. Type your page visits in the box under the step bars to see it.', 'A tap should land on the page', D.totals.website_clicks == null ? winWhy('website_clicks') : 'add your page visits in the box under the step bars'),
+      stepCard('conversion', 'Of the people on your page, how many bought. Type page visits and sales in the box under the step bars to see it.', 'LanderLab 2026, social traffic', 'add your page visits and sales in the box under the step bars')
+    ] });
+
+    var vpf = RS.med != null && A.followers && RS.basis === 'views' ? RS.med / A.followers : null;
+    var trend = RS.medPrev ? ' The ' + RS.nPrev + ' reels before: ' + n0(RS.medPrev) + ' (' + (RS.med >= RS.medPrev ? 'up ' : 'down ') + pct(Math.abs(RS.med / RS.medPrev - 1) * 100, 0) + ').' : '';
+    G.push({ id: 'quality', name: 'Content quality, last ' + (RS.nBase || 30) + ' settled reels', cards: [
+      C('median', 'Median reel ' + (RS.basis === 'likes' ? 'likes' : 'views'), RS.med, cnt, reelWhy || baseWhy(1), { sub: RS.range ? 'Reels posted ' + dt(RS.range.from) + ' to ' + dt(RS.range.to) + '.' + trend : null, desc: 'The account\'s normal reel: half of the last 30 settled reels did better, half did worse. Every reel is judged against this number, not against raw views.' + (RS.basis === 'likes' ? ' Without reel views (under about 1,000 followers) it is worked out on likes.' : '') }),
+      C('vpf', 'Views per follower', vpf, function (x) { return f(x, 2); }, A.followers == null ? why('profile') : baseWhy(1), { band: bandF(0.1, 0.3), bench: '0.1 to 0.3', source: '17 large creator accounts, median 0.18', desc: 'Median reel views divided by followers. How far a normal reel travels beyond the audience you already have. Small accounts often run far higher, which is fine.' }),
+      C('hit3', 'Reels at 3x or more', RS.hit3, function (x) { return pct(x, 0); }, baseWhy(10), { sub: RS.hit3 != null ? RS.n3 + ' of ' + RS.nBase + ' reels' : null, band: bandF(15, 25), bench: 'about 1 in 5 (15 to 25%)', source: '17 large creator accounts, 20.6%', desc: 'Share of reels that got at least three times the median. The 3x rule: how often a reel breaks out.' }),
+      C('hit5', 'Reels at 5x or more', RS.hit5, function (x) { return pct(x, 0); }, baseWhy(10), { sub: RS.hit5 != null ? RS.n5 + ' of ' + RS.nBase + ' reels' : null, band: bandF(10, 16), bench: 'about 1 in 8 (10 to 16%)', source: '17 large creator accounts, 12.3%', desc: 'Real viral hits: at least five times the median.' }),
+      C('eng', 'Engagement by views', RS.eng, p2, baseWhy(1), { band: bandF(2, 4), bench: '2 to 4%, above 5% strong', source: "17 large creator accounts 3.29%; reference accounts 6.8%", desc: 'Likes, comments, saves and shares divided by views, the median reel. Of the people who watched, how many did something.' }),
+      C('engr', 'Engagement by reach', RS.engReach, p2, baseWhy(1), { band: bandF(2.5, 6), bench: '2.5 to 6%', source: 'Creatorflow 2026', desc: 'All interactions divided by the people reached, the median reel. The industry\'s preferred version. Never compare it with engagement by views: different denominators.' }),
+      C('sh1k', 'Shares per 1,000 views', RS.sh1k, function (x) { return f(x, 1); }, baseWhy(1), { chip: RS.sh1k != null && RS.sh1k >= 10 ? { colour: 'green', word: 'strong' } : null, bench: 'above 10 is strong', source: "reference accounts, 11.4 and 11.1", desc: 'Shares push reels to new people. The strongest growth signal Instagram shows. Grey under 10 means not yet strong, not bad.' }),
+      C('sv1k', 'Saves per 1,000 views', RS.sv1k, function (x) { return f(x, 1); }, baseWhy(1), { bench: 'reference accounts: about 8', desc: 'Saves mean worth coming back to. A "save this" call to action moves it.' }),
+      C('cm1k', 'Comments per 1,000 views', RS.cm1k, function (x) { return f(x, 1); }, baseWhy(1), { bench: 'reference: 17 large creator accounts 1.5', desc: 'Conversation. Keyword comment calls to action raise this sharply, and young reels run high before they settle.' }),
+      C('watch', 'Average watch time', RS.watch, function (x) { return f(x, 1) + ' s'; }, baseWhy(1), { bench: 'reference accounts: 16 to 30 s', desc: 'How long the average viewer stayed, the median reel. Compare it with your reel length: Instagram does not give the length.' }),
+      C('skip', 'Skip rate, first 3 seconds', RS.skip, p1, RS.available && RS.nBase && RS.skip == null ? why('reels_skip_rate') : baseWhy(1), { sub: RS.skipWin != null && RS.skipRest != null ? 'Your 3x reels ' + pct(RS.skipWin, 0) + ', the rest ' + pct(RS.skipRest, 0) + '.' : null, bench: 'lower is better; on reference accounts, winners 38% and the rest 48%', desc: 'Share of viewers who swiped away in the first 3 seconds. The hook\'s report card: lower means the first line works.' }),
+      C('rewatch', 'Rewatch ratio', RS.rewatch, function (x) { return f(x, 2) + 'x'; }, baseWhy(1), { bench: 'reference: about 1.2', desc: 'Views divided by reach, the median reel. Above 1 means people rewatch or see it twice.' })
+    ] });
+
+    G.push({ id: 'rhythm', name: 'Rhythm', cards: [
+      C('perweek', 'Reels per week', RS.available ? RS.perWeek : null, function (x) { return f(x, 1); }, reelWhy, { sub: RS.cadenceShort ? 'Only the newest ' + REEL_CAP + ' reels were pulled, so this may read low.' : 'Published reels in the last 28 days, divided by 4.', band: bandF(10, 14), bench: '10 or more', source: "17 large creator accounts 9.8; reference accounts 11 to 13", desc: 'How often the account posts. Volume is how you find the 1 in 5 winner.' }),
+      C('since', 'Days since last reel', RS.daysSince != null ? RS.daysSince : null, function (x) { return f(x, 0) + (Math.round(x) === 1 ? ' day' : ' days'); }, reelWhy || 'no published reels in the pull', { sub: RS.lastPosted ? 'Last published ' + dt(RS.lastPosted) + '.' : null, desc: 'A gap shows up in every other number about a week later.' }),
+      C('trial', 'Trial reels', RS.available ? RS.nTrial : null, cnt, reelWhy, { desc: 'Reels shown only to non-followers (not shared to the feed). Kept out of every average and listed separately, so they do not distort anything.' }),
+      C('besthour', 'Best posting time so far', RS.bestHour ? RS.bestHour.label : null, null, reelWhy || 'needs at least 3 settled reels in one 3 hour slot', { sub: RS.bestHour ? 'Median ' + f(RS.bestHour.mult, 1) + 'x across ' + RS.bestHour.n + ' reels, in your device\'s time zone.' : null, desc: 'When this account\'s reels have done best, by median multiple. A hint, not a rule: posting time and topic overlap.' })
+    ] });
+
+    var aud = [];
+    var onl = v3 && v3.online_followers;
+    var hours = null;
+    if (onl) { hours = []; for (var h = 0; h < 24; h++) hours.push(median(onl.map(function (d) { return d.hours[h]; }))); }
+    var peak = hours ? hours.reduce(function (b, v, i) { return v != null && (b < 0 || v > hours[b]) ? i : b; }, -1) : -1;
+    aud.push(C('online', 'Followers online by hour', peak >= 0 ? hourLabel(peak) : null, null, v3 ? why('online_followers') : why('online_followers'),
+      { sub: peak >= 0 ? 'Peak ' + n0(hours[peak]) + ' followers online. Hours as Instagram reports them (most likely US Pacific time).' : null, viz: hours ? { type: 'mini', vals: hours, hi: hours[peak] } : null,
+        desc: 'When followers open Instagram. A weak guide on Reels, where 90% or more of reach is strangers.' }));
+    var demo = v3 && v3.demographics;
+    AUD.forEach(function (who) {
+      var d = demo && demo[who], any = d && DIMS.some(function (b) { return d[b]; });
+      var parts = null, top = null;
+      if (any) {
+        parts = DIMS.map(function (b) {
+          var o = d[b]; if (!o) return { dim: b, rows: null };
+          var tot = Object.keys(o).reduce(function (a, k) { return a + o[k]; }, 0);
+          var rows = Object.keys(o).map(function (k) { return { k: k, l: b === 'country' ? countryName(k) : b === 'gender' ? GENDER[k] || k : b === 'city' ? k.split(',')[0] : k, v: o[k], p: tot ? o[k] / tot * 100 : 0 }; });
+          rows.sort(function (a, c) { return b === 'age' ? (a.k < c.k ? -1 : 1) : c.v - a.v; });
+          if (b === 'country' || b === 'city') rows = rows.slice(0, 5);
+          return { dim: b, rows: rows };
+        });
+        var age = parts[0].rows, g = parts[1].rows;
+        var ageTop = age ? age.reduce(function (b, r) { return !b || r.v > b.v ? r : b; }, null) : null;
+        top = [ageTop ? 'Mostly ' + ageTop.l + ' (' + pct(ageTop.p, 0) + ')' : null, g && g.length ? pct(g.filter(function (r) { return r.k === 'F'; }).reduce(function (a, r) { return a + r.p; }, 0), 0) + ' women' : null].filter(Boolean).join(', ');
+      }
+      var label = { follower: 'Followers', engaged: 'Engaged accounts', reached: 'Reached accounts' }[who];
+      aud.push(C('demo_' + who, label + ': age, gender, place', top || null, null, why(AUD_METRIC[who]), { viz: parts ? { type: 'demo', parts: parts } : null,
+        desc: { follower: 'Who follows. Top 45 countries and cities only.', engaged: 'Who actually likes, comments, saves and shares. Often older or younger than your followers.', reached: 'Who Instagram shows your reels to. If this differs from who you want, the hook is speaking to someone else.' }[who] }));
+    });
+    G.push({ id: 'audience', name: 'Audience', cards: aud });
+    G.forEach(function (g) {
+      g.tally = { green: 0, yellow: 0, red: 0, grey: 0, na: 0 };
+      g.cards.forEach(function (c) { if (c.value == null) g.tally.na++; else g.tally[c.chip ? c.chip.colour : 'grey']++; });
+    });
+    return G;
+  }
+
+  return { SCHEMA: SCHEMA, V3: V3, STEPS: STEPS, COLOUR: COLOUR, WORD: WORD, REEL_CAP: REEL_CAP, parseTs: parseTs, extract: extract, fromRawPull: fromRawPull, fromCalls: fromCalls, fromComposio: fromComposio,
+    planAccount: planAccount, planReels: planReels, reelsOf: reelsOf, mediaList: mediaList, keyOf: keyOf, unwrapMulti: unwrapMulti, addDays: addDays,
+    normalize: normalize, cleanV3: cleanV3, atWindow: atWindow, jeffreys: jeffreys, funnel: funnel, bottleneckText: bottleneckText, PLAIN: PLAIN, inEvery: inEvery, flags: flags, readings: readings,
+    reelStats: reelStats, metrics: metrics, median: median, fmt: { n0: n0, f: f, pct: pct, dt: dt, sv: sv, hourLabel: hourLabel } };
+})();
+if (typeof module !== 'undefined') module.exports = AICC;
+</script>
+
+<script id="ui">
+(function () {
+  var $ = function (s) { return document.querySelector(s); };
+  var F = AICC.fmt, n0 = F.n0, f = F.f, pct = F.pct, dt = F.dt, sv = F.sv;
+  var KEY = 'aicc-ig:last', MKEY = 'aicc-ig:manual', WKEY = 'aicc-ig:window';
+  var esc = function (s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); };
+  var store = {
+    get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+    set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} },
+    del: function (k) { try { localStorage.removeItem(k); } catch (e) {} }
+  };
+  var DEMO = AICC.normalize(JSON.parse($('#demodata').textContent)).data;
+  var OWN = ($('#ownerdata') && $('#ownerdata').textContent.trim()) || null;
+  var D = null, isDemo = true, winKey = null, reelSort = 'date';
+  var localHour = function (t) { return new Date(t).getHours(); };
+
+  $('#theme').addEventListener('click', function () {
+    var root = document.documentElement, cur = root.getAttribute('data-theme');
+    if (!cur) cur = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    var next = cur === 'light' ? 'dark' : 'light';
+    root.setAttribute('data-theme', next); store.set('aicc-theme', next);
+  });
+  (function () { var t = store.get('aicc-theme'); if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); })();
+
+  $('#copyprompt').addEventListener('click', function () {
+    var text = $('#prompttext').textContent, btn = this;
+    var done = function (ok) { btn.textContent = ok ? 'copied' : 'select the prompt below and copy it'; setTimeout(function () { btn.textContent = 'copy the prompt'; }, 2200); };
+    var fb = function () { try { var t = document.createElement('textarea'); t.value = text; t.style.position = 'fixed'; t.style.opacity = '0'; document.body.appendChild(t); t.select(); var ok = document.execCommand('copy'); document.body.removeChild(t); return ok; } catch (e) { return false; } };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(function () { done(true); }, function () { done(fb()); });
+    else done(fb());
+  });
+
+  function status(kind, text) { var s = $('#status'); if (!kind) { s.hidden = true; return; } s.hidden = false; s.className = 'status' + (kind === 'busy' ? '' : ' ' + kind); s.textContent = text; }
+  function say(kind, title, lines) {
+    var m = $('#msg');
+    if (!kind) { m.hidden = true; return; }
+    m.className = 'msg ' + kind; m.hidden = false;
+    m.innerHTML = '<strong>' + esc(title) + '</strong>' + (lines && lines.length ? '<ul>' + lines.map(function (l) { return '<li>' + esc(l) + '</li>'; }).join('') + '</ul>' : '');
+  }
+  function openFallback(reason) {
+    $('#fallback').hidden = false;
+    if (reason) status('err', reason + ' Copy the prompt below into a Claude chat with Composio, then paste the block it gives back.');
+  }
+  $('#openpaste').addEventListener('click', function () { openFallback(null); $('#paste').focus(); });
+  function syncButtons() {
+    var saved = !!store.get(KEY) || !!OWN;
+    $('#todemo').hidden = isDemo; $('#mine').hidden = !(isDemo && saved); $('#clear').hidden = !saved && isDemo;
+    var who = D && D.account.username ? '@' + D.account.username : 'your account';
+    $('#badge').innerHTML = isDemo ? '<b>demo numbers</b>@maple.and.moss.demo, pulled ' + esc(dt(DEMO.pulled_at)) + '. Refresh to see yours.'
+      : '<b>your numbers</b>' + esc(who) + (D.pulled_at ? ', pulled ' + esc(dt(D.pulled_at)) : '');
+  }
+
+  var ERR = {
+    empty: ['Paste your block first.', ['Run the prompt in Claude, copy the block it gives back, and paste it in the box.']],
+    noobject: ['There is no block of numbers in what you pasted.', ['The block starts with {"schema":"aicc-ig-v3".', 'If Claude wrote a summary instead, reply in the same chat: only the json block, please.']],
+    truncated: ['The block looks cut off before the end.', ['Part of it was not copied, or Claude stopped early.', 'In the same chat, type: print the json block again in full, nothing else.']],
+    syntax: ['The block has a typing error in it, so it cannot be read.', ['In the same chat, type: that block is not valid json, print it again in full, nothing else.']]
+  };
+  function loadText(text, opts) {
+    opts = opts || {};
+    var x = AICC.extract(text);
+    if (x.error) { var e = ERR[x.error]; say('err', e[0], e[1]); return false; }
+    return loadObj(x.data, opts, x.fixes);
+  }
+  function loadObj(obj, opts, fixes) {
+    var n = AICC.normalize(obj);
+    if (n.errors.length) { say('err', 'This block cannot be read.', n.errors); return false; }
+    var prevD = D, prevDemo = isDemo;
+    D = n.data; isDemo = false;
+    try { render(); } catch (err) { D = prevD; isDemo = prevDemo; render(); say('err', 'Something in this block could not be worked out.', [String(err && err.message || err)]); return false; }
+    if (!opts.restored) store.set(KEY, JSON.stringify(obj));
+    var notes = (fixes || []).concat(n.warns || []);
+    if (opts.fromPaste) { say('ok', 'Read the numbers for ' + (D.account.username ? '@' + D.account.username : 'your account') + '.', notes); }
+    syncButtons();
+    return true;
+  }
+  $('#go').addEventListener('click', function () { if (loadText($('#paste').value, { fromPaste: true })) { $('#dash').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' }); } });
+  $('#todemo').addEventListener('click', function () { showDemo(); status('ok', 'Showing the demo. Your numbers are still saved in this browser.'); });
+  $('#mine').addEventListener('click', function () { var s = store.get(KEY) || OWN; if (s) { try { loadObj(JSON.parse(s), { restored: true }); status(null); } catch (e) { store.del(KEY); syncButtons(); } } });
+  $('#clear').addEventListener('click', function () {
+    store.del(KEY); store.del(MKEY); manualAll = {}; $('#paste').value = ''; say(null); showDemo();
+    status('ok', 'Cleared. Nothing from your numbers is kept in this browser now.');
+  });
+  function showDemo() { D = DEMO; isDemo = true; render(); syncButtons(); }
+
+  /* ---------- auto: the viewer's own Composio, through the mcp capability */
+  var SERVER = 'Composio', TOOL = 'COMPOSIO_MULTI_EXECUTE_TOOL';
+  var REASON = {
+    no_mcp: 'This view cannot reach your Claude connectors.',
+    server_not_connected: 'Composio is not connected to your Claude yet (claude.ai Settings, Connectors).',
+    needs_reauth: 'Composio needs reconnecting in claude.ai Settings, Connectors.',
+    blocked_by_policy: 'Your Claude organization does not let this page use Composio.',
+    not_in_manifest: 'This page was not allowed to use Composio.',
+    approval_required: 'Your Claude organization wants each Composio call approved, which pages cannot ask for yet.',
+    selection_required: 'You have more than one Composio connector and none was picked.',
+    server_unavailable: 'Composio is not answering right now.',
+    tool_error: 'Composio answered with an error.',
+    not_granted: 'This view cannot reach your Claude connectors.',
+    capability_disabled: 'This view cannot reach your Claude connectors.',
+    capability_removed: 'This view cannot reach your Claude connectors.',
+    consent_required: 'Composio was not allowed for this page.',
+    no_profile: 'Instagram did not return your profile through Composio.'
+  };
+  var sleep = function (ms) { return new Promise(function (r) { setTimeout(r, ms); }); };
+  async function call(ns, input) {
+    try { return await ns.callTool(SERVER, TOOL, input, { cache: false }); }
+    catch (e) {
+      if (e && e.retryable) { await sleep((e.retryAfterMs || 700) + Math.random() * 600); return await ns.callTool(SERVER, TOOL, input, { cache: false }); }
+      throw e;
+    }
+  }
+  async function batch(ns, plan, account, byKey, step) {
+    for (var i = 0; i < plan.length; i += 50) {
+      var part = plan.slice(i, i + 50);
+      var input = { tools: part.map(function (p) { var t = { tool_slug: p.tool_slug, arguments: p.arguments }; if (account) t.account = account; return t; }),
+        sync_response_to_workbench: false, thought: 'Read-only pull of Instagram insights for the IG Profile Dashboard.', current_step: step };
+      var res = await call(ns, input), u = AICC.unwrapMulti(res, part.length);
+      if (u.error) throw { code: /account/i.test(u.error) ? 'needs_account' : 'tool_error', message: u.error };
+      u.results.forEach(function (r, k) { byKey[part[k].key] = r; });
+    }
+  }
+  async function autoPull(account) {
+    var ns = null;
+    try { ns = window.claude && typeof window.claude.use === 'function' ? await window.claude.use('mcp') : null; } catch (e) { ns = null; }
+    if (!ns) throw { code: 'no_mcp' };
+    var now = new Date(), today = now.toISOString().slice(0, 10), byKey = {};
+    status('busy', 'Pulling your account numbers through Composio. The first time, Claude asks you to allow it.');
+    await batch(ns, AICC.planAccount(today), account, byKey, 'PULL_ACCOUNT');
+    if (!byKey.profile || !byKey.profile.ok) {
+      var m = byKey.profile && byKey.profile.error || '';
+      throw { code: /account|multiple|more than one|specify/i.test(m) ? 'needs_account' : 'no_profile', message: m };
+    }
+    var ids = AICC.reelsOf(AICC.mediaList(byKey.media) || []).map(function (r) { return r.id; });
+    if (ids.length) { status('busy', 'Pulling ' + ids.length + ' reels. About ' + ids.length * 2 + ' small calls, give it a minute.'); await batch(ns, AICC.planReels(ids), account, byKey, 'PULL_REELS'); }
+    return AICC.fromComposio(byKey, { pulled_at: now.toISOString(), today: today });
+  }
+  async function refresh(account) {
+    var btn = $('#refresh'); btn.disabled = true; $('#acctgo').disabled = true;
+    try {
+      var v3 = await autoPull(account);
+      if (loadObj(v3, {})) {
+        $('#acctbox').hidden = true;
+        var gaps = v3.missing.length;
+        status('ok', 'Pulled ' + (v3.account.username ? '@' + v3.account.username : 'your account') + ' through Composio.' + (gaps ? ' ' + gaps + ' item' + (gaps > 1 ? 's' : '') + ' Instagram did not give are marked on the cards.' : ''));
+      }
+    } catch (e) {
+      var code = e && e.code || 'upstream_error';
+      if (code === 'needs_account') { $('#acctbox').hidden = false; status('err', 'You have more than one Instagram account in Composio. Type the one to pull, or use the prompt below.'); $('#fallback').hidden = false; }
+      else openFallback((REASON[code] || 'The automatic pull did not work (' + code + ').') + (code === 'tool_error' && e.message ? ' (' + String(e.message).slice(0, 120) + ')' : ''));
+    } finally { btn.disabled = false; $('#acctgo').disabled = false; }
+  }
+  $('#refresh').addEventListener('click', function () { refresh($('#acctname').value.trim() || null); });
+  $('#acctgo').addEventListener('click', function () { refresh($('#acctname').value.trim() || null); });
+
+  /* ---------- optional page visits and sales, per account, this browser only */
+  var manualAll = (function () { try { return JSON.parse(store.get(MKEY) || '{}') || {}; } catch (e) { return {}; } })();
+  var mkey = function () { return D && D.account.username ? D.account.username : '_'; };
+  var readForm = function () { var v = function (id) { var x = $(id).value.trim(); return x === '' ? null : Number(x); }; return { pageVisits: v('#m-pv'), sales: v('#m-sales'), price: v('#m-price'), cur: $('#m-cur').value }; };
+  var fillForm = function (m) { m = m || {}; $('#m-pv').value = m.pageVisits != null ? m.pageVisits : ''; $('#m-sales').value = m.sales != null ? m.sales : ''; $('#m-price').value = m.price != null ? m.price : ''; $('#m-cur').value = m.cur || '$'; };
+  var man = {}, mt;
+  ['#m-pv', '#m-sales', '#m-price', '#m-cur'].forEach(function (id) {
+    $(id).addEventListener('input', function () {
+      clearTimeout(mt);
+      mt = setTimeout(function () { man = readForm(); if (!isDemo) { manualAll[mkey()] = man; store.set(MKEY, JSON.stringify(manualAll)); } paint(); }, 200);
+    });
+  });
+  /* tap to open a step's explainer on touch screens; hover and keyboard focus open it on desktop */
+  function closeTips(except) { [].forEach.call(document.querySelectorAll('.lab.open'), function (l) { if (l !== except) { l.classList.remove('open'); l.querySelector('.tipb').setAttribute('aria-expanded', 'false'); } }); }
+  $('#steprows').addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('.tipb'); if (!b) return;
+    var l = b.parentNode, on = !l.classList.contains('open');
+    closeTips(l); l.classList.toggle('open', on); b.setAttribute('aria-expanded', on ? 'true' : 'false');
+  });
+  document.addEventListener('click', function (e) { if (!(e.target.closest && e.target.closest('.lab'))) closeTips(null); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { closeTips(null); if (document.activeElement && document.activeElement.classList.contains('tipb')) document.activeElement.blur(); } });
+  $('#m-clear').addEventListener('click', function () { fillForm({}); man = {}; if (!isDemo) { delete manualAll[mkey()]; store.set(MKEY, JSON.stringify(manualAll)); } paint(); });
+
+  var CHIP = { baseline: 'baseline', strong: 'strong', exceptional: 'exceptional', on: 'on target', near: 'near', below: 'below', critical: 'critical', data: 'data issue', noread: 'no read', none: 'not entered' };
+  var WORD = { exceptional: 'exceptional', strong: 'strong', on: 'on target', near: 'near the floor', below: 'below', critical: 'critical', data: 'data issue', noread: 'no read' };
+
+  function missingStep(s, Dw) {
+    if (s.manual) return s.key === 'carry' && Dw.totals.website_clicks == null ? 'needs bio link taps' : 'add it below';
+    var st = Dw.status || {}, miss = Dw.missing || [];
+    var needs = { interaction: ['total_interactions', 'views'], profile: ['profile_views', 'reach'], linktap: ['website_clicks', 'profile_views'], follows: ['follows', 'reach'] }[s.key] || [];
+    for (var i = 0; i < needs.length; i++) if (miss.indexOf(needs[i]) >= 0 || miss.indexOf(needs[i] + ' (' + Dw.winKey + ' days)') >= 0) return 'Instagram would not give ' + needs[i].replace(/_/g, ' ');
+    if (st.small_account === 'under_100') return 'not enough followers yet';
+    return 'no data in this pull';
+  }
+  var YOURS = { green: 'That is in the normal range or better.', yellow: 'That is just under normal.', red: 'That is well under normal.' };
+  function tipHtml(s, Dw) {
+    var P = AICC.PLAIN[s.key], yours;
+    if (s.value == null) yours = 'No number yet: ' + missingStep(s, Dw) + '.';
+    else if (s.chip === 'noread') yours = sv(s) + ', ' + AICC.inEvery(s) + '. Too few people so far to judge this fairly.';
+    else if (s.status === 'data') yours = sv(s) + '. This number looks off, which usually means the link or the tracking is counting something extra.';
+    else yours = sv(s) + ', ' + AICC.inEvery(s) + '. ' + (YOURS[s.colour] || '');
+    var row = function (h, t) { return '<p><b>' + h + '</b>' + esc(t) + '</p>'; };
+    return '<div class="tip" id="tip-' + s.key + '" role="note">' + row('What it means', P.what) + row('Example', P.ex) +
+      row('Normal', 'Healthy accounts get ' + P.normal + '.' + (P.note ? ' ' + P.note : '')) + row('Yours', yours) + row('Why it matters', P.why) + '</div>';
+  }
+  function srow(s, Dw) {
+    var x = s.value, ref = s.def.ref, dmax = Math.max(x != null ? x : 0, s.hi, ref || 0) / 0.85;
+    var P = function (v) { return Math.max(0, Math.min(100, v / dmax * 100)); };
+    var bandEl = '<span class="sband" style="left:' + P(s.lo) + '%;width:' + Math.max(0.8, P(s.hi) - P(s.lo)) + '%"></span>';
+    var bar = x != null ? '<span class="sbar ' + s.colour + '" style="width:' + Math.max(0.8, P(x)) + '%"></span>' : '';
+    var tick = ref != null ? '<span class="stick" style="left:' + P(ref) + '%" title="' + esc(s.def.refLabel) + '"></span>' : '';
+    var word = WORD[s.chip] || '';
+    var valTxt = x != null ? sv(s) : missingStep(s, Dw);
+    return '<div class="srow" data-k="' + s.key + '" data-status="' + s.chip + '" data-colour="' + s.colour + '">' +
+      '<div class="lab"><button type="button" class="tipb" aria-expanded="false" aria-controls="tip-' + s.key + '"><b>' + esc(s.name) + '</b><i class="qi" aria-hidden="true">?</i></button><span>' + esc(s.formula) + (ref != null ? ' · tick: ' + esc(s.def.refLabel) : '') + '</span>' + tipHtml(s, Dw) + '</div>' +
+      '<div class="strk" role="img" aria-label="' + esc(s.name + ': ' + valTxt + ', benchmark ' + s.bench + (x != null && word ? ', ' + word : '') + (ref != null ? ', ' + s.def.refLabel : '')) + '">' + bandEl + bar + tick + '</div>' +
+      '<div class="act"><b class="val' + (x == null ? ' na' : '') + '">' + esc(valTxt) + '</b><span>actual</span></div>' +
+      '<div class="bch"><b>' + esc(s.bench) + '</b><span>benchmark</span></div></div>';
+  }
+  function vizHtml(v) {
+    if (!v) return '';
+    if (v.type === 'mini') {
+      var mx = Math.max.apply(null, v.vals.filter(function (x) { return x != null; }).concat([1]));
+      return '<div class="mini" aria-hidden="true">' + v.vals.map(function (x) { return x == null ? '<span class="nil"></span>' : '<span' + (x === v.hi ? ' class="hi"' : '') + ' style="height:' + Math.max(4, x / mx * 100) + '%"></span>'; }).join('') + '</div>';
+    }
+    if (v.type === 'demo') {
+      return '<div class="demo4">' + v.parts.map(function (p) {
+        var title = { age: 'age', gender: 'gender', country: 'top countries', city: 'top cities' }[p.dim];
+        if (!p.rows) return '<div><h4>' + title + '</h4><p class="mb">not given</p></div>';
+        var mx = Math.max.apply(null, p.rows.map(function (r) { return r.p; }).concat([1]));
+        return '<div><h4>' + title + '</h4><div class="bars">' + p.rows.map(function (r) {
+          return '<div class="bar"><span class="bl"><span class="bf" style="width:' + (r.p / mx * 100) + '%"></span><span class="bt">' + esc(r.l) + '</span></span><span class="bp">' + pct(r.p, 0) + '</span></div>';
+        }).join('') + '</div></div>';
+      }).join('') + '</div>';
+    }
+    return '';
+  }
+  function cardHtml(c) {
+    var chip = c.value == null ? '<span class="chip c-grey">not available</span>' : c.chip ? '<span class="chip c-' + c.chip.colour + '">' + esc(c.chip.word) + '</span>' : '<span class="chip c-grey">reference</span>';
+    var val = c.value == null ? '<p class="mv na" data-na="1">not available: ' + esc(c.reason) + '</p>' : '<p class="mv">' + esc(c.value) + '</p>';
+    var bench = c.bench ? '<p class="mb">benchmark <b>' + esc(c.bench) + '</b>' + (c.source ? ' · ' + esc(c.source) : '') + '</p>' : '';
+    return '<div class="mcard" data-id="' + c.id + '"><div class="mh"><p class="mn">' + esc(c.name) + '</p>' + chip + '</div>' + val +
+      (c.sub && c.value != null ? '<p class="mb">' + esc(c.sub) + '</p>' : '') + (c.value != null ? vizHtml(c.viz) : '') + bench + '<p class="md">' + esc(c.desc) + '</p></div>';
+  }
+  var openGroups = {};
+  function reelsHtml(RS) {
+    if (!RS.available) { $('#reelslede').textContent = 'Not available: ' + RS.reason + '.'; $('#rtools').innerHTML = ''; $('#reels').innerHTML = ''; $('#trialwrap').innerHTML = ''; return; }
+    var basis = RS.basis === 'views' ? 'views' : 'likes';
+    $('#reelslede').textContent = RS.reels.length + ' published reels, newest first' + (RS.med ? ', each against the median of ' + n0(RS.med) + ' ' + basis + ' (the last ' + RS.nBase + ' reels at least 3 days old)' : '') + '. Reels under 3 days old are still growing. ' + (basis === 'likes' ? 'Instagram gave no reel views, so multiples use likes.' : '');
+    $('#rtools').innerHTML = '<span class="mb">sort</span><button class="btn small" type="button" data-sort="date" aria-pressed="' + (reelSort === 'date') + '">newest first</button><button class="btn small" type="button" data-sort="mult" aria-pressed="' + (reelSort === 'mult') + '">best multiple first</button>';
+    [].forEach.call(document.querySelectorAll('#rtools [data-sort]'), function (b) { b.addEventListener('click', function () { reelSort = b.getAttribute('data-sort'); reelsHtml(RS); }); });
+    var table = function (rows, trial) {
+      var list = rows.slice();
+      if (reelSort === 'mult' && !trial) list.sort(function (a, b) { return (b.vi || 0) - (a.vi || 0); });
+      var cell = function (x, fn) { return x == null ? '<td class="nm muted">·</td>' : '<td class="nm">' + (fn ? fn(x) : n0(x)) + '</td>'; };
+      return '<table class="rt"><thead><tr><th>posted</th><th>reel</th><th class="nm">' + basis + '</th><th class="nm">× median</th><th class="nm">reach</th><th class="nm">likes</th><th class="nm">comments</th><th class="nm">saves</th><th class="nm">shares</th><th class="nm">shares /1k</th><th class="nm">watch</th><th class="nm">skip</th></tr></thead><tbody>' +
+        list.map(function (r) {
+          var m = r.vi, mc = m == null ? '' : m >= 3 ? ' up' : m < 0.5 ? ' dn' : '';
+          return '<tr data-id="' + esc(r.id) + '"><td class="nm">' + esc(dt(r.posted)) + '</td><td class="hk">' + (r.permalink ? '<a href="' + esc(r.permalink) + '" target="_blank" rel="noopener">' + esc(r.hook || 'open reel') + '</a>' : esc(r.hook || 'reel')) +
+            (r.age < 3 ? '<small>still growing, ' + f(r.age, 1) + ' days old</small>' : '') + (!r.insights ? '<small>no reel insights, public counts</small>' : '') + '</td>' +
+            cell(basis === 'views' ? r.views : r.likes) + (m == null ? '<td class="nm muted">·</td>' : '<td class="nm mult' + mc + '">' + f(m, m >= 10 ? 0 : 1) + 'x</td>') +
+            cell(r.reach) + cell(r.likes) + cell(r.comments) + cell(r.saves) + cell(r.shares) + cell(r.sh1k, function (x) { return f(x, 1); }) + cell(r.avg_watch_s, function (x) { return f(x, 1) + ' s'; }) + cell(r.skip_rate, function (x) { return pct(x, 0); }) + '</tr>';
+        }).join('') + '</tbody></table>';
+    };
+    $('#reels').innerHTML = table(RS.reels, false);
+    $('#trialwrap').innerHTML = RS.trial.length ? '<h3 class="mn" style="margin:20px 0 4px">Trial and hidden reels (' + RS.trial.length + '), kept out of every average</h3><div class="tw">' + table(RS.trial, true) + '</div>' : '';
+  }
+
+  function render() {
+    var saved = store.get(WKEY);
+    winKey = D.winKeys.indexOf(winKey) >= 0 ? winKey : (saved && D.winKeys.indexOf(saved) >= 0 ? saved : (D.winKeys.indexOf('28') >= 0 ? '28' : D.winKeys[0]));
+    man = isDemo ? {} : (manualAll[mkey()] || {});
+    fillForm(man);
+    paint();
+  }
+  function paint() {
+    var Dw = AICC.atWindow(D, winKey), FN = AICC.funnel(Dw, man), R = AICC.readings(FN), days = FN.days;
+    var RS = AICC.reelStats(Dw, { hourOf: localHour }), G = AICC.metrics(Dw, FN, RS);
+    var who = D.account.username ? '@' + esc(D.account.username) : 'your account';
+    $('#acct').innerHTML = who + (D.account.followers != null ? ' <span class="h">' + n0(D.account.followers) + '</span> followers' : '');
+    var win = Dw.window ? dt(Dw.window.since) + ' to ' + dt(new Date(Date.parse(Dw.window.until + 'T00:00:00Z') - 86400000).toISOString().slice(0, 10)) : 'last ' + days + ' days';
+    var tog = $('#wtog');
+    tog.hidden = D.winKeys.length < 2;
+    $('#period').innerHTML = 'period<b>' + esc(win) + '</b>' + (tog.hidden ? days + ' days' : '');
+    tog.innerHTML = D.winKeys.slice().sort(function (a, b) { return b - a; }).map(function (k) { return '<button class="wbtn" type="button" data-w="' + k + '" aria-pressed="' + (k === winKey) + '">' + k + ' days</button>'; }).join('');
+    [].forEach.call(tog.querySelectorAll('.wbtn'), function (b) { b.addEventListener('click', function () { winKey = b.getAttribute('data-w'); store.set(WKEY, winKey); paint(); }); });
+    $('#legendwho').textContent = (D.account.username ? '@' + D.account.username : 'your account') + ', ' + win;
+    $('#mwin').textContent = 'the same ' + days + ' days (' + win + ')';
+
+    var k = FN.kpis;
+    var kc = function (l, v, s, na) { return '<div class="kcard"><p class="kl">' + l + '</p>' + (v == null ? '<p class="kv na">' + esc(na) + '</p>' : '<p class="kv">' + v + '</p>') + '<p class="ks">' + (s || '') + '</p></div>'; };
+    var pvOf = k.pv_rate != null ? pct(k.pv_rate, 2) + ' of ' + (FN.reachUsed ? 'reach' : 'views') : '';
+    $('#kstrip').innerHTML =
+      kc('views', k.views == null ? null : n0(k.views), days + ' days', 'no data') +
+      kc('profile visits', k.profile_views == null ? null : n0(k.profile_views), pvOf, 'no data') +
+      kc('bio link taps', k.taps == null ? null : n0(k.taps), k.taps_of_pv != null ? pct(k.taps_of_pv, 1) + ' of visits' : '', 'no data') +
+      kc('follows gained', k.follows == null ? null : n0(k.follows), k.follows_1k != null ? f(k.follows_1k, 1) + ' per 1,000 reached' : '', 'no data') +
+      kc('reels posted', RS.available ? n0(RS.inWindow) : null, RS.available ? (RS.trialInWindow ? 'plus ' + RS.trialInWindow + ' trial' : 'published, ' + days + ' days') : '', RS.available ? 'no data' : 'not in this block');
+
+    var bt = AICC.bottleneckText(FN);
+    $('#callout').className = 'callout' + (FN.bottleneck ? '' : ' clear');
+    $('#callout').innerHTML = '<p class="cl">' + (FN.bottleneck ? 'primary bottleneck · the one step to fix first' : 'primary bottleneck') + '</p><p class="ch">' + esc(bt.head) + '</p><p class="cb">' + esc(bt.body) + '</p>' +
+      (bt.why ? '<div class="cx"><p><b>Why it matters</b>' + esc(bt.why) + '</p><p><b>Try this week</b>' + esc(bt.tip) + '</p></div><p class="cf">' + esc(bt.focus) + '</p>' : '');
+    $('#steprows').innerHTML = FN.steps.filter(function (s) { return s.key !== 'follows' || s.value != null; }).map(function (s) { return srow(s, Dw); }).join('');
+
+    var dot = '<span style="color:var(--dim)">·</span>';
+    $('#ftable').innerHTML = '<table class="ft"><thead><tr><th>stage</th><th class="nm">count</th><th class="nm">step rate</th><th class="nm">lost at this step</th><th class="nm">views per unit</th><th>status</th></tr></thead><tbody>' +
+      FN.rows.map(function (r) {
+        if (r.manual && r.count == null) return '<tr><td>' + r.stage + '</td><td class="nm muted">add below</td><td class="nm">' + dot + '</td><td class="nm">' + dot + '</td><td class="nm">' + dot + '</td><td><span class="chip c-grey">not entered</span></td></tr>';
+        var rate = r.rate == null ? dot : r.per1k ? f(r.rate, 1) + ' per 1,000' : pct(r.rate, r.rate >= 100 ? 1 : 2);
+        var lost = r.lost == null ? dot : r.lost < 0 ? n0(-r.lost) + ' gained' : n0(r.lost);
+        return '<tr' + (r.bold ? ' class="bold"' : '') + ' data-stage="' + r.stage + '"><td>' + r.stage + '</td><td class="nm">' + n0(r.count) + '</td><td class="nm">' + rate + '</td><td class="nm">' + lost + '</td><td class="nm">' + (r.vpu == null ? dot : n0(r.vpu)) + '</td><td><span class="chip c-' + AICC.COLOUR[r.chip] + '">' + CHIP[r.chip] + '</span></td></tr>';
+      }).join('') + '</tbody></table>';
+    $('#fflags').innerHTML = AICC.flags(FN).map(function (x) { return '<div class="fbox ' + x.kind + '"><b>' + esc(x.title) + '</b> ' + esc(x.text) + '</div>'; }).join('');
+    var li = function (a) { return a.map(function (x) { return '<li><strong>' + esc(x.h) + '</strong> ' + esc(x.d) + '</li>'; }).join(''); };
+    $('#working').innerHTML = li(R.working); $('#notworking').innerHTML = li(R.not);
+
+    var S = FN.scen, cur = k.cur;
+    var money = function (x, d) { return cur + Number(x).toFixed(d || 0).replace(/\B(?=(\d{3})+(?!\d))/g, ','); };
+    $('#worth').hidden = !S;
+    if (S) {
+      $('#worthtitle').textContent = 'What the fix is worth, modelled at ' + money(S.price, S.price % 1 ? 2 : 0);
+      $('#worthlede').textContent = 'Each scenario changes one thing and holds the rest of the funnel at its measured rate' + (S.days !== 7 ? '. Your window is ' + S.days + ' days, so counts are per week (× 7 ÷ ' + S.days + ')' : '') + '.';
+      $('#scen').innerHTML = '<table class="sc"><thead><tr><th>scenario</th><th class="nm">profile visits</th><th class="nm">taps</th><th class="nm">page visits</th><th class="nm">sales / wk</th><th class="nm">revenue / wk</th></tr></thead><tbody>' +
+        S.rows.map(function (r) { return '<tr' + (r.bold ? ' class="bold"' : '') + '><td>' + esc(r.label) + '</td><td class="nm">' + n0(r.pv) + '</td><td class="nm">' + n0(r.taps) + '</td><td class="nm">' + n0(r.pages) + '</td><td class="nm">' + f(r.sales, 1) + '</td><td class="nm">' + money(r.revenue) + '</td></tr>'; }).join('') + '</tbody></table>';
+      $('#worthnote').innerHTML = (S.pvR < 0.03 ? 'A 2.0% profile visit rate is still <b>below the floor</b> of the 3 to 10% benchmark: a conservative target, not a stretch one. ' : '') +
+        'Fixing the sales page alone caps out at ' + esc(money(S.rows[1].revenue)) + ' a week; fixing the top of the funnel as well reaches ' + esc(money(S.rows[3].revenue)) + '. The two compound, so the order matters.';
+    }
+
+    $('#groups').innerHTML = G.map(function (g) {
+      var t = g.tally, bits = [];
+      if (t.green) bits.push('<span><i class="d1"></i>' + t.green + ' green</span>'); if (t.yellow) bits.push('<span><i class="d2"></i>' + t.yellow + ' yellow</span>'); if (t.red) bits.push('<span><i class="d3"></i>' + t.red + ' red</span>');
+      if (t.grey) bits.push('<span>' + t.grey + ' reference</span>'); if (t.na) bits.push('<span>' + t.na + ' not available</span>');
+      return '<details class="grp" data-g="' + g.id + '"' + (openGroups[g.id] ? ' open' : '') + '><summary><span class="gt">' + esc(g.name) + ' (' + g.cards.length + ')</span><span class="gs">' + bits.join('') + '</span></summary><div class="cards">' + g.cards.map(cardHtml).join('') + '</div></details>';
+    }).join('');
+    [].forEach.call(document.querySelectorAll('details.grp'), function (d) { d.addEventListener('toggle', function () { openGroups[d.getAttribute('data-g')] = d.open; }); });
+    reelsHtml(RS);
+    $('#foot').textContent = (D.pulled_at ? 'Pulled ' + dt(D.pulled_at) + (D.v3 && D.v3.source === 'composio' ? ' through Composio, read only. ' : '. ') : '') + 'Window ' + win + ' (' + days + ' days). ' +
+      (FN.reachUsed ? '' : 'No reach in the numbers, so profile visit rate is measured on views. ') +
+      (FN.man.pageVisits != null || FN.man.sales != null ? 'Page visits and sales were entered by you. ' : '') +
+      'Confidence intervals are Jeffreys binomial intervals at 95%. Worked out in this browser; nothing you paste or type is sent anywhere.';
+  }
+
+  var saved = OWN || store.get(KEY), ok = false;
+  if (saved) { try { ok = loadObj(JSON.parse(saved), { restored: true }); } catch (e) { ok = false; } if (!ok) store.del(KEY); }
+  if (!ok) showDemo(); else syncButtons();
+})();
+</script>
+
+</body></html>

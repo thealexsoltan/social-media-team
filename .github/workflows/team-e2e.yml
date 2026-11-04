@@ -1,0 +1,68 @@
+# The Social Media Team's computer-side tools (study tools install, a reel study, the account breakdown page),
+# tested on fresh Windows, Intel Mac and Apple Silicon machines by ci/e2e.py.
+# Runs when a test branch is pushed, or by hand from the Actions tab. Never on main: buyers install and update
+# from main, so this check happens before a change gets there.
+# No spend: no Apify, no Composio, no keys. Every account in ci/fixtures/ is made up.
+name: team-e2e
+
+on:
+  push:
+    branches-ignore: [main]
+  workflow_dispatch:
+
+jobs:
+  e2e:
+    name: e2e (${{ matrix.label }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: windows-latest
+            label: windows
+          - runner: macos-15-intel
+            label: mac-intel
+          - runner: macos-latest
+            label: mac-apple-silicon
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 60
+    env:
+      E2E_OUT: ${{ github.workspace }}/ci/out
+      STUDY_TOOLS_DIR: ${{ runner.temp }}/study-tools
+    steps:
+      - uses: actions/checkout@v4
+
+      # A buyer's computer doesn't come with the developer tools a GitHub machine has. Take Python, Node and
+      # ffmpeg off the PATH, so the team has to use what its own setup installs (the bundled video tool).
+      - name: Hide the runner's own Python, Node and ffmpeg (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $drop = 'hostedtoolcache|\\Python|python3|nodejs|\\node|ffmpeg|chocolatey|Strawberry|Git\\usr\\bin|Git\\mingw64\\bin'
+          $kept = $env:PATH.Split(';') | Where-Object { $_ -and ($_ -notmatch $drop) }
+          Add-Content -Path $env:GITHUB_ENV -Value ("PATH=" + ($kept -join ';')) -Encoding utf8
+      - name: Hide the runner's own Python, Node and ffmpeg (Mac)
+        if: runner.os == 'macOS'
+        run: echo "PATH=/usr/bin:/bin:/usr/sbin:/sbin" >> "$GITHUB_ENV"
+
+      # The test runs with the Python a buyer would type: python.org's on Windows (a fixed version from the
+      # runner's tool cache, called by its full path), the Mac's own /usr/bin/python3 (3.9) on a Mac.
+      - name: Run the e2e test (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $py = Get-ChildItem (Join-Path $env:RUNNER_TOOL_CACHE 'Python\3.12*\x64\python.exe') | Select-Object -Last 1
+          if (-not $py) { Write-Error 'No Python 3.12 in the tool cache'; exit 1 }
+          & $py.FullName ci/e2e.py
+          exit $LASTEXITCODE
+      - name: Run the e2e test (Mac)
+        if: runner.os == 'macOS'
+        run: /usr/bin/python3 ci/e2e.py
+
+      - name: Upload the results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: team-e2e-${{ matrix.label }}
+          path: ci/out
+          if-no-files-found: warn
+          retention-days: 14

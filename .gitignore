@@ -1,0 +1,15 @@
+# Python and editor leftovers
+__pycache__/
+*.pyc
+.DS_Store
+.venv/
+node_modules/
+
+# Results of a local or CI test run (ci/e2e.py)
+ci/out/
+
+# Never commit keys, or a buyer's own files if someone tries the team inside this folder
+.env
+my-content-team/
+study-tmp/
+study-tools/

@@ -1,0 +1,15 @@
+# Keep every file as a normal git file (no Git LFS: Claude installs plugins with a plain git clone).
+# Text files get LF line endings on every computer, so scripts and skill files read the same on Windows.
+*.py text eol=lf
+*.mjs text eol=lf
+*.sh text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.html text eol=lf
+*.yml text eol=lf
+*.csv text eol=lf
+*.txt text eol=lf
+*.png binary
+*.jpg binary
+*.mp4 binary
+*.woff2 binary
