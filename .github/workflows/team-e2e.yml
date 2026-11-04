@@ -27,7 +27,6 @@ jobs:
     timeout-minutes: 60
     env:
       E2E_OUT: ${{ github.workspace }}/ci/out
-      STUDY_TOOLS_DIR: ${{ runner.temp }}/study-tools
     steps:
       - uses: actions/checkout@v4
 
@@ -49,6 +48,8 @@ jobs:
       - name: Run the e2e test (Windows)
         if: runner.os == 'Windows'
         shell: pwsh
+        env:
+          STUDY_TOOLS_DIR: ${{ runner.temp }}/study-tools
         run: |
           $py = Get-ChildItem (Join-Path $env:RUNNER_TOOL_CACHE 'Python\3.12*\x64\python.exe') | Select-Object -Last 1
           if (-not $py) { Write-Error 'No Python 3.12 in the tool cache'; exit 1 }
@@ -56,6 +57,8 @@ jobs:
           exit $LASTEXITCODE
       - name: Run the e2e test (Mac)
         if: runner.os == 'macOS'
+        env:
+          STUDY_TOOLS_DIR: ${{ runner.temp }}/study-tools
         run: /usr/bin/python3 ci/e2e.py
 
       - name: Upload the results
