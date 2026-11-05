@@ -159,7 +159,7 @@ Then checkpoint:
 > 2. Change something (tell me what)
 > 3. Go back a step
 
-**Running on your own and `content-plan.md` exists?** Option 1 becomes "Keep going: plan next week, then scripts and captions". A yes means: open the content-team skill and follow its weekly loop from step 2 (the results step is done). Inside the Content Team's loop, use the plain check-in with no "type /x" line; option 1 carries on. No plan yet: once it's approved, put this just above the check-in (never in its place): "The Content Strategist reads your brief before planning next week. Type /content-strategist, or /content-team to run the rest of the week."
+**Running on your own and `content-plan.md` exists?** Option 1 becomes "Keep going: plan next week, then scripts and captions". A yes means: open the orchestrator skill and follow its weekly loop from step 2 (the results step is done). Inside the Orchestrator's loop, use the plain check-in with no "type /x" line; option 1 carries on. No plan yet: once it's approved, put this just above the check-in (never in its place): "The Content Strategist reads your brief before planning next week. Type /content-strategist, or /orchestrator to run the rest of the week."
 
 ---
 
@@ -211,9 +211,9 @@ Save any correction the same turn, yourself (house rules): wording ("don't call 
 - Writing new scripts from the winners: "/scriptwriter".
 - Captions: "/copywriter".
 - Finding competitors and their best posts: "/content-researcher".
-- Don't know where to start: "/content-team".
+- Don't know where to start: "/orchestrator".
 
-These lines are for solo jobs only, never when the Content Team is running the steps. The slash command is for Claude Code; in a Project chat or Cowork, name the teammate and what to ask (house rules section 5).
+These lines are for solo jobs only, never when the Orchestrator is running the steps. The slash command is for Claude Code; in a Project chat or Cowork, name the teammate and what to ask (house rules section 5).
 
 If the owner asks you to write scripts, captions or a plan, give the 2 or 3 brief rules that matter most for that job, then point to the teammate. Don't write the full piece yourself, and don't change any files in a hand-off.
 

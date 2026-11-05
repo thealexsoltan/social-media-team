@@ -1,6 +1,6 @@
 ---
 name: team-help
-description: "Team Help for the Social Media Team. Use when someone asks how the team works, which teammate does what, what a file is for, what an outlier score or the four hooks mean, why something went wrong ('it said saved but I can't find it', 'the slash command isn't showing', 'it made up a number', 'it doesn't sound like me'), or where they are ('what have we done so far', 'what's next'), or how to update ('update the team', 'is there a new version', 'which version do I have'). Answers questions, diagnoses problems and gives status. Reads only, changes nothing."
+description: "Team Help for the Social Media Team. Use when someone asks how the team works, which teammate does what, what a file is for, what an outlier score or the four hooks mean, why something went wrong ('it said saved but I can't find it', 'the slash command isn't showing', 'it made up a number', 'it doesn't sound like me'), or where they are ('what have we done so far', 'what's next'), or how to update ('update the team', 'is there a new version', 'which version do I have'), or why a routine didn't run. Answers questions, diagnoses problems and gives status. Reads only, changes nothing."
 ---
 
 # Team Help
@@ -36,6 +36,7 @@ Answer in 2 to 6 plain lines, then name the teammate or command that does it. **
 - **REPEAT / REMIX / TEST:** a new version of your winner, someone else's winner made your own, or something new.
 - **Performance brief:** your rules from your results, a short list the writers follow.
 - **Does it post for me?** No. You copy, paste and post. That keeps you in control.
+- **Routines:** jobs that run on a schedule on your computer, like a Monday plan or today's posts every morning. They run only while the Claude desktop app (or Cowork) is open and the computer is awake, and leave drafts that wait for your OK. Set them up with Team Routines: say "set up my routines".
 
 ## Diagnose
 
@@ -47,12 +48,14 @@ Work through the likely causes in order. Ask for one thing at a time (a screensh
 | Slash commands missing | Customize > Plugins: is Social Media Team installed and on? Re-upload the zip and choose Replace. In Claude Code: type `/plugin` and check it's listed and on; if not, install it in the Claude app first, sign in to Claude Code with the same account and reopen it Installed from the GitHub link: in Claude Code run `claude plugin list` and check `social-media-team@viral-skool` is there and enabled; if it isn't, install it again with the two commands in the README |
 | Doesn't sound like me | Is there a `voice-guide.md`? Was it built from real samples? Run `/brand-voice` with 3 to 6 more samples, and save each fix as a learned rule |
 | It made up a number or result | It shouldn't. Note it, tell the owner to say "never invent numbers, use a blank" so Brand Voice saves it as a learned rule, and remove the number before posting |
-| A teammate forgot something I told it | Was it saved to `learned-rules.md` or "Owner's answers" in `business-profile.md`, and is that file in the Project or folder? Chats don't remember each other unless the file is there. Start new chats with `/content-team` so the team reads its files first |
+| A teammate forgot something I told it | Was it saved to `learned-rules.md` or "Owner's answers" in `business-profile.md`, and is that file in the Project or folder? Chats don't remember each other unless the file is there. Start new chats with `/orchestrator` so the team reads its files first |
 | Can't see my Instagram/TikTok link | Claude can't watch videos or open most social links. For other accounts, connect Apify (see `/team-onboard`) or send screenshots of their grid. For a video's words, send a transcript |
 | Numbers look wrong | With fewer than 9 posts, the team can't yet tell what's typical for you, so anything it finds is "true so far, not proven yet". Very new posts (under 3 days) are left out on purpose |
 | A connector failed | Check it's connected in Settings > Connectors and signed in. The paste or screenshot route always works meanwhile |
 | A teammate doesn't do what the README or the team says it does | Which version do they have (see Update)? If there's a newer one, update, then start a new chat. Still the same on the newest version: email hello@viralskool.ai with what they asked and what happened |
 | Where's my dashboard? | `my-content-team/analytics/dashboard.html` (Cowork or Claude Code): double-click it to open it in a browser. The Data Analyst makes it with Composio connected ("break down my account"). Chat only: the page in the README, with the numbers pasted in |
+| My routine didn't run | Was the Claude app open and the computer awake at that time? (It does one catch-up run when the computer wakes, for misses in the last 7 days. "Keep computer awake" in the app's Settings helps.) Is it paused? (Team Routines: "what routines do I have".) Is a run waiting for a permission answer? (Code tab, **Scheduled**, the task, its newest run.) Read the run log under `## Routines` in `team-status.md`: a line saying "skipped" says why |
+| A routine did something wrong | Read its newest run log line and the files it names. Routines never post or spend past the budget; their drafts wait for the owner's OK, so nothing is lost: say no to it, or change it with the teammate that made it. To stop it: Team Routines, "pause {routine}" |
 | The dashboard says "not given" | Instagram didn't share that number, often for accounts under 1,000 followers (under 100 it hides audience numbers). It's never a 0 |
 
 **Before you say it's lost.** Never say something "was never saved", is lost or is missing until you've searched every file in `my-content-team/posts/`, `scripts/` and `repurposed/` (Grep, or Read each one) for the owner's words, for the post they mean (match their description to the plan's titles) and for change notes ("Shortened", "Rewrote", "Changed"). Found it: give the file and the line. Only if nothing turns up, say it isn't saved and name the files you checked.
@@ -82,6 +85,6 @@ The team gets fixes and new skills as updates. The owner's files in `my-content-
   In the desktop app they can also open the plugin list (the **+** next to the message box, then **Plugins**) and update Social Media Team there.
 - **Claude chat, claude.ai or Cowork** (installed from the zip): open **Customize**, then **Plugins**, choose **Add**, then **Upload plugin**, pick the new `social-media-team.zip` and choose **Replace**.
 
-**Then start a new chat**, so Claude loads the new version. In Terminal, close Claude Code and open it again. Start that chat with `/content-team`, so the team opens their files first.
+**Then start a new chat**, so Claude loads the new version. In Terminal, close Claude Code and open it again. Start that chat with `/orchestrator`, so the team opens their files first.
 
-You only explain. You never run the update commands yourself: the Content Team does that when the owner says "update the team".
+You only explain. You never run the update commands yourself: the Orchestrator does that when the owner says "update the team".

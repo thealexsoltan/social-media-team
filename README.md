@@ -55,13 +55,13 @@ Optional, any time:
 - Connect **Apify** (free to start, no card) so the team can read other accounts' posts and views for you. It always asks before it spends any of your free credit. Without it, you send screenshots instead.
 - Connect **Composio** (free plan, read only) so the Data Analyst can pull your own Instagram numbers. Without it, you send your Instagram export or screenshots.
 
-Every time you start a new chat about your content, begin with `/content-team` (or a teammate's command, like `/copywriter`), so the team opens your files first.
+Every time you start a new chat about your content, begin with `/orchestrator` (or a teammate's command, like `/copywriter`), so the team opens your files first.
 
 ## The team
 
 | Type | Teammate | What it does |
 |---|---|---|
-| `/content-team` | Content Team | Your front door. Runs setup and your weekly content in order |
+| `/orchestrator` | Orchestrator | Your front door. Runs setup and your weekly content in order |
 | `/brand-voice` | Brand Voice | Learns how you talk and write, and keeps every post sounding like you |
 | `/content-researcher` | Content Researcher | Finds accounts in your niche that keep going viral and studies their best posts |
 | `/content-strategist` | Content Strategist | A content matrix of 40 to 56 ideas (your topics × 8 post styles) and a 30 day plan picked from it, with a short brief for every post |
@@ -69,10 +69,11 @@ Every time you start a new chat about your content, begin with `/content-team` (
 | `/copywriter` | Copywriter | Captions and posts for every platform, ready to paste |
 | `/repurposer` | Repurposer | Turns one long video, podcast or blog into 10 pieces |
 | `/data-analyst` | Data Analyst | A full breakdown of your Instagram account in one page, plus a plain English weekly report: what worked, what flopped, what to post next |
+| `/team-routines` | Team Routines | Sets up your routines: the team's weekly jobs on a schedule (a Monday plan, today's posts every morning, a Friday report and more). Runs in the Claude desktop app or Cowork while your computer is on, and never posts for you |
 | `/team-help` | Team Help | Questions and fixes |
 | `/team-onboard` | Team Setup | First time setup |
 
-In Claude Code the commands can show up with the plugin's name in front, like `social-media-team:content-team`. Both work.
+In Claude Code the commands can show up with the plugin's name in front, like `social-media-team:orchestrator`. Both work.
 
 ## Using Claude chat, claude.ai or Cowork
 

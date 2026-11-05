@@ -93,4 +93,4 @@ End with a small question, not a full checkpoint:
 
 ## Picking a hook yourself
 
-When the owner says "just write it" or skip the options (or in One shoot, three videos, or when the Content Team runs you for setup or the weekly loop), pick the strongest option yourself using this order: a winner of yours that fits the topic (start with `## Your winning first lines`), then an account you study, then fresh. Put 2 other options under the card as backup hooks, lettered A and B, in the same layout, each with its "Why it might work" line.
+When the owner says "just write it" or skip the options (or in One shoot, three videos, or when the Orchestrator runs you for setup or the weekly loop), pick the strongest option yourself using this order: a winner of yours that fits the topic (start with `## Your winning first lines`), then an account you study, then fresh. Put 2 other options under the card as backup hooks, lettered A and B, in the same layout, each with its "Why it might work" line.

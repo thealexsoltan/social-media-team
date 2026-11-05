@@ -25,7 +25,7 @@ The alternatives each take a different angle from the one in use: what's at stak
 
 1. **A filming card exists** (`scripts/`, matched by short name): its "Text on screen" and "First frame" lines are the ones in use. Copy them exactly, marked `From: your filming card`. Never change them, never contradict them, and never edit the card (it's the Scriptwriter's file). Your 2 alternatives must fit the same video: the same spoken line, the same topic and promise, filmable in the same place with the same props. They are offers only.
    - If the card's text hook breaks a rule below (it repeats the spoken line, it's over 10 words, it uses a never-say word), say so in one line and make your fix the first alternative. Still don't edit the card.
-   - If the owner picks an alternative, write "In use: alternative {A or B}, your pick ({date})" in the post file's Visual hooks section, and say: "Use it when you film. The Scriptwriter can update the card: type /scriptwriter." (Run by the Content Team: name the Scriptwriter, no command.)
+   - If the owner picks an alternative, write "In use: alternative {A or B}, your pick ({date})" in the post file's Visual hooks section, and say: "Use it when you film. The Scriptwriter can update the card: type /scriptwriter." (Run by the Orchestrator: name the Scriptwriter, no command.)
 2. **No card**, but a script, a transcript or a filmed video the owner described: you write the one in use, built from the best source below.
 3. **Nothing about the video yet:** ask for the spoken line or what happens in the video first. Never guess.
 

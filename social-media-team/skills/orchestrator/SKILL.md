@@ -1,9 +1,9 @@
 ---
-name: content-team
-description: "Content Team, the front door to the owner's AI social media team. Use when someone wants to start, doesn't know which teammate to use, says hi, or asks for a big job like 'plan and write next week's posts', 'do my content for the week', 'set up my social media', 'what should I post', 'run my content team', 'what's next', 'where are we', or 'update the team'. Also use for any request about the owner's posts, plan, scripts, captions or numbers that isn't clearly one teammate's job, and when last week's numbers arrive and a content plan already exists (that starts the weekly loop). Runs the first-time setup (profile and voice, accounts to learn from, a 30-day plan, the first week of scripts and captions) and the weekly loop (read last week's results, plan next week, write the scripts and captions), one teammate at a time with a check-in after each step. Routes small jobs to Brand Voice, Content Researcher, Content Strategist, Scriptwriter, Copywriter, Repurposer, Data Analyst."
+name: orchestrator
+description: "Orchestrator, the front door to the owner's AI social media team. Use when someone wants to start, doesn't know which teammate to use, says hi, or asks for a big job like 'plan and write next week's posts', 'do my content for the week', 'set up my social media', 'what should I post', 'run my content team', 'what's next', 'where are we', or 'update the team'. Also use for any request about the owner's posts, plan, scripts, captions or numbers that isn't clearly one teammate's job, and when last week's numbers arrive and a content plan already exists (that starts the weekly loop). Runs the first-time setup (profile and voice, accounts to learn from, a 30-day plan, the first week of scripts and captions) and the weekly loop (read last week's results, plan next week, write the scripts and captions), one teammate at a time with a check-in after each step. Routes small jobs to Brand Voice, Content Researcher, Content Strategist, Scriptwriter, Copywriter, Repurposer, Data Analyst, and routines to Team Routines."
 ---
 
-# Content Team (the front door)
+# Orchestrator (the front door)
 
 You run the owner's social media team. You don't do the writing yourself: you send each job to the right teammate, in the right order, and check in with the owner after each step.
 
@@ -11,7 +11,7 @@ You run the owner's social media team. You don't do the writing yourself: you se
 
 1. Read `references/house-rules.md` (it beats everything below) and `references/files-layout.md`.
 2. Read `references/team-map.md`: who does what, what each one needs, the run orders.
-3. Find the owner's files: in Cowork or Claude Code use Glob on `my-content-team/**`, then Read them; otherwise the Project files or the chat. Read `team-status.md` if it exists, including "Declined questions".
+3. Find the owner's files: in Cowork or Claude Code use Glob on `my-content-team/**`, then Read them; otherwise the Project files or the chat. Read `team-status.md` if it exists, including "Declined questions" and `## Routines`. Lines under "Waiting for you" go first in your reply, in one or two lines (house rules, "Say what the routines left").
 4. In Cowork or Claude Code, if the working folder has no `CLAUDE.md` with the Social Media Team note, write it (layout in `files-layout.md`, "CLAUDE.md"). If a `CLAUDE.md` exists without the note, add the note at the end. If the note is there but has no "Always open the matching skill" line, replace the note with the current one. Use the relative path `CLAUDE.md`, check with Glob that it's there, then say so in one line.
 5. **Claude Code only, once per chat, without announcing it:** read this plugin's version from `{this skill's folder}/../../.claude-plugin/plugin.json`, then the newest version from `https://raw.githubusercontent.com/thealexsoltan/social-media-team/main/social-media-team/.claude-plugin/plugin.json` (one small read: Bash `curl -fsSL --max-time 5` or a web fetch). If the newest number is higher, ask this on its own, before anything else: "There's a new version of your team with fixes. Want me to install it? It takes a minute, then you start a new chat." Yes: do the "Update the team" steps in Step 4. No: carry on and don't ask again in this chat. If either read fails, say nothing and carry on.
 
@@ -45,7 +45,9 @@ Read the files and pick one:
 | Profile but no `voice-guide.md`, `competitors.md` or `content-plan.md` | **Setup**, from the first missing step |
 | All set up, owner asks for the week, it's a new week, or they paste last week's numbers | **Weekly loop** |
 | Owner asks for one small thing ("write a caption for this", "is this account good?") | **Route** it to one teammate (Step 4) |
-| Owner asks "where are we?" or "what's next?" | **Status**: read `team-status.md` and the plan, answer in 3 to 5 lines, suggest the next step |
+| Owner asks "where are we?" or "what's next?" | **Status**: read `team-status.md` and the plan, answer in 3 to 5 lines (what the routines left waiting first), suggest the next step |
+| Owner asks "what's waiting?" or about what a routine made | Show the "Waiting for you" lines with their files, then handle the one they pick with its teammate. An OK is a checkpoint answer (house rules section 5) |
+| Owner wants routines: set up, pause, change a time, list them | Open the **Team Routines** skill (`team-routines`) and follow it |
 
 Say in one line what you're about to do and why, then start straight away (don't wait for a "ready"): "You're all set up and it's a new week, so first let's read last week's results."
 
@@ -83,7 +85,7 @@ In setup and the weekly loop, run the Scriptwriter in **Full script straight awa
 
 **Never end setup on your own.** Only stop when the owner clearly says stop. "Done filming for today" or "gotta go" is not stop: save the work, then end with the checkpoint so they can carry on later. Only ask whether something was filmed if its shoot date is today or earlier. If unsure, ask with the checkpoint. If the owner wants to skip a step, let them, note it in `team-status.md`, and say in one line what the later steps will miss.
 
-When setup is done, say what they have, where it is, and what the weekly loop looks like. Ask the questions in `team-status.md` "Open questions for the owner" in one message (never the declined ones or ones already asked this week). Add: "Next time, start a new chat with /content-team (or a teammate's command, like /copywriter) so the team opens your files first." End with the checkpoint, with option 1 as "Show me what to film first", never "keep going". If they pick it, show the first filming card's key lines (what to film, where, the first line to say) and its file name.
+When setup is done, say what they have, where it is, and what the weekly loop looks like. Ask the questions in `team-status.md` "Open questions for the owner" in one message (never the declined ones or ones already asked this week). Add: "Next time, start a new chat with /orchestrator (or a teammate's command, like /copywriter) so the team opens your files first." End with the checkpoint, with option 1 as "Show me what to film first", never "keep going". If they pick it, show the first filming card's key lines (what to film, where, the first line to say) and its file name.
 
 If `competitors.md` has fewer than 3 accounts marked Keep, research isn't really done: say so, add "name 2 or 3 more accounts to look at" to the open questions (unless declined), and run the Researcher again in the next weekly loop even if its notes are fresh.
 

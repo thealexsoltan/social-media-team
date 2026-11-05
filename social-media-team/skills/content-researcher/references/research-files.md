@@ -4,7 +4,7 @@ Two files, both in `my-content-team/` (or Project files with the same names). Ot
 
 | File | Read by | What they take from it |
 |---|---|---|
-| `competitors.md` | Content Strategist, Scriptwriter, Content Team | who we learn from, and each account's normal |
+| `competitors.md` | Content Strategist, Scriptwriter, Orchestrator | who we learn from, and each account's normal |
 | `research-notes.md` | Content Strategist, Scriptwriter, Copywriter | their winners, hook patterns, what's new, the brief |
 
 ---

@@ -119,7 +119,7 @@ Your full breakdown: `my-content-team/analytics/dashboard.html`
 - **`content-plan.md`:** a reel the plan lists that shows up in the pull is posted (weekly report, Step 8).
 - `team-status.md`: the lines your work changed.
 
-Then the checkpoint. Option 1, run alone: "Plan next week from this" (hands to the Content Strategist). In the Content Team's loop: the plain check-in.
+Then the checkpoint. Option 1, run alone: "Plan next week from this" (hands to the Content Strategist). In the Orchestrator's loop: the plain check-in.
 
 ## Without Composio
 

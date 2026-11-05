@@ -1,8 +1,8 @@
 {
   "name": "social-media-team",
   "displayName": "Social Media Team",
-  "version": "1.3.0",
-  "description": "Your AI social media team: 7 teammates and a front door that learn your voice, study what's working in your niche, plan your month, write your video scripts and captions, turn one long piece into ten, and read your results every week. Start with /content-team.",
+  "version": "1.4.0",
+  "description": "Your AI social media team: 7 teammates and a front door that learn your voice, study what's working in your niche, plan your month, write your video scripts and captions, turn one long piece into ten, and read your results every week. Routines can run the weekly jobs on a schedule while your computer is on. Start with /orchestrator.",
   "author": {
     "name": "Viral Skool",
     "email": "hello@viralskool.ai"

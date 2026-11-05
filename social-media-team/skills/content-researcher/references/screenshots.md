@@ -27,7 +27,7 @@ Other platforms: YouTube Shorts show views on the channel's Shorts tab. On Faceb
 >
 > A link on its own isn't enough for me to see anything, the screenshots are what I read.
 
-Ask once, in one message. If the owner already sent accounts or screenshots in this chat (the Content Team's kick-off asks for them), said that's all they have, or said no (in this chat, or a "Declined questions" line in `team-status.md` whose ask again date hasn't come), don't ask again. If they send less, work with what came and list what's missing.
+Ask once, in one message. If the owner already sent accounts or screenshots in this chat (the Orchestrator's kick-off asks for them), said that's all they have, or said no (in this chat, or a "Declined questions" line in `team-status.md` whose ask again date hasn't come), don't ask again. If they send less, work with what came and list what's missing.
 
 ## Reading a grid
 

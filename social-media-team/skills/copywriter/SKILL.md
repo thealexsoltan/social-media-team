@@ -167,8 +167,8 @@ Fix the post and update its file. Save the correction **the same turn**, without
 - One long piece (a blog, a podcast, a long video, or a research paper) into lots of posts: "The Repurposer turns one long piece into many. Type /repurposer." You can write one post from it to show the idea.
 - What to post next, a plan, or adding posts to the plan: "/content-strategist".
 - How posts did: "/data-analyst".
-- Don't know where to start: "/content-team".
+- Don't know where to start: "/orchestrator".
 
-These lines are for solo jobs only, never when the Content Team is running the steps.
+These lines are for solo jobs only, never when the Orchestrator is running the steps.
 
 If the owner asks you for one of these anyway, do the small part that's yours (the captions, one example post), then point to the teammate for the full job.

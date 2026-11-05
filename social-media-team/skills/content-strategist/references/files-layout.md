@@ -16,7 +16,7 @@ All files live in `my-content-team/` (or as Project files with the same names).
 | `research-notes.md` | Content Researcher | Strategist, Scriptwriter, Copywriter |
 | `study/` (a full reel study: numbers, words, pictures, breakdowns, playbook; see "study/ folder" below) | Content Researcher (Study accounts) | Brand Voice, Strategist, Scriptwriter, Copywriter |
 | `script-templates.md` (fill-in-the-blank scripts from winning reels) | Content Researcher (Study accounts) | Scriptwriter, Copywriter, Repurposer |
-| `idea-bank.md` (the content matrix: your topics × 8 post styles, one idea per square, plus every other idea) | Content Strategist | Strategist, Content Team |
+| `idea-bank.md` (the content matrix: your topics × 8 post styles, one idea per square, plus every other idea) | Content Strategist | Strategist, Orchestrator |
 | `content-plan.md` | Content Strategist | Scriptwriter, Copywriter, Data Analyst |
 | `scripts/{date}-{short-name}.md` | Scriptwriter (and the Repurposer, for rows it adds) | Copywriter, Data Analyst |
 | `scripts/{date}-shoot-{short-name}.md` (a plan for filming several videos in one go) | Scriptwriter | the owner |
@@ -25,7 +25,8 @@ All files live in `my-content-team/` (or as Project files with the same names).
 | `results-log.md` | Data Analyst | Data Analyst, Strategist |
 | `performance-brief.md` | Data Analyst | Strategist, Scriptwriter, Copywriter |
 | `analytics/{date}-instagram.json` (a saved Composio pull, never edited) and `analytics/dashboard.html` (the full account breakdown page; see "analytics/ folder" below) | Data Analyst (Full account breakdown) | the owner, Data Analyst |
-| `team-status.md` | Content Team (front door), plus every teammate for the lines its work changes | everyone |
+| `team-status.md` | Orchestrator (front door), plus every teammate for the lines its work changes, plus Team Routines and every routine run for its `## Routines` section | everyone |
+| `routines/{date}-{routine}.md` (what a routine made that would otherwise only be said in chat: the Friday report, the monthly review, voice suggestions, the Monday Kickoff summary) | the routine runs (Team Routines sets them up) | the owner, Orchestrator |
 
 **"This week" and "next week":** if today is Monday, "this week" starts today. Otherwise "next week" is the coming Monday to Sunday. **First setup:** week 1 of the first plan starts on the next filming day after its scripts exist, never "today".
 
@@ -280,18 +281,40 @@ The owner skipped it, said no, or didn't answer. Nobody asks again before the da
 ## Where we work
 - Surface: {chat | cowork | code}
 - Connectors: {none | Apify | Composio | Apify and Composio}
+
+## Routines
+- Where they run: {Desktop app | Cowork}, in the folder that holds my-content-team/
+- On: {each routine that's on, with its time in plain words, e.g. "Monday Content Plan (Mondays 7:00 am)"}
+- Paused: {routine names, or "none"}
+- Filming Prep: the evening before {filming days, e.g. "Wednesday and Sunday"}
+- Apify budget a month: {$N, or "none" (routines never pull)}
+- Apify used this month: {$N} ({YYYY-MM})
+- Watched sources: {link} (last piece seen: "{title}", YYYY-MM-DD) | none
+- Re-study: {N} reels a month from {@handles}
+
+### Waiting for you
+- YYYY-MM-DD {routine name}: {what's waiting and the file}
+
+### Run log
+- YYYY-MM-DD {routine name}: {what it did or skipped}
 ```
+
+**The `## Routines` section** is only there once the owner has routines (Team Routines writes it; a routine run adds it if it's missing). Leave out the lines a routine doesn't need.
+- **The lines above "Waiting for you"** (what's on, budget, sources) are changed only by Team Routines, after the owner's yes. A routine run changes only "Apify used this month" and a source's "last piece seen".
+- **Waiting for you:** one line per routine, replaced by that routine's next run. Every teammate reads it at the start of a job and tells the owner what's waiting (house rules section 3). When the owner says OK to it, changes it or says skip, the teammate handling it deletes that line.
+- **Run log:** one line per run, newest at the bottom, the newest 30 lines only. Only routine runs write here.
+- **Drafts a routine wrote** wait for the owner's OK like any checkpoint: post files carry `Captions: waiting for your OK`, `team-status.md` lines say `waiting on the owner's OK`, a repurposed file says `Not in the plan yet: waiting for your OK`. The owner's yes moves them on (house rules section 5).
 
 ---
 
 ## CLAUDE.md (the folder note, Cowork and Claude Code only)
 
-Lives in the working folder, next to `my-content-team/` (not inside it). Claude reads it at the start of every chat in that folder, so plain requests still reach the team. Written by Team Setup, or by the Content Team if it's missing or out of date (no "Always open the matching skill" line: replace the old note with this one). If the owner already has a `CLAUDE.md`, add this at the end instead of replacing it.
+Lives in the working folder, next to `my-content-team/` (not inside it). Claude reads it at the start of every chat in that folder, so plain requests still reach the team. Written by Team Setup, or by the Orchestrator if it's missing or out of date (no "Always open the matching skill" line: replace the old note with this one). If the owner already has a `CLAUDE.md`, add this at the end instead of replacing it.
 
 ```markdown
 ## Social Media Team
 This folder belongs to the Social Media Team. Its files are in `my-content-team/`.
-- For any request about posts, plans, scripts, captions, numbers or corrections, use the matching social-media-team skill (content-team if unsure), and read `my-content-team/` first.
+- For any request about posts, plans, scripts, captions, numbers or corrections, use the matching social-media-team skill (orchestrator if unsure), and read `my-content-team/` first.
 - Always open the matching skill before changing anything in `my-content-team/`, even a one-word edit.
 - Save any correction or preference the same turn: wording to `my-content-team/learned-rules.md`, facts to `my-content-team/business-profile.md`. Say in one line where it went.
 - Treat "shorter", "less salesy", "too long", "not like me" as standing preferences: save the line, say where, and tell the owner they can say "just this once" to undo it. Never cut the owner's own phrases quoted in the voice guide.

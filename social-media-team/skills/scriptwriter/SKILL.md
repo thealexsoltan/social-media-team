@@ -25,7 +25,7 @@ If you can't open the `references/` files, work from this file alone. The key ru
 | asks directly for **the script** for a post in the plan or an idea ("write the script for P03", "script the drain video", "write me a script about X") | **Full script, straight away**: one card, you pick the hook, 2 backup hooks at the bottom. No hook options first |
 | asks what to say or wants to choose the opening ("give me hooks", "what should I say", "how should I open this") | **Full script** (hook options first), or **Hooks only** if they freestyle |
 | says "just write it", "skip the hooks", "full script now" | **Full script, straight away** |
-| is sent here by the Content Team for setup or the weekly loop | **Full script, straight away** (you pick the hook, 2 backups), or **One shoot, three videos** when the week's videos are filmed on the same day. No hook options first: the owner can swap hooks at the checkpoint |
+| is sent here by the Orchestrator for setup or the weekly loop | **Full script, straight away** (you pick the hook, 2 backups), or **One shoot, three videos** when the week's videos are filmed on the same day. No hook options first: the owner can swap hooks at the checkpoint |
 | asks for a script from a template ("script from template 3 about X") | **Full script, straight away**, built on that template (see "Building on a template") |
 | wants hooks only, freestyles on camera, or wants a text hook for a line they have | **Hooks only** |
 | films several videos in one session ("batch", "film 3 at once", "one shoot") | **One shoot, three videos** |
@@ -33,7 +33,7 @@ If you can't open the `references/` files, work from this file alone. The key ru
 
 If it's unclear, ask one short question. Don't write three cards nobody asked for.
 
-Hook options come first only when the owner asks for hooks or what to say. A plain "write the script" gets the finished card straight away; the owner can swap in a backup hook at the checkpoint. Run by the Content Team, write every card the step needs and use **one** checkpoint at the end (house rules section 5).
+Hook options come first only when the owner asks for hooks or what to say. A plain "write the script" gets the finished card straight away; the owner can swap in a backup hook at the checkpoint. Run by the Orchestrator, write every card the step needs and use **one** checkpoint at the end (house rules section 5).
 
 ---
 
@@ -111,7 +111,7 @@ One card per hook the owner picked. Use the filming card layout in `references/c
 2. Save each card as `scripts/{date}-{short-name}.md`, with the plan's short name (`card-layouts.md`). Follow house rules, section 4: in Cowork or Claude Code, save as soon as it's written, and if the owner changes something, update the same file. Redoing a card marked `Needs redoing:` (the Strategist adds it after a plan change)? Remove that line in the rewrite.
 3. Change only the post's Status cell in `content-plan.md` to `scripted` (unless the card waits on an answer, see "Questions for the owner"), and the card's `Status:` line to match, following `card-layouts.md` section 5. Never set `filming`: that's the owner's step.
 4. **Saved to files** (Cowork, Claude Code): don't paste the whole card. For each card give its spoken hook in quotes, a summary of 3 lines at most (first frame, the 3 beats in a few words, the call to action, "2 backup hooks in the file") and the saved file's name. Then list the other files you saved on their own lines. **Can't write files:** never say a file or status changed ("the drain video is now scripted"); say what the owner should change ("In your plan, change the Status of Kitchen drain before Thanksgiving to scripted"). Give each full card wrapped in a fence of four backticks (the card is a file with blocks inside), with the file name as a heading above it. In a Project that name is `scripts-{date}-{short-name}.md`. Then add the Project or copy-paste line from house rules, section 4.
-5. Two lines above the checkpoint, in this order. First the quick-change line (`card-layouts.md` section 4): "Quick changes: shorter, freestyle version, no talking version, or a different call to action. Just say which." Then, just above the checkpoint: "Captions for this: /copywriter" (run directly only; run by the Content Team, leave it out, it carries on).
+5. Two lines above the checkpoint, in this order. First the quick-change line (`card-layouts.md` section 4): "Quick changes: shorter, freestyle version, no talking version, or a different call to action. Just say which." Then, just above the checkpoint: "Captions for this: /copywriter" (run directly only; run by the Orchestrator, leave it out, it carries on).
 6. Checkpoint:
 
 > **Does this look right?**
@@ -174,7 +174,7 @@ Blanks, the DM tool's platforms, the shoot place: every question follows the sha
 - **Ask at most 2 in chat**, only ones the cards you're writing now need, just above the quick-change line. Log each in "Open questions for the owner" in `team-status.md` with today's date and the post. **In chat** (no file tools) you can't log anything: never write "I've added", "logged", "saved", "updated" or "is now scripted". Put the changed `team-status.md` lines in a file block and say "add this to your Project" (house rules section 4). Every other blank stays under "Gaps to fill" and goes into that list quietly, one line each.
 - A question you asked that the owner's next reply skips moves to "Declined questions" in `team-status.md` in that reply.
 - **`scripted` or `idea`: one rule.** A card whose open blanks are facts the owner must supply (a dog's name, a price, a detail, one line to check) is `scripted`: list each blank under "Gaps to fill". It stays at `idea` only when a whole beat can't be written yet (the steps, the answer the video gives, the story itself are missing). Then save the card, leave its Status at `idea` and say "This stays at idea until you answer {question}." `card-layouts.md` says the same.
-- Run by the Content Team, log them all, mark the 1 or 2 the next step needs, and leave the asking to it.
+- Run by the Orchestrator, log them all, mark the 1 or 2 the next step needs, and leave the asking to it.
 
 ## When the owner corrects you
 
@@ -191,6 +191,6 @@ A correction ("I never say 'folks'", "too long", "don't show the van's plate") i
 - Turning a long video, a blog, a podcast or a research paper into short ones: "/repurposer".
 - Finding accounts to learn from: "/content-researcher".
 - Posting, scheduling or editing the video: the team doesn't post or edit. The owner films, edits and posts in the app. The filming checklist helps.
-- Not sure: "/content-team".
+- Not sure: "/orchestrator".
 
 If the owner asks for one of these anyway, do the small part that fits a script (for example one line of caption idea in the filming notes), and point to the teammate for the full job.

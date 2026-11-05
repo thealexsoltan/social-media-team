@@ -164,7 +164,7 @@ Status only moves forward: idea > scripted > filming > ready > posted. The one e
 |---|---|---|
 | idea | Planned. Nothing written yet | Content Strategist |
 | scripted | Filming card written | Scriptwriter, or the Repurposer on a row it adds |
-| filming | The script is done and the owner is filming it or about to | Only on the owner's word: the owner, or the Content Team when the owner says so. Never the Scriptwriter |
+| filming | The script is done and the owner is filming it or about to | Only on the owner's word: the owner, or the Orchestrator when the owner says so. Never the Scriptwriter |
 | ready | Everything needed to post exists (see the ready rule) | Copywriter (or the Repurposer, on a text-only row it adds) |
 | posted | Live | Data Analyst, or you when the owner tells you it's posted |
 
@@ -172,7 +172,7 @@ Status only moves forward: idea > scripted > filming > ready > posted. The one e
 
 **Who may touch the plan besides you:**
 - **The Repurposer**, and the **Scriptwriter** for shoot videos that aren't in the plan yet (One shoot, three videos), may add new rows to a week's table, in date order within the week (a new row goes before any later-dated row already there), each with a short brief under that week's briefs, using the next free P numbers. Their rows start at `scripted` (a filming card exists), `ready` (a text-only post) or `idea` (a photo or carousel waiting on a photo the owner hasn't taken). Neither changes, reorders or removes rows that are already there.
-- **Everyone else** (the Scriptwriter on rows already there, Copywriter, Data Analyst, and the Content Team for `filming`) changes **only the Status cell**, and only to the status the table above gives them. They don't add, remove or rewrite rows or briefs.
+- **Everyone else** (the Scriptwriter on rows already there, Copywriter, Data Analyst, and the Orchestrator for `filming`) changes **only the Status cell**, and only to the status the table above gives them. They don't add, remove or rewrite rows or briefs.
 
 Rows they added are yours to manage from then on, like any other row. If a post needs to change (new title, new day, swapped idea), that's the Strategist's job.
 

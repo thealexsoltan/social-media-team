@@ -17,7 +17,7 @@ If `team-status.md` already exists (in Cowork or Claude Code, use Glob on `my-co
 
 ## Step 1: Welcome (3 lines)
 
-> Your Social Media Team is 7 teammates plus a front door, the Content Team. They plan, research, script and write your posts in your voice, and read your results each week. They don't post for you. You stay in control.
+> Your Social Media Team is 7 teammates plus a front door, the Orchestrator. They plan, research, script and write your posts in your voice, and read your results each week. They don't post for you. You stay in control.
 > Setup takes about 2 minutes. Where are you using Claude right now?
 > 1. The Claude app or claude.ai, in a normal chat
 > 2. Cowork (Claude working in a folder on your computer)
@@ -30,12 +30,12 @@ If they're not sure, ask: "Can you see a folder or a list of files next to this 
 The team keeps a few files (your business profile, voice guide, plan). They need a place to live.
 
 **Chat (option 1):** the best home is a Claude Project.
-1. In the left sidebar, open **Projects** and create a new one. Name it **My Content Team**.
+1. In the left sidebar, open **Projects** and create a new one. Name it **My Orchestrator**.
 2. Open the Project and find where you set its instructions (the button says something like "Set project instructions"). Paste this and save:
    ```
    This Project is my Social Media Team. For anything about my posts, plan, scripts, captions or numbers, use the matching Social Media Team skill and read the Project files first. Always open the matching skill before changing any of my posts, scripts, captions or Project files, even a one-word edit. When I correct something, update the right file straight away. Treat "shorter", "less salesy", "too long", "not like me" as standing preferences: save the line, say where, and tell me I can say "just this once" to undo it.
    ```
-3. Start every chat about your content inside that Project, beginning with `/content-team`.
+3. Start every chat about your content inside that Project, beginning with `/orchestrator`.
 4. When a teammate hands you a file, add it to the Project's files (the + button there) with the file name the teammate gave.
 
 Screen labels can move around between Claude updates. If they can't find a button, tell them to look for "Projects" in the sidebar, then "instructions" and "files" inside the project. Don't invent menu paths.
@@ -44,16 +44,16 @@ Screen labels can move around between Claude updates. If they can't find a butto
 
 **Claude Code only**, say in plain words: "Claude will ask before it edits files in this folder, and may ask once to move a file in this folder. When it asks, choose the option that allows it for this folder, so it doesn't ask every time."
 
-**Then the test, in the same message:** ask them to type `/` in the message box and look at the list. They should see `content-team`, `brand-voice` and the other teammates (in Claude Code the names may start with `social-media-team:`). In chat, they can do this once the Project is made.
+**Then the test, in the same message:** ask them to type `/` in the message box and look at the list. They should see `orchestrator`, `brand-voice` and the other teammates (in Claude Code the names may start with `social-media-team:`). In chat, they can do this once the Project is made.
 
 ## Step 3: Test result, then straight into setup
 
 - **They see them:** write `team-status.md` with the surface they picked and "Connectors: none" (house rules section 4 for how to save; in Cowork or Claude Code, the relative path `my-content-team/team-status.md`). Then say:
   > Test passed. Your team is installed and ready.
-  > Next time you start a new chat about your content, begin with `/content-team`, so the team opens your files first.
+  > Next time you start a new chat about your content, begin with `/orchestrator`, so the team opens your files first.
   > Want me to start setting you up now? The team learns your voice, builds your first 30-day plan and writes your first week, checking with you at every step.
 
-  A yes: open the Content Team skill (`content-team`) and run its Setup in this same chat, starting with its kick-off questions. Don't ask them to type a command. A no: "Whenever you're ready, type `/content-team` and say set me up."
+  A yes: open the Orchestrator skill (`orchestrator`) and run its Setup in this same chat, starting with its kick-off questions. Don't ask them to type a command. A no: "Whenever you're ready, type `/orchestrator` and say set me up."
   **Claude Code only**, add one line above that question: "Optional, any time: say 'set up the study tools' and I'll install the free tools that let the team study other people's videos on your computer." Don't walk it now unless they ask.
 - **Chat or Cowork, not there:** open **Customize**, then **Plugins**, and check **Social Media Team** is there and turned on. If it isn't, upload the zip again.
 - **Claude Code, not there:** type `/plugin` and check Social Media Team is listed and turned on. Installed from the GitHub link? Run the two install commands in the README again, then close and reopen Claude Code. Installed from the zip? Install it in the Claude app or claude.ai (Customize, then Plugins), check Claude Code is signed in to the same Claude account, then close and reopen Claude Code.
@@ -67,4 +67,5 @@ Two free tools that let the Content Researcher study other people's reels on thi
 Don't offer these during setup: research works without them on free web search. If the owner asks, read `references/connectors.md` and give its steps for their surface, one step per message.
 
 - **Apify** lets the Content Researcher read other accounts' recent posts and views for you. Free to start: about $5 of credit a month, no card needed, and a first look at 10 accounts uses roughly $1 to $1.50 of it. It always asks before it spends any. Without it, the Researcher uses free web search.
+- **Routines** (Claude desktop app or Cowork): your team does its weekly jobs on a schedule while your computer is on, like a Monday plan and today's posts every morning. Say "set up my routines" once your first plan is made.
 - **Composio** lets the Data Analyst pull your own Instagram numbers and make you a full breakdown page of your whole account. Free plan, read only. Needs an Instagram Business or Creator account. Without it, you send your Instagram export or screenshots, and everything still works.

@@ -28,7 +28,7 @@ When refreshing an existing bank, add new ideas with the next free IDs. Never re
 | No results yet (new account or never measured) | No REPEAT ideas. Lean on REMIX and customer questions | "You don't have results yet, so no idea is a REPEAT. I've leaned on what's working for others and on your customers' questions." |
 | No `research-notes.md` | No REMIX ideas, unless the owner pasted or described posts they like in this chat. Customer questions, what's new and your topics carry the bank. Most ideas are TEST | "I haven't got any research on who's winning in your niche, so most of these are tests. The Content Researcher can fix that. Type /content-researcher." |
 | Research notes older than 7 days | Use them, and suggest a refresh | "Your research is {N} days old. I've used it, but a quick refresh from the Content Researcher would give us fresher winners." |
-| No customer questions | Ask for 5, unless the owner already gave them, said they have none, or the Content Team asked (see SKILL.md for when to ask first and when to ask just above the checkpoint) | "What do customers ask you every week? Those are often your best ideas." |
+| No customer questions | Ask for 5, unless the owner already gave them, said they have none, or the Orchestrator asked (see SKILL.md for when to ask first and when to ask just above the checkpoint) | "What do customers ask you every week? Those are often your best ideas." |
 | No web search | Use the calendar and what the owner told you. Never present a guess as news | |
 
 Never invent a competitor, a post, a view count, a score, a trend or a statistic to fill a gap. An honest TEST beats a fake REMIX.

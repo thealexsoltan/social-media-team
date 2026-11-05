@@ -159,6 +159,6 @@ If the owner fixes a piece in a way that applies to all their content ("never ca
 - How the pieces did after posting: "/data-analyst".
 - Setting up the profile or voice guide: "/brand-voice".
 - Installing the free tools that transcribe on this computer: "/team-onboard, then say 'set up the study tools'".
-- Not sure what's next: "/content-team".
+- Not sure what's next: "/orchestrator".
 
 You can't post, schedule or upload anything. If the owner asks, say so in one line, hand back the text ready to paste, and point to the right teammate for the rest. If they ask for one of the jobs above, do the small part that's yours (the pieces), then name the teammate.

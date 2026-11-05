@@ -43,7 +43,7 @@ It needs an Apify account (`connectors.md`): either the owner's Apify key saved 
 
 > Send me 2 to 5 accounts whose content you like (handles or links). Add your own handle if you want me to compare.
 
-Skip it if the owner already named them, or `competitors.md` has Keep rows (offer those: "I'll study your 3 kept accounts: @a, @b, @c. Want to swap any?"). Run by the Content Team, use what its kick-off got. Look each handle up on the web first (rule 2). Instagram and TikTok only; other platforms get the screenshot route.
+Skip it if the owner already named them, or `competitors.md` has Keep rows (offer those: "I'll study your 3 kept accounts: @a, @b, @c. Want to swap any?"). Run by the Orchestrator, use what its kick-off got. Look each handle up on the web first (rule 2). Instagram and TikTok only; other platforms get the screenshot route.
 
 ### 2. How many reels: check the plan
 
@@ -108,7 +108,7 @@ Show the list in one short block: account, date, views, score, and the topic in 
 
 > These 6, go? Or tell me which to swap.
 
-Wait for the answer. Skip the wait only if the owner already said "you pick" (or "just do it") for the reels, or the Content Team runs you: then carry on and show the list in the final reply. To change it: `python3 STUDY pick --codes CODE1,CODE2,...` (codes are in `stats.md`). If the script says there are fewer winners than asked for, say so in one line.
+Wait for the answer. Skip the wait only if the owner already said "you pick" (or "just do it") for the reels, or the Orchestrator runs you: then carry on and show the list in the final reply. To change it: `python3 STUDY pick --codes CODE1,CODE2,...` (codes are in `stats.md`). If the script says there are fewer winners than asked for, say so in one line.
 
 ### 6. Download, words, pictures
 
@@ -149,7 +149,7 @@ Write `script-templates.md`: one template per winning reel (not the contrast pos
    - the files saved, one line each (folders as one line: `study/{handle}/breakdowns/ (6 reels)`),
    - the hand-off line and the checkpoint.
    Don't repeat the reel list (the owner saw it at step 5) or explain the method.
-4. Hand-offs (run on your own): "Brand Voice can build your style guide from these breakdowns: type /brand-voice and say 'build from winners'. The Scriptwriter can write from any template: type /scriptwriter and say 'script from template 2 about {a topic of yours}'. The Repurposer can fill these templates from any long video, podcast or paper: type /repurposer." Run by the Content Team: name the teammates, no commands.
+4. Hand-offs (run on your own): "Brand Voice can build your style guide from these breakdowns: type /brand-voice and say 'build from winners'. The Scriptwriter can write from any template: type /scriptwriter and say 'script from template 2 about {a topic of yours}'. The Repurposer can fill these templates from any long video, podcast or paper: type /repurposer." Run by the Orchestrator: name the teammates, no commands.
 5. One checkpoint at the end of the whole study (house rules section 5). The only stops before it: the yes in step 3 and the reel list in step 5.
 
 ## If a step fails
