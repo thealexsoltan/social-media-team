@@ -280,7 +280,7 @@ If a call fails because of one metric, run it again without that metric and add 
       <div>
         <h3>2 · paste the block here</h3>
         <label for="paste" class="private" style="display:block;margin:0 0 6px">the block Claude gave you (the words around it are fine)</label>
-        <textarea id="paste" spellcheck="false" autocomplete="off" placeholder='{"schema":"aicc-ig-v3", ...}'></textarea>
+        <textarea id="paste" spellcheck="false" autocomplete="off" placeholder='Paste the block of numbers from the Data Analyst here'></textarea>
         <div class="btns" style="margin-top:10px"><button class="btn go" id="go" type="button">show my numbers</button></div>
         <p class="private">Kept in this browser only, until you press clear my data.</p>
         <div class="msg" id="msg" role="alert" hidden></div>
@@ -653,7 +653,7 @@ var AICC = (function () {
   }
   function normalize(d) {
     var warns = [];
-    if (!d || typeof d !== 'object' || Array.isArray(d)) return { errors: ['This is not a numbers block. It should start with {"schema":"aicc-ig-v3".'], warns: warns };
+    if (!d || typeof d !== 'object' || Array.isArray(d)) return { errors: ['This is not a numbers block. Paste the whole block the Data Analyst gave you, from the first { to the last }.'], warns: warns };
     if (Array.isArray(d.calls) && !d.schema) { d = fromCalls(d); warns.push('read a raw Composio pull'); }
     else if (d.account_window && d.profile && !d.totals) { d = fromRawPull(d); warns.push('read a raw Composio pull'); }
     if (d.schema === V3) {
@@ -664,7 +664,7 @@ var AICC = (function () {
       return { errors: [], warns: warns, data: atWindow(out, keys.indexOf('28') >= 0 ? '28' : keys[0]) };
     }
     if (d.schema !== SCHEMA && d.schema !== SCHEMA_V1) {
-      if (d.schema) return { errors: ['This block says it is "' + String(d.schema).slice(0, 40) + '". This page reads the aicc-ig-v3 block from the prompt on this page (older aicc-numbers-v2 blocks work too).'], warns: warns };
+      if (d.schema) return { errors: ['This block says it is "' + String(d.schema).slice(0, 40) + '". Paste the block the Data Analyst gave you for this page.'], warns: warns };
       if (!d.totals) return { errors: ['This is not a numbers block: there is no "schema" line and no "totals". Use the prompt on this page, then paste what Claude gives back.'], warns: warns };
       warns.push('the block had no "schema" line, so it was read as aicc-numbers-v2');
     }
@@ -1171,7 +1171,7 @@ if (typeof module !== 'undefined') module.exports = AICC;
 
   var ERR = {
     empty: ['Paste your block first.', ['Run the prompt in Claude, copy the block it gives back, and paste it in the box.']],
-    noobject: ['There is no block of numbers in what you pasted.', ['The block starts with {"schema":"aicc-ig-v3".', 'If Claude wrote a summary instead, reply in the same chat: only the json block, please.']],
+    noobject: ['There is no block of numbers in what you pasted.', ['The block starts with { and a line called schema.', 'If Claude wrote a summary instead, reply in the same chat: only the json block, please.']],
     truncated: ['The block looks cut off before the end.', ['Part of it was not copied, or Claude stopped early.', 'In the same chat, type: print the json block again in full, nothing else.']],
     syntax: ['The block has a typing error in it, so it cannot be read.', ['In the same chat, type: that block is not valid json, print it again in full, nothing else.']]
   };
